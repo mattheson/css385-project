@@ -20,6 +20,8 @@ public class Movement : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
+        Debug.Log("horizontal " + horizontalInput + " " + verticalInput);
+
         // Move the player right/left
         transform.Translate(Vector3.up * Time.deltaTime * speed * verticalInput);
         // Move the player up/down
