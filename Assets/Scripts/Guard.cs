@@ -29,7 +29,7 @@ public class Guard : MonoBehaviour
         agent.SetDestination(transforms[transformIdx].position); 
         Vector3 offset = transform.position - transforms[transformIdx].position;
         if (offset.magnitude <= 3) {
-            transformIdx = transformIdx + 1 % transforms.Count;
+            transformIdx = (transformIdx + 1) % transforms.Count;
         }
     }
 }
