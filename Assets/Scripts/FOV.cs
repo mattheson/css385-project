@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.AnimatedValues;
 using UnityEngine;
 
 public class FOV : MonoBehaviour
 {
-    // Start is called before the first frame update
     private Mesh mesh;
     private float fov;
     [SerializeField] private LayerMask layerMask;
@@ -59,8 +57,6 @@ public class FOV : MonoBehaviour
             angle -= angleIncrease;
 
         }
-
-
 
         mesh.vertices = vertices;
         mesh.uv = uv;
