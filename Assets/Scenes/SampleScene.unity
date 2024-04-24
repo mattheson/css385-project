@@ -178,7 +178,7 @@ Transform:
   m_GameObject: {fileID: 31342188}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.01}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 256
   startingAngle: 0
 --- !u!23 &31342191
 MeshRenderer:
@@ -389,6 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 243570d553b454a36b8416c25e6d46e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fieldOfView: {fileID: 31342190}
   path: {fileID: 1935661233}
   transforms: []
 --- !u!195 &335417803
@@ -30572,7 +30573,7 @@ GameObject:
   - component: {fileID: 1641776443}
   - component: {fileID: 1641776442}
   - component: {fileID: 1641776444}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -18,14 +18,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        // mouseWorldPos.z = 0f; // zero z
-        Vector3 aimDir = (mouseWorldPos - transform.position).normalized;
-        if (Input.GetKeyDown(KeyCode.Q)){
-            fieldOfView.SetAimDirection(fieldOfView.startingAngle + 1);
-        }
-        fieldOfView.SetOrigin(transform.position);
-
     }
 
     void FixedUpdate() {
