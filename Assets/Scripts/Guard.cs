@@ -13,6 +13,8 @@ public class Guard : MonoBehaviour
     public List<Transform> transforms;
     int transformIdx = 0;
 
+    private Animator animator;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -32,6 +34,7 @@ public class Guard : MonoBehaviour
         {
             fieldOfView.SetAimDirection(fieldOfView.startingAngle + 1);
         }
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -44,5 +47,16 @@ public class Guard : MonoBehaviour
         }
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         fieldOfView.SetOrigin(transform.position);
+        if (transform.position.x != 0 || transform.position.y != 0)
+        {
+            animator.SetFloat("X", transform.position.x);
+            animator.SetFloat("Y", transform.position.y);
+            animator.SetBool("isWalking", true);
+
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+        }
     }
 }
