@@ -143,7 +143,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      output-onlinepngtools (3)_0: 7567063417251660712
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
