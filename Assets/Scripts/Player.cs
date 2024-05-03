@@ -1,62 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] float walkingSpeed = 5f;
-    [SerializeField] float runningSpeed = 10f;
-    [SerializeField] float lerpSpeed = 0.25f; // seconds to fully turn or something
-    private Rigidbody2D rb;
-    private float lerpTime = 0f;
-    private Quaternion start, end;
+    [SerializeField] Sprite rightArmSprite;
+    [SerializeField] Sprite leftArmSprite;
+    private Character character;
+    private CharacterAnimator anim;
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        character = GetComponent<Character>();
+        anim = transform.Find("Character Animations").GetComponent<CharacterAnimator>();
+        anim.leftArmSprite = leftArmSprite;
+        anim.rightArmSprite = rightArmSprite;
     }
 
     void Update()
     {
+        character.move(Input.GetKey(KeyCode.W), Input.GetKey(KeyCode.S),
+            Input.GetKey(KeyCode.A), Input.GetKey(KeyCode.D), Input.GetKey(KeyCode.LeftShift));
 
-    }
-
-    void FixedUpdate()
-    {
-        Vector3 vel = new Vector3();
-        bool keyPressed = false;
-        if (Input.GetKey(KeyCode.W))
-        {
-            vel.y += 1;
-            keyPressed = true;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            vel.x -= 1;
-            keyPressed = true;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            vel.y -= 1;
-            keyPressed = true;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            vel.x += 1;
-            keyPressed = true;
-        }
-        bool running = Input.GetKey(KeyCode.LeftShift);
-        float speed = running ? runningSpeed : walkingSpeed;
-        vel = vel.normalized * speed;
-        rb.velocity = vel;
-
-        if (keyPressed && !Vector3.zero.Equals(vel) && lerpTime < lerpSpeed) {
-            if (lerpTime == 0) {
-                start = transform.rotation;
-                end = Quaternion.LookRotation(Vector3.forward, vel);
-            }
-            transform.rotation = Quaternion.Lerp(start, end, lerpTime += Time.fixedDeltaTime / (lerpSpeed / speed));
-        } else {
-            lerpTime = 0;
+        if (Input.GetKey(KeyCode.Space)) {
+            anim.punchRight();
         }
     }
 }
