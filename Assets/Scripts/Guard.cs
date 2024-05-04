@@ -22,6 +22,7 @@ public class Guard : MonoBehaviour
         agent.updateUpAxis = false;
         agent.updateRotation = false;
         agent.updatePosition = false;
+        agent.autoRepath = true;
 
         anim = transform.Find("Character Animations").GetComponent<CharacterAnimator>();
         anim.leftArmSprite = leftArmSprite;

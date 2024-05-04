@@ -23,7 +23,9 @@ public class Player : MonoBehaviour
             Input.GetKey(KeyCode.A), Input.GetKey(KeyCode.D), Input.GetKey(KeyCode.LeftShift));
 
         if (Input.GetKey(KeyCode.Space)) {
-            anim.punchRight();
+            anim.punch();
+        } else {
+            anim.resetPunch();
         }
     }
 }

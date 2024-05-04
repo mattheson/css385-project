@@ -65,7 +65,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!60 &7951650092916899712
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -152,8 +152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  rightArmSprite: {fileID: 6231331828190100633, guid: c82c40e2bb0934f58a81fc5ac7adaeef, type: 3}
-  leftArmSprite: {fileID: 3828207451518696319, guid: c82c40e2bb0934f58a81fc5ac7adaeef, type: 3}
+  rightArmSprite: {fileID: 8635730098001764059, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
+  leftArmSprite: {fileID: -9205793578799756515, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
 --- !u!212 &201450987675076531
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -197,7 +197,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7925263455568225196, guid: c82c40e2bb0934f58a81fc5ac7adaeef, type: 3}
+  m_Sprite: {fileID: -3434092934263180461, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -242,7 +242,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3372090016807154248, guid: c5239f3476b5e4978973e0f48ec8db45, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8809011236720485683, guid: c5239f3476b5e4978973e0f48ec8db45, type: 3}
       propertyPath: m_LocalPosition.x
@@ -286,7 +286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9086864347146596784, guid: c5239f3476b5e4978973e0f48ec8db45, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9150186725497852209, guid: c5239f3476b5e4978973e0f48ec8db45, type: 3}
       propertyPath: m_Name

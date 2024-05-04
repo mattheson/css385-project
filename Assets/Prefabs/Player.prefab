@@ -63,7 +63,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &6053979037242853780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,8 +76,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f47cf27c5684278a8a18e7d174c604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightArmSprite: {fileID: 1116343113495458544, guid: c82c40e2bb0934f58a81fc5ac7adaeef, type: 3}
-  leftArmSprite: {fileID: -8401918513505921680, guid: c82c40e2bb0934f58a81fc5ac7adaeef, type: 3}
+  rightArmSprite: {fileID: -7945438326949761363, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
+  leftArmSprite: {fileID: -3572524329097331283, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
 --- !u!60 &295474782834769131
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -117,7 +117,7 @@ PolygonCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.8571429}
     oldSize: {x: 1.5, y: 0.875}
-    newSize: {x: 0.12, y: 0.07}
+    newSize: {x: 0.75, y: 0.4375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -172,12 +172,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -949069143266074024, guid: c82c40e2bb0934f58a81fc5ac7adaeef, type: 3}
+  m_Sprite: {fileID: -1311286337752481573, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.12, y: 0.07}
+  m_Size: {x: 0.75, y: 0.4375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -206,6 +206,14 @@ PrefabInstance:
     - target: {fileID: 3372090016807154248, guid: c5239f3476b5e4978973e0f48ec8db45, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8141887152375985979, guid: c5239f3476b5e4978973e0f48ec8db45, type: 3}
+      propertyPath: leftArmSprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8141887152375985979, guid: c5239f3476b5e4978973e0f48ec8db45, type: 3}
+      propertyPath: rightArmSprite
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8809011236720485683, guid: c5239f3476b5e4978973e0f48ec8db45, type: 3}
       propertyPath: m_LocalPosition.x
