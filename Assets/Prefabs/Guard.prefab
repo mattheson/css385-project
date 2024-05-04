@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 104909078841647202}
   - component: {fileID: 1165931218420471423}
   - component: {fileID: 201450987675076531}
-  - component: {fileID: 8837468930799335945}
   - component: {fileID: -2922944379733705942}
   m_Layer: 0
   m_Name: Guard
@@ -126,7 +125,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 7476525426442836450}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1
+  m_Radius: 1.1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -151,9 +150,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c31c06c0b5f14ea180ec81e8ca3e016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  rightArmSprite: {fileID: 8635730098001764059, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
+  bodySprite: {fileID: 0}
   leftArmSprite: {fileID: -9205793578799756515, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
+  rightArmSprite: {fileID: 8635730098001764059, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
+  animator: {fileID: 8016078493381780592}
+  target: {fileID: 0}
 --- !u!212 &201450987675076531
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -208,18 +209,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8837468930799335945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7476525426442836450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 320dabfcac0834b56887cba96233a36f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-2922944379733705942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,3 +291,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8809011236720485683, guid: c5239f3476b5e4978973e0f48ec8db45, type: 3}
   m_PrefabInstance: {fileID: 2288708018394927947}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8016078493381780592 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8141887152375985979, guid: c5239f3476b5e4978973e0f48ec8db45, type: 3}
+  m_PrefabInstance: {fileID: 2288708018394927947}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e80d5d700eee343b6ad79f6bccd619f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

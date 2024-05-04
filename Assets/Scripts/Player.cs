@@ -3,29 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 
-public class Player : MonoBehaviour
+public class Player : Character
 {
-    [SerializeField] Sprite rightArmSprite;
-    [SerializeField] Sprite leftArmSprite;
-    private Character character;
-    private CharacterAnimator anim;
-    void Start()
-    {
-        character = GetComponent<Character>();
-        anim = transform.Find("Character Animations").GetComponent<CharacterAnimator>();
-        anim.leftArmSprite = leftArmSprite;
-        anim.rightArmSprite = rightArmSprite;
-    }
-
     void Update()
     {
-        character.move(Input.GetKey(KeyCode.W), Input.GetKey(KeyCode.S),
+        move(Input.GetKey(KeyCode.W), Input.GetKey(KeyCode.S),
             Input.GetKey(KeyCode.A), Input.GetKey(KeyCode.D), Input.GetKey(KeyCode.LeftShift));
 
         if (Input.GetKey(KeyCode.Space)) {
-            anim.punch();
+            punch();
         } else {
-            anim.resetPunch();
+            resetPunch();
         }
+
+        if (Input.GetKeyDown(KeyCode.M)) {
+            FindFirstObjectByType<GameController>().spawnItem(new Vector2(transform.position.x, transform.position.y), ItemInfo.Items.Pistol);
+        }
+    }
+    public override void OnWalkedOverItem(GameObject item) {
+
     }
 }

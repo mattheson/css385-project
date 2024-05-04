@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+[RequireComponent(typeof(SpriteRenderer))]
+public abstract class Character : MonoBehaviour
 {
-    // this class contains shared character behavior (movement, animation, actions)
-    // shared between player, guards, prisoners
+    // this is an abstract class for all characters to inherit from
+    // contains basic character functionality
 
-    // all characters are assumed to have a child instance of "Character Animations" prefab
-    private GameObject characterAnimations;
-    private CharacterAnimator anim;
+    [SerializeField] Sprite bodySprite;
+    [SerializeField] Sprite leftArmSprite;
+    [SerializeField] Sprite rightArmSprite;
+    [SerializeField] CharacterAnimator animator;
+
     private Vector3 vel;
-    private List<Constants.Items> inv;
 
     void Start()
     {
-        characterAnimations = transform.Find("Character Animations").gameObject;
-        anim = characterAnimations.GetComponent<CharacterAnimator>();
+        GetComponent<SpriteRenderer>().sprite = bodySprite;
+        animator.leftArmSprite = leftArmSprite;
+        animator.rightArmSprite = rightArmSprite;
         vel = Vector3.zero;
     }
 
@@ -50,25 +53,25 @@ public class Character : MonoBehaviour
             curr.x += 1;
             moved = true;
         }
-        float speed = running ? Constants.runningSpeed : Constants.walkingSpeed;
+        float speed = running ? Game.runningSpeed : Game.walkingSpeed;
         curr = curr.normalized * speed;
         vel = curr;
 
         if (moved) {
-            anim.startWalking();
+            animator.startWalking();
             transform.rotation = Quaternion.LookRotation(Vector3.forward, curr);
         } else {
-            anim.stopWalking();
+            animator.stopWalking();
         }
-
-        // if (moved && !Vector3.zero.Equals(vel) && lerpTime < lerpSpeed) {
-        //     if (lerpTime == 0) {
-        //         start = transform.rotation;
-        //         end = Quaternion.LookRotation(Vector3.forward, vel);
-        //     }
-        //     transform.rotation = Quaternion.Lerp(start, end, lerpTime += Time.fixedDeltaTime / (lerpSpeed / speed));
-        // } else {
-        //     lerpTime = 0;
-        // }
     }
+
+    public void punch() {
+        animator.punch();
+    }
+
+    public void resetPunch() {
+        animator.resetPunch();
+    }
+
+    public abstract void OnWalkedOverItem(GameObject item);
 }

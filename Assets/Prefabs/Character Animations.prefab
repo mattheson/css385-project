@@ -502,6 +502,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e80d5d700eee343b6ad79f6bccd619f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightArmSprite: {fileID: 0}
-  leftArmSprite: {fileID: 0}
-  hairSprite: {fileID: 0}
+  rightArmRenderer: {fileID: 6166833341037232044}
+  leftArmRenderer: {fileID: 7315356136766732136}
+  hairRenderer: {fileID: 8902508730523095147}

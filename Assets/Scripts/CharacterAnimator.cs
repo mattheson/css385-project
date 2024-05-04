@@ -10,53 +10,70 @@ public class CharacterAnimator : MonoBehaviour
     // note that all arm animations are manually handled with arm enable/disable 
     // make sure you set rightArmSprite and leftArmSprite
 
-    [NonSerialized] public Sprite rightArmSprite;
-    [NonSerialized] public Sprite leftArmSprite;
-    [NonSerialized] public Sprite hairSprite;
+    [SerializeField] SpriteRenderer rightArmRenderer;
+    [SerializeField] SpriteRenderer leftArmRenderer;
+    [SerializeField] SpriteRenderer hairRenderer;
+    private Sprite _rightArmSprite;
+    private Sprite _leftArmSprite;
+    private Sprite _hairSprite;
+    public Sprite rightArmSprite {
+        get {
+            return _rightArmSprite;
+        }
+        set {
+            _rightArmSprite = value;
+            rightArmRenderer.sprite = _rightArmSprite;
+        }
+    }
+    public Sprite leftArmSprite {
+        get {
+            return _leftArmSprite;
+        }
+        set {
+            _leftArmSprite = value;
+            leftArmRenderer.sprite = _leftArmSprite;
+        }
+    }
+    public Sprite hairSprite {
+        get {
+            return _hairSprite;
+        }
+        set {
+            _hairSprite = value;
+            hairRenderer.sprite = _hairSprite;
+        }
+    }
 
     private Animator animator;
-    private SpriteRenderer rightArm;
-    private SpriteRenderer leftArm;
-    private SpriteRenderer hair;
 
     private bool punchingWithRight = true;
 
     void Start()
     {
         animator = GetComponent<Animator>();
-        rightArm = transform.Find("Right Arm").GetComponent<SpriteRenderer>();
-        leftArm = transform.Find("Left Arm").GetComponent<SpriteRenderer>();
-        hair = transform.Find("Hair").GetComponent<SpriteRenderer>();
 
-        rightArm.enabled = false;
-        leftArm.enabled = false;
-    }
-
-    void Update()
-    {
-        rightArm.sprite = rightArmSprite;
-        leftArm.sprite = leftArmSprite;
-        if (hair) hair.sprite = hairSprite;
+        rightArmRenderer.enabled = false;
+        leftArmRenderer.enabled = false;
     }
 
     public void showLeftArm()
     {
-        leftArm.enabled = true;
+        leftArmRenderer.enabled = true;
     }
 
     public void hideLeftArm()
     {
-        leftArm.enabled = false;
+        leftArmRenderer.enabled = false;
     }
 
     public void showRightArm()
     {
-        rightArm.enabled = true;
+        rightArmRenderer.enabled = true;
     }
 
     public void hideRightArm()
     {
-        rightArm.enabled = false;
+        rightArmRenderer.enabled = false;
     }
 
     public void startWalking()
@@ -106,7 +123,7 @@ public class CharacterAnimator : MonoBehaviour
         punchingWithRight = true;
     }
 
-    // Animation Events:
+    // Animation Events
 
     public void punchRightDone()
     {

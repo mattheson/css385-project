@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85e1f1f37d5b74d04ab2ebd4131a0349, type: 3}
+  m_Name: PistolItemInfo
+  m_EditorClassIdentifier: 
+  item: 3
+  equippability: 0
+  groundSprite: {fileID: -4825035043651388509, guid: 76827f503ef1f4a9eb7d4f4f66fa7871, type: 3}
+  idleHoldingSprite: {fileID: 2381677122677248858, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
