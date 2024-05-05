@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -2922944379733705942}
   m_Layer: 0
   m_Name: Guard
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,9 +150,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c31c06c0b5f14ea180ec81e8ca3e016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodySprite: {fileID: 0}
+  bodySprite: {fileID: -3434092934263180461, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
   leftArmSprite: {fileID: -9205793578799756515, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
   rightArmSprite: {fileID: 8635730098001764059, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
+  hairSprite: {fileID: 0}
   animator: {fileID: 8016078493381780592}
   target: {fileID: 0}
 --- !u!212 &201450987675076531

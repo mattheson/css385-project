@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3892440801387214136}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,6 +78,7 @@ MonoBehaviour:
   bodySprite: {fileID: -1311286337752481573, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
   leftArmSprite: {fileID: -3572524329097331283, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
   rightArmSprite: {fileID: -7945438326949761363, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
+  hairSprite: {fileID: 0}
   animator: {fileID: 1692068194403807287}
 --- !u!60 &295474782834769131
 PolygonCollider2D:

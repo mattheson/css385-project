@@ -18,7 +18,7 @@ public class CameraFollowPlayer : MonoBehaviour
         }
         else
         {
-            player = GameObject.FindWithTag("Player");
+            player = GameObject.Find("Player");
         }
     }
 }

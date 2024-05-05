@@ -8,37 +8,33 @@ public class CharacterAnimator : MonoBehaviour
     // used for controlling sprite animations
     // we are avoiding using the animator controller, managing animations with code should be simpler
     // note that all arm animations are manually handled with arm enable/disable 
-    // make sure you set rightArmSprite and leftArmSprite
 
-    [SerializeField] SpriteRenderer rightArmRenderer;
-    [SerializeField] SpriteRenderer leftArmRenderer;
-    [SerializeField] SpriteRenderer hairRenderer;
-    private Sprite _rightArmSprite;
-    private Sprite _leftArmSprite;
-    private Sprite _hairSprite;
-    public Sprite rightArmSprite {
-        get {
-            return _rightArmSprite;
-        }
-        set {
+    // character receives events in animations
+    [NonSerialized] public Character character;
+    [SerializeField] SpriteRenderer leftArmRenderer, rightArmRenderer, hairRenderer;
+    private Sprite _leftArmSprite, _rightArmSprite, _hairSprite;
+    public Sprite rightArmSprite
+    {
+        get => _rightArmSprite; set
+        {
             _rightArmSprite = value;
             rightArmRenderer.sprite = _rightArmSprite;
         }
     }
-    public Sprite leftArmSprite {
-        get {
-            return _leftArmSprite;
-        }
-        set {
+    public Sprite leftArmSprite
+    {
+        get => _leftArmSprite;
+        set
+        {
             _leftArmSprite = value;
             leftArmRenderer.sprite = _leftArmSprite;
         }
     }
-    public Sprite hairSprite {
-        get {
-            return _hairSprite;
-        }
-        set {
+    public Sprite hairSprite
+    {
+        get => _hairSprite;
+        set
+        {
             _hairSprite = value;
             hairRenderer.sprite = _hairSprite;
         }
@@ -140,7 +136,7 @@ public class CharacterAnimator : MonoBehaviour
     }
 
     // called when arm is fully extended in punch animation
-    public void punchImpact() {
-
+    public void punchImpact()
+    {
     }
 }

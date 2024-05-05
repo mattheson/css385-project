@@ -1,18 +1,35 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Search;
 using UnityEngine;
+using Items = ItemInfo.Items;
 
 public class ItemInstance : MonoBehaviour
 {
-    private ItemInfo info;
-    public ItemInfo Info {
+    private ItemInfo _info;
+    public ItemInfo info {
         get {
-            return info;
+            return _info;
         }
         set {
-            info = value;
-            GetComponent<SpriteRenderer>().sprite = info.groundSprite;
+            _info = value;
+            GetComponent<SpriteRenderer>().sprite = _info.groundSprite;
+        }
+    }
+
+    private Ammo _ammo;
+
+    public Ammo ammo {
+        get {
+            return _ammo;
+        }
+        set {
+            if (_info.item != Items.Pistol || _info.item != Items.Shotgun) {
+                Debug.LogError("set ammo on ItemInstance of type " + _info.item.ToString());
+            } else {
+                _ammo = value;
+            }
         }
     }
 }

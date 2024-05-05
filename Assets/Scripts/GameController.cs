@@ -37,6 +37,6 @@ public class GameController : MonoBehaviour
     public void spawnItem(Vector2 pos, ItemInfo.Items item)
     {
         GameObject i = Instantiate(itemPrefab, grid.GetCellCenterWorld(grid.WorldToCell(new Vector3(pos.x, pos.y, 0))), Quaternion.identity);
-        i.GetComponent<ItemInstance>().Info = itemInfo[item];
+        i.GetComponent<ItemInstance>().info = itemInfo[item];
     }
 }
