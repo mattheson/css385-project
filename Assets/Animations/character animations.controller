@@ -163,7 +163,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Stone Idle
+  m_Name: Two Hand Stone Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -393,7 +393,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Stone Swing
+  m_Name: Two Hand Stone Swing
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []

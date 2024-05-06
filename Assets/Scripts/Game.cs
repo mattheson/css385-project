@@ -24,3 +24,8 @@ public enum ItemEquippability
 {
     SingleHand, DoubleHand, NotEquippable
 }
+
+public enum Phase
+{
+    Mealtime, Work, FreeTime, ReturnToCell, Nighttime
+}

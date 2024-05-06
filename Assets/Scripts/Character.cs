@@ -18,11 +18,11 @@ public abstract class Character : MonoBehaviour
 
     // bullet spawning offset
     private readonly Vector2 pistolBulletOffset = new Vector2(0.15f, 0.9f);
-    private Vector3 vel, agentLastPos, agentNudge;
+    private Vector3 movementVel, agentLastPos, agentNudge;
     public HUD hud;
 
     public Items? equippedItem;
-    public float health;
+    public int health;
 
     // seconds to nudge after, magnitude of random velocity to apply,
     // threshold under which magnitude of diff of two positions is considered stuck
@@ -39,7 +39,7 @@ public abstract class Character : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().sprite = bodySprite;
         animator.character = this;
-        vel = Vector3.zero;
+        movementVel = Vector3.zero;
         health = 100;
     }
 
@@ -61,12 +61,18 @@ public abstract class Character : MonoBehaviour
 
     void FixedUpdate()
     {
-        charaterRigidbody.velocity = vel;
+        charaterRigidbody.velocity = movementVel;
         charaterRigidbody.velocity += new Vector2(agentNudge.x, agentNudge.y);
     }
 
     // all character movement happens here
     public void move(bool up, bool down, bool left, bool right, bool running) {
+        if (animator.isSwingingTwoHandStone()) {
+            movementVel = Vector3.zero;
+            animator.stopWalking();
+            return;
+        }
+
         Vector3 curr = new Vector3();
         bool moved = false;
         if (up)
@@ -91,7 +97,7 @@ public abstract class Character : MonoBehaviour
         }
         float speed = running ? Game.runningSpeed : Game.walkingSpeed;
         curr = curr.normalized * speed;
-        vel = curr;
+        movementVel = curr;
 
         if (moved) {
             animator.startWalking();

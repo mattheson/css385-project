@@ -157,6 +157,10 @@ public class CharacterAnimator : MonoBehaviour
         }
     }
 
+    public bool isSwingingTwoHandStone() {
+        return animator.GetCurrentAnimatorStateInfo(1).IsName("Two Hand Stone Swing");
+    }
+
     // Animation Events
 
     public void rightArmAnimationDone()
