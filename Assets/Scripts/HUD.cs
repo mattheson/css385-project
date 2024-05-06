@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class HUD : MonoBehaviour
 {
-    private int _numSlots;
+    private int _numSlots = 0;
     public int numSlots
     {
         get => _numSlots;
@@ -20,13 +20,16 @@ public class HUD : MonoBehaviour
     [SerializeField] GameObject slotPrefab;
     [SerializeField] Transform slotsStart;
     [SerializeField] float slotPaddingPercent;
-    public TMP_Text goldText;
+    [SerializeField] Player player;
+    [SerializeField] GameController controller;
+    [SerializeField] public TMP_Text goldText, pistolAmmoText, shotgunAmmoText, healthText;
+
+    public int? highlighted;
 
     private List<HUDSlot> slots = new List<HUDSlot>();
 
     void Start()
     {
-        numSlots = 5;
         Canvas canvas = GetComponent<Canvas>();
         if (!GetComponent<Canvas>().worldCamera) {
             GameObject camera = GameObject.FindWithTag("MainCamera");
@@ -37,10 +40,36 @@ public class HUD : MonoBehaviour
                 canvas.renderMode = RenderMode.ScreenSpaceCamera;
             }
         }
+        numSlots = 5;
     }
 
-    public void setGoldText(int num) {
-        goldText.text = "Gold: " + num;
+    void Update() {
+        goldText.text = player.gold.ToString();
+
+        int pistolClip = player.clip.GetValueOrDefault(Items.Pistol, 0);
+        int pistolReserve = player.reserve.GetValueOrDefault(Items.Pistol, 0);
+        int shotgunChambered = player.clip.GetValueOrDefault(Items.Shotgun, 0);
+        int shotgunReserve = player.reserve.GetValueOrDefault(Items.Shotgun, 0);
+
+        pistolAmmoText.text = pistolClip + " / " + pistolReserve;
+        shotgunAmmoText.text = shotgunChambered + " / " + shotgunReserve;
+        healthText.text = player.health.ToString();
+
+        int i = 0;
+
+        for (; i < numSlots && i < player.inventory.Count; i++) {
+            slots[i].itemImage.sprite = controller.getGroundItemSprite(player.inventory[i]);
+            slots[i].itemImage.enabled = true;
+            if (highlighted == i) {
+                slots[i].highlightImage.enabled = true;
+            } else {
+                slots[i].highlightImage.enabled = false;
+            }
+        }
+
+        while (i < numSlots) {
+            slots[i++].itemImage.enabled = false;
+        }
     }
 
     private void addSlot()

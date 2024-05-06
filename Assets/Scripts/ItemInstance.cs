@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Search;
 using UnityEngine;
-using Items = ItemInfo.Items;
 
 public class ItemInstance : MonoBehaviour
 {
@@ -18,18 +17,6 @@ public class ItemInstance : MonoBehaviour
         }
     }
 
-    private Ammo _ammo;
-
-    public Ammo ammo {
-        get {
-            return _ammo;
-        }
-        set {
-            if (_info.item != Items.Pistol || _info.item != Items.Shotgun) {
-                Debug.LogError("set ammo on ItemInstance of type " + _info.item.ToString());
-            } else {
-                _ammo = value;
-            }
-        }
-    }
+    // ammo if this is a gun
+    public int? ammo;
 }

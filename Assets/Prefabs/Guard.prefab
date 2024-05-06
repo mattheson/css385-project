@@ -151,10 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bodySprite: {fileID: -3434092934263180461, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
-  leftArmSprite: {fileID: -9205793578799756515, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
-  rightArmSprite: {fileID: 8635730098001764059, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
-  hairSprite: {fileID: 0}
   animator: {fileID: 8016078493381780592}
+  charaterRigidbody: {fileID: 3710638931522298357}
   target: {fileID: 0}
 --- !u!212 &201450987675076531
 SpriteRenderer:
@@ -234,6 +232,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8141887152375985979, guid: c5239f3476b5e4978973e0f48ec8db45, type: 3}
+      propertyPath: leftArmSprite
+      value: 
+      objectReference: {fileID: -9205793578799756515, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
+    - target: {fileID: 8141887152375985979, guid: c5239f3476b5e4978973e0f48ec8db45, type: 3}
+      propertyPath: rightArmSprite
+      value: 
+      objectReference: {fileID: 8635730098001764059, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
     - target: {fileID: 8809011236720485683, guid: c5239f3476b5e4978973e0f48ec8db45, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

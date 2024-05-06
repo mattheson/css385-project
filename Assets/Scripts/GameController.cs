@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] Grid grid;
     [SerializeField] GameObject itemPrefab;
+    [SerializeField] GameObject bulletPrefab;
 
     // TODO this is the cleanest way of associating item info with an enum
     // that I have found so far, maybe there is something i'm missing
@@ -22,7 +23,7 @@ public class GameController : MonoBehaviour
     // https://github.com/ayellowpaper/SerializedDictionary
     [SerializeField]
     [SerializedDictionary("Item", "Item Info")]
-    SerializedDictionary<ItemInfo.Items, ItemInfo> itemInfo;
+    SerializedDictionary<Items, ItemInfo> itemInfo;
 
     void Start()
     {
@@ -34,9 +35,25 @@ public class GameController : MonoBehaviour
 
     }
 
-    public void spawnItem(Vector2 pos, ItemInfo.Items item)
+    public void spawnItem(Vector2 pos, Items item, int? ammo = null)
     {
-        GameObject i = Instantiate(itemPrefab, grid.GetCellCenterWorld(grid.WorldToCell(new Vector3(pos.x, pos.y, 0))), Quaternion.identity);
-        i.GetComponent<ItemInstance>().info = itemInfo[item];
+        GameObject i = Instantiate(itemPrefab, grid.GetCellCenterWorld(
+            grid.WorldToCell(new Vector3(pos.x, pos.y, 0))), Quaternion.identity);
+        ItemInstance instance = i.GetComponent<ItemInstance>();
+        instance.info = itemInfo[item];
+        instance.ammo = ammo;
+    }
+
+    public void spawnBullet(Vector2 bulletSpawnPos, Vector2 bulletDirection, string shooterTag) {
+        GameObject bulletObj = Instantiate(bulletPrefab, new Vector3(bulletSpawnPos.x, bulletSpawnPos.y, 0),
+            Quaternion.identity);
+        bulletObj.transform.up = bulletDirection;
+        Bullet bullet = bulletObj.GetComponent<Bullet>(); 
+        bullet.shooterTag = shooterTag;
+        bullet.startBullet();
+    }
+
+    public Sprite getGroundItemSprite(Items item) {
+        return itemInfo[item].groundSprite;
     }
 }

@@ -166,7 +166,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.25, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -502,6 +502,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e80d5d700eee343b6ad79f6bccd619f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightArmRenderer: {fileID: 6166833341037232044}
   leftArmRenderer: {fileID: 7315356136766732136}
+  rightArmRenderer: {fileID: 6166833341037232044}
   hairRenderer: {fileID: 8902508730523095147}
+  handsRenderer: {fileID: 845272975610529900}
+  leftArmSprite: {fileID: 0}
+  rightArmSprite: {fileID: 0}
+  hairSprite: {fileID: 0}
+  idleHandsSprite: {fileID: 0}

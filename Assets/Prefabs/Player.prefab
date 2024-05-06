@@ -76,10 +76,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bodySprite: {fileID: -1311286337752481573, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
-  leftArmSprite: {fileID: -3572524329097331283, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
-  rightArmSprite: {fileID: -7945438326949761363, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
-  hairSprite: {fileID: 0}
   animator: {fileID: 1692068194403807287}
+  charaterRigidbody: {fileID: 384649985814039068}
+  gold: 0
 --- !u!60 &295474782834769131
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -200,11 +199,11 @@ PrefabInstance:
     - target: {fileID: 8141887152375985979, guid: c5239f3476b5e4978973e0f48ec8db45, type: 3}
       propertyPath: leftArmSprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: -3572524329097331283, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
     - target: {fileID: 8141887152375985979, guid: c5239f3476b5e4978973e0f48ec8db45, type: 3}
       propertyPath: rightArmSprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: -7945438326949761363, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
     - target: {fileID: 8809011236720485683, guid: c5239f3476b5e4978973e0f48ec8db45, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

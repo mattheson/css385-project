@@ -19,7 +19,7 @@ public class Guard : Character
         agent.autoRepath = true;
     }
 
-    void Update()
+    public override void OnUpdate()
     {
         agent.SetDestination(target.transform.position);
         if (agent.pathStatus == NavMeshPathStatus.PathComplete)
