@@ -162,4 +162,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 200
   bulletForce: 50
-  numberOfUpdatesToLag: 5
+  numberOfUpdatesToLag: 1000

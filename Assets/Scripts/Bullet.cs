@@ -13,6 +13,8 @@ public class Bullet : MonoBehaviour
 
     // number of updates for the bullet to stay around after reaching target
     public int numberOfUpdatesToLag;
+    public float secondsToLiveAfterHit;
+    private float secondsAfterHit;
     private GameObject hit;
     private float distanceToTravel, distanceTravelled;
     private Vector2 bulletDirectionWithSpeed;
@@ -38,7 +40,6 @@ public class Bullet : MonoBehaviour
                 distanceToTravel = diff.magnitude;
                 distanceTravelled = 0;
                 startedMoving = true;
-
                 break;
             }
         }
@@ -49,7 +50,8 @@ public class Bullet : MonoBehaviour
         if (!startedMoving) return;
 
         if (hitDest) {
-            if (numUpdatesAtDest++ >= numberOfUpdatesToLag) {
+            secondsAfterHit += Time.fixedDeltaTime;
+            if (secondsAfterHit >= secondsToLiveAfterHit) {
                 Destroy(gameObject);
             }
             return;
@@ -58,6 +60,7 @@ public class Bullet : MonoBehaviour
         Vector2 maybeSmallDistanceLeft = point - (Vector2) transform.position;
         Vector2 movementThisUpdate = bulletDirectionWithSpeed * Time.fixedDeltaTime;
         Vector2 movement;
+
         if (maybeSmallDistanceLeft.magnitude < bulletSpeed * Time.fixedDeltaTime) {
             movement = maybeSmallDistanceLeft;
         } else {
@@ -67,7 +70,9 @@ public class Bullet : MonoBehaviour
         transform.position += (Vector3) movement;
         distanceTravelled += movement.magnitude;
 
-        if (distanceTravelled >= distanceToTravel) {
+        Debug.Log(Math.Abs(distanceToTravel - distanceTravelled));
+
+        if (Math.Abs(distanceToTravel - distanceTravelled) <= 0.005) {
             Character maybeCharacter = hit.GetComponent<Character>();
             if (maybeCharacter) {
                 maybeCharacter.hitByBullet(transform.up, bulletForce);

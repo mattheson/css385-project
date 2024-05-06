@@ -19,6 +19,8 @@ public class Player : Character
     // inventory just contains equippable items as of now
     public List<Items> inventory = new List<Items>();
 
+    private HUD hud;
+
     void Start()
     {
         reserve[Items.Pistol] = 0;
@@ -30,6 +32,8 @@ public class Player : Character
 
     public override void OnUpdate()
     {
+        if (!hud) hud = FindAnyObjectByType<HUD>();
+
         move(Input.GetKey(KeyCode.W), Input.GetKey(KeyCode.S),
             Input.GetKey(KeyCode.A), Input.GetKey(KeyCode.D), Input.GetKey(KeyCode.LeftShift));
 

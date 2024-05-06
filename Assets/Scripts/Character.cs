@@ -19,7 +19,6 @@ public abstract class Character : MonoBehaviour
     // bullet spawning offset
     private readonly Vector2 pistolBulletOffset = new Vector2(0.15f, 0.9f);
     private Vector3 movementVel, agentLastPos, agentNudge;
-    public HUD hud;
 
     public Items? equippedItem;
     public int health;
@@ -50,10 +49,6 @@ public abstract class Character : MonoBehaviour
 
         if (animator.character != this) {
             animator.character = this;
-        }
-
-        if (!hud) {
-            hud = FindAnyObjectByType<HUD>();
         }
 
         OnUpdate();
@@ -171,6 +166,7 @@ public abstract class Character : MonoBehaviour
     }
 
     public void pickaxeImpact() {
+        // pickaxe logic here
         Debug.Log("pickaxe");
     }
 

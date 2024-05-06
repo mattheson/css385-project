@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using UnityEngine;
 
 public static class Game
 {
@@ -8,6 +9,8 @@ public static class Game
 
     // seconds after which an agent is allowed to change direction
     public const float agentDirectionChangeLimit = 0.25f;
+
+    public const float meleeDistance = 0.5f;
 
     public const int pistolClipSize = 12;
     public const int shotgunCapacity = 8;

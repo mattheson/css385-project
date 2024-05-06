@@ -56,4 +56,11 @@ public class GameController : MonoBehaviour
     public Sprite getGroundItemSprite(Items item) {
         return itemInfo[item].groundSprite;
     }
+
+
+    public void playerSwungPickaxe(Vector2 playerPos, Vector2 direction) {
+        // find the closest wall that the player is facing
+        // make sure they're within meleeDistance of the wall
+        // find the tile and fade it
+    }
 }

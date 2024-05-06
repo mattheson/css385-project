@@ -78,7 +78,9 @@ MonoBehaviour:
   bodySprite: {fileID: -1311286337752481573, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
   animator: {fileID: 1692068194403807287}
   charaterRigidbody: {fileID: 384649985814039068}
+  health: 100
   gold: 0
+  inventory: 
 --- !u!60 &295474782834769131
 PolygonCollider2D:
   m_ObjectHideFlags: 0
