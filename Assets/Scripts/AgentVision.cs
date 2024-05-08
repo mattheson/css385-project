@@ -35,12 +35,11 @@ public class AgentVision
 
     private static RaycastHit2D? castRayAndSearch(GameObject firer, GameObject target, Vector2 origin, Vector2 direction, float distance) {
         // important note: 2 corresponds to the "ignore raycast" layer
-        RaycastHit2D[] hits = Physics2D.RaycastAll(origin, direction, distance, ~(1 << 2));
+        RaycastHit2D[] hits = Physics2D.RaycastAll(origin, firer.transform.rotation * direction, distance, ~LayerMask.GetMask("Ignore Raycast"));
         Debug.DrawRay(origin, firer.transform.rotation * direction * distance, Color.red, 0.01f);
 
         foreach (RaycastHit2D h in hits) {
             if (!h.transform.gameObject.Equals(firer)) {
-                Debug.Log(h.transform.name);
                 if (h.transform.gameObject.Equals(target)) return h;
                 else return null;
             }

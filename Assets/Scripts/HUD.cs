@@ -22,7 +22,7 @@ public class HUD : MonoBehaviour
     [SerializeField] float slotPaddingPercent;
     [SerializeField] Player player;
     [SerializeField] GameController controller;
-    [SerializeField] public TMP_Text goldText, pistolAmmoText, shotgunAmmoText, healthText;
+    [SerializeField] public TMP_Text goldText, pistolAmmoText, shotgunAmmoText, healthText, winText;
 
     public int? highlighted;
 

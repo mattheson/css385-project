@@ -82,6 +82,7 @@ public class Guard : Character
             if (Mathf.Abs(ray.Item2) <= shootingFieldOfView)
             {
                 useItem();
+                Debug.Log("shooting");
             }
             level = CHASING;
             lastPlayerPosition = ray.Item1.transform.position;
@@ -157,5 +158,8 @@ public class Guard : Character
         float xOffset = UnityEngine.Random.Range(-xOffsetRange, xOffsetRange);
         float yOffset = UnityEngine.Random.Range(-yOffsetRange, yOffsetRange);
         return new Vector3(center.x + xOffset, center.y + yOffset, 0);
+    }
+    public override void OnTriggerEnterExtra(Collider2D col)
+    {
     }
 }

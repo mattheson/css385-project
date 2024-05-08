@@ -18,4 +18,8 @@ public class Prisoner : Character
     public override void OnDeath()
     {
     }
+
+    public override void OnTriggerEnterExtra(Collider2D col)
+    {
+    }
 }

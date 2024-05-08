@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 using System;
@@ -225,5 +224,13 @@ public class Player : Character
 
     public override void OnDeath()
     {
+    }
+
+    public override void OnTriggerEnterExtra(Collider2D col)
+    {
+        if (col.gameObject.name.Equals("Win")) {
+            hud.winText.enabled = true;
+            Time.timeScale = 0f;
+        }
     }
 }

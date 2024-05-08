@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
-using UnityEditor.Callbacks;
-using UnityEditor.Search;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // base class to prevent method hiding of Unity functions
 // DO NOT inherit from this, only Character should
@@ -55,6 +54,10 @@ public abstract class Character : CharacterBase
 
     public sealed override void Update()
     {
+        // TODO remove this, just for demo
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            SceneManager.LoadScene("Game");
+        }
         // TODO clean up these assignment statements
         // i found that some assignment statements didn't work in Start(),
         // and i didn't want to use inspector references which resulted in this
@@ -230,8 +233,7 @@ public abstract class Character : CharacterBase
 
     public void pickaxeImpact()
     {
-        // pickaxe logic here
-        Debug.Log("pickaxe");
+        controller.playerSwungPickaxe(transform.position, transform.up);
     }
 
     public void twoHandStoneImpact()
@@ -244,13 +246,14 @@ public abstract class Character : CharacterBase
         if (col.gameObject.CompareTag("Item"))
         {
             OnWalkedOverItem(col.gameObject);
+        } else {
+            OnTriggerEnterExtra(col);
         }
     }
 
     public void hitByBullet(int damage, Vector2 incomingDirection, float force, Character firer)
     {
         charaterRigidbody.velocity += incomingDirection * force;
-        Debug.Log("hit");
         applyDamage(damage);
         Debug.Log(health);
     }
@@ -273,4 +276,7 @@ public abstract class Character : CharacterBase
     public abstract void OnStart();
     public abstract void OnUpdate();
     public abstract void OnDeath();
+
+    // TODO maybe remove this, added this for demo
+    public abstract void OnTriggerEnterExtra(Collider2D col);
 }
