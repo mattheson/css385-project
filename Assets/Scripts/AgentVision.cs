@@ -8,7 +8,7 @@ using System.Dynamic;
 public class AgentVision
 {
     // casts rays, looks for object 
-    // returns the hit and the offset from 90 degrees where the object was hit
+    // TODO this could be cleaner
     public static Tuple<RaycastHit2D, float> lookForObject(GameObject firer, GameObject target, Vector2 origin, Vector2 direction, float distance, int numRays, float fov) {
         if (numRays % 2 == 1) {
             RaycastHit2D? firstRay = castRayAndSearch(firer, target, origin, direction, distance);

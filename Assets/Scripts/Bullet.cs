@@ -21,7 +21,6 @@ public class Bullet : MonoBehaviour
     private Vector2 point;
     private bool startedMoving = false;
     private bool hitDest = false;
-    private int numUpdatesAtDest = 0;
 
     public void startBullet()
     {
