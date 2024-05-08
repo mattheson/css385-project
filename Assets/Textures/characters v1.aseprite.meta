@@ -1,0 +1,3608 @@
+fileFormatVersion: 2
+guid: dd78095b5d8ed461fa917d1eecf6bc60
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 8
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 0
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 0
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 0
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 0
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 638503539654451220
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: walking_Frame_0
+    originalName: 
+    pivot: {x: 0, y: 3}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 77
+      y: 24
+      width: 1
+      height: 1
+    spriteID: c9ea9440feec046bc880207f246ff068
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 77, y: 24}
+  - name: walking_Frame_1
+    originalName: 
+    pivot: {x: 0.42857146, y: 0.875}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 101
+      width: 7
+      height: 8
+    spriteID: 602b7734a4a6f49dbb9882c90d1250b7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 101}
+  - name: walking_Frame_2
+    originalName: 
+    pivot: {x: 0.42857146, y: 0.8}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 65
+      width: 7
+      height: 10
+    spriteID: 231101f3dbb714338b0d0dd0d5b64dfb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 65}
+  - name: walking_Frame_3
+    originalName: 
+    pivot: {x: 0.42857146, y: 0.875}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 117
+      width: 7
+      height: 8
+    spriteID: 521db4362f5714da98e12ef11fe30dd2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 117}
+  - name: walking_Frame_4
+    originalName: 
+    pivot: {x: 0, y: 3}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 77
+      y: 33
+      width: 1
+      height: 1
+    spriteID: 6a41585a71a174ababcd2c7e67869c3c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 77, y: 33}
+  - name: walking_Frame_5
+    originalName: 
+    pivot: {x: 0.5714286, y: 0.875}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 133
+      width: 7
+      height: 8
+    spriteID: 879465314d4594faa96e06abcc28a72a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 133}
+  - name: walking_Frame_6
+    originalName: 
+    pivot: {x: 0.5714286, y: 0.8}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 83
+      width: 7
+      height: 10
+    spriteID: b19e2b36507344252a4d38e1aa783027
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 83}
+  - name: walking_Frame_7
+    originalName: 
+    pivot: {x: 0.5714286, y: 0.875}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 149
+      width: 7
+      height: 8
+    spriteID: 05e101cea227a43ae834fea92b8e77b9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 149}
+  - name: prisoner left arm
+    originalName: 
+    pivot: {x: 1.25, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 246
+      width: 4
+      height: 3
+    spriteID: 29d60355a624d457394401e5cb2651fe
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 246}
+  - name: prisoner right arm
+    originalName: 
+    pivot: {x: -0.25, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 4
+      width: 4
+      height: 3
+    spriteID: 862bf1ad153ae4e0ea22b784675bb961
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 4}
+  - name: prisoner
+    originalName: 
+    pivot: {x: 0.5, y: 0.8571429}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 12
+      height: 7
+    spriteID: dd9f269f6d56047b8a7666285a875509
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: player left arm
+    originalName: 
+    pivot: {x: 1.25, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 15
+      width: 4
+      height: 3
+    spriteID: 69454726c41c94662a9ee4f2f5847ebd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 15}
+  - name: player right arm
+    originalName: 
+    pivot: {x: -0.25, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 26
+      width: 4
+      height: 3
+    spriteID: dd2665f58769348498789b73a20a0636
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 26}
+  - name: player
+    originalName: 
+    pivot: {x: 0.5, y: 0.8571429}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 19
+      width: 12
+      height: 7
+    spriteID: 7ab3662f1dc684766a5ed9d72618eeb7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 19}
+  - name: guard left arm
+    originalName: 
+    pivot: {x: 1.25, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 37
+      width: 4
+      height: 3
+    spriteID: ab16cfc8d642c4cc18d3da553bdd8d2d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 37}
+  - name: guard right arm
+    originalName: 
+    pivot: {x: -0.25, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 48
+      width: 4
+      height: 3
+    spriteID: 5d974c7c282644dc0957caa67600e6f5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 48}
+  - name: guard
+    originalName: 
+    pivot: {x: 0.5, y: 0.8571429}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 34
+      width: 12
+      height: 7
+    spriteID: 424160bcdbe774b498fac1eb739b0d11
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 34}
+  - name: hair 8
+    originalName: 
+    pivot: {x: 0.5, y: 2}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 59
+      width: 4
+      height: 3
+    spriteID: ff7bf3587a8ff4b818e84285d8829d62
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 59}
+  - name: hair 7
+    originalName: 
+    pivot: {x: 0.5, y: 1.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 63
+      y: 4
+      width: 6
+      height: 2
+    spriteID: a7369679027774c7c97618780073ff23
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 63, y: 4}
+  - name: hair 6
+    originalName: 
+    pivot: {x: 0.5, y: 1.25}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 4
+      width: 6
+      height: 4
+    spriteID: b1c95704059b14448b725c4ca9b6331b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 4}
+  - name: hair 5
+    originalName: 
+    pivot: {x: 0.5, y: 1}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 90
+      width: 4
+      height: 5
+    spriteID: b50525f87f5fb40a49b795262df9eeb6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 90}
+  - name: hair 4
+    originalName: 
+    pivot: {x: 0.5, y: 1.6666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 249
+      width: 6
+      height: 3
+    spriteID: 276161e2d7d8444f08ea96d4a57d7584
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 249}
+  - name: hair 3
+    originalName: 
+    pivot: {x: 0.5, y: 1.6666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 142
+      width: 6
+      height: 3
+    spriteID: ec45b63f4259b46039bedf0179eb6260
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 142}
+  - name: hair 2
+    originalName: 
+    pivot: {x: 0.5, y: 1.25}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 16
+      width: 6
+      height: 4
+    spriteID: 6f234a19d042d4028b12081e1546eb7f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 16}
+  - name: hair 1
+    originalName: 
+    pivot: {x: 0.5, y: 1.25}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 28
+      width: 6
+      height: 4
+    spriteID: 64540abc57eee4962a270cd6776046f8
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 28}
+  - name: two hand stone swing_Frame_0
+    originalName: 
+    pivot: {x: 0.5, y: -0.75}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 40
+      width: 6
+      height: 4
+    spriteID: f1f8fd2484b72418b9d4af499d3c0dc1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 40}
+  - name: two hand stone swing_Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: -0.6666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 153
+      width: 6
+      height: 3
+    spriteID: 743fe9b14af9e4edc851ba47085664d0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 153}
+  - name: two hand stone swing_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 164
+      width: 6
+      height: 3
+    spriteID: a22830f9d35d54c50a1b63f63afc4eb3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 164}
+  - name: two hand stone swing_Frame_3
+    originalName: 
+    pivot: {x: 0.5, y: 0.6666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 175
+      width: 6
+      height: 3
+    spriteID: fcde5b87da75f42edb464a1a183cc27b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 175}
+  - name: two hand stone swing_Frame_4
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 186
+      width: 6
+      height: 3
+    spriteID: dc9e4d1402777457498558b259ac6f85
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 186}
+  - name: two hand stone swing_Frame_5
+    originalName: 
+    pivot: {x: 0.5, y: -0.6666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 197
+      width: 6
+      height: 3
+    spriteID: a3256e63e3f774a6d9d7bd1e9e3be412
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 197}
+  - name: two hand stone swing_Frame_6
+    originalName: 
+    pivot: {x: 0.5, y: -0.75}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 52
+      width: 6
+      height: 4
+    spriteID: 8f070154689e0461583b440a75291106
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 52}
+  - name: two hand stone swing_Frame_7
+    originalName: 
+    pivot: {x: 0.5, y: -0.75}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 64
+      width: 6
+      height: 4
+    spriteID: 71a46653fe76b4be18447d706c369410
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 64}
+  - name: punch left_Frame_0
+    originalName: 
+    pivot: {x: 1.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 63
+      y: 116
+      width: 2
+      height: 2
+    spriteID: c7bf88fc3b7d64cf4a9f2b240ee1a3d6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 63, y: 116}
+  - name: punch left_Frame_1
+    originalName: 
+    pivot: {x: 1.5, y: -1}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 63
+      y: 126
+      width: 2
+      height: 2
+    spriteID: 1e5b09be767254a6f839f47074f3e42b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 63, y: 126}
+  - name: punch left_Frame_2
+    originalName: 
+    pivot: {x: 1.5, y: -1.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 63
+      y: 136
+      width: 2
+      height: 2
+    spriteID: 098b0f618c1db4cf9b4bbb3807eeb236
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 63, y: 136}
+  - name: punch left_Frame_3
+    originalName: 
+    pivot: {x: 1, y: -1.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 63
+      y: 146
+      width: 2
+      height: 2
+    spriteID: d281aefc1cbbc43de81b28cb4754f028
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 63, y: 146}
+  - name: punch left_Frame_4
+    originalName: 
+    pivot: {x: 1, y: -1.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 63
+      y: 156
+      width: 2
+      height: 2
+    spriteID: 6963b4143bcd84358bfea1285f6863ef
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 63, y: 156}
+  - name: punch left_Frame_5
+    originalName: 
+    pivot: {x: 1.5, y: -1.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 63
+      y: 166
+      width: 2
+      height: 2
+    spriteID: 170c7bd9c306844bd93916cfe9110863
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 63, y: 166}
+  - name: punch left_Frame_6
+    originalName: 
+    pivot: {x: 1.5, y: -1}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 63
+      y: 176
+      width: 2
+      height: 2
+    spriteID: 9f1eba0b0fed24da3b717ef1d1f6c348
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 63, y: 176}
+  - name: punch left_Frame_7
+    originalName: 
+    pivot: {x: 1.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 63
+      y: 186
+      width: 2
+      height: 2
+    spriteID: 555aca51e1f964c2bb2fae3ea5fdda7f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 63, y: 186}
+  - name: punch right_Frame_0
+    originalName: 
+    pivot: {x: -0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 63
+      y: 196
+      width: 2
+      height: 2
+    spriteID: 818a58d15a3a141efa7e4e2fa475c853
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 63, y: 196}
+  - name: punch right_Frame_1
+    originalName: 
+    pivot: {x: -0.5, y: -1}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 63
+      y: 206
+      width: 2
+      height: 2
+    spriteID: 66d28902ed2d645a48f5731a690b9b6d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 63, y: 206}
+  - name: punch right_Frame_2
+    originalName: 
+    pivot: {x: -0.5, y: -1.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 63
+      y: 216
+      width: 2
+      height: 2
+    spriteID: 4b70d56ce38744cf58ec38501014052e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 63, y: 216}
+  - name: punch right_Frame_3
+    originalName: 
+    pivot: {x: 0, y: -1.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 63
+      y: 226
+      width: 2
+      height: 2
+    spriteID: e78ac0f6140de4faa857bb4206a0ca19
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 63, y: 226}
+  - name: punch right_Frame_4
+    originalName: 
+    pivot: {x: 0, y: -1.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 63
+      y: 236
+      width: 2
+      height: 2
+    spriteID: 7ebef9e8f2fce4955a633e1174b1b782
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 63, y: 236}
+  - name: punch right_Frame_5
+    originalName: 
+    pivot: {x: -0.5, y: -1.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 63
+      y: 246
+      width: 2
+      height: 2
+    spriteID: 289d63e97929e479bbf23a5e8c7ba78d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 63, y: 246}
+  - name: punch right_Frame_6
+    originalName: 
+    pivot: {x: -0.5, y: -1}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 77
+      y: 4
+      width: 2
+      height: 2
+    spriteID: f2f7204c92fd041958265a7b1b29fb13
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 77, y: 4}
+  - name: punch right_Frame_7
+    originalName: 
+    pivot: {x: -0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 77
+      y: 14
+      width: 2
+      height: 2
+    spriteID: e614f22fdaf964acb988756dfba8f02d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 77, y: 14}
+  - name: shotgun load shell_Frame_0
+    originalName: 
+    pivot: {x: 0.5, y: -0.16666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 24
+      y: 116
+      width: 4
+      height: 6
+    spriteID: 6a0efcb7237e240529bce036b99fe920
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 24, y: 116}
+  - name: shotgun load shell_Frame_1
+    originalName: 
+    pivot: {x: 0.6, y: -0.16666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 24
+      y: 4
+      width: 5
+      height: 6
+    spriteID: eac40158ff6a248ac80bbeaea6eb3584
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 24, y: 4}
+  - name: shotgun load shell_Frame_2
+    originalName: 
+    pivot: {x: 0.6, y: -0.16666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 24
+      y: 18
+      width: 5
+      height: 6
+    spriteID: 899259b2e3ab447e883b03047a9d10d4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 24, y: 18}
+  - name: shotgun load shell_Frame_3
+    originalName: 
+    pivot: {x: 0.6, y: -0.16666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 24
+      y: 32
+      width: 5
+      height: 6
+    spriteID: 68ccff913cbd34710a0cc02085fc90d5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 24, y: 32}
+  - name: shotgun load shell_Frame_4
+    originalName: 
+    pivot: {x: 0.5, y: -0.16666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 24
+      y: 130
+      width: 4
+      height: 6
+    spriteID: 73db6bdc3b0504bf29cb078c7a078ccb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 24, y: 130}
+  - name: shotgun load shell_Frame_5
+    originalName: 
+    pivot: {x: 0.33333334, y: -0.16666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 208
+      width: 3
+      height: 6
+    spriteID: 63dc2eefee1ef423ebae320b46478e64
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 208}
+  - name: shotgun load shell_Frame_6
+    originalName: 
+    pivot: {x: 0.5, y: -0.16666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 24
+      y: 144
+      width: 4
+      height: 6
+    spriteID: e032700bf46b44547aba067c39a7b55d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 24, y: 144}
+  - name: shotgun load shell_Frame_7
+    originalName: 
+    pivot: {x: 0.5, y: -0.16666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 24
+      y: 158
+      width: 4
+      height: 6
+    spriteID: 3f2bdc1cd8b6c486c8e453f42fca85aa
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 24, y: 158}
+  - name: shotgun shell_Frame_0
+    originalName: 
+    pivot: {x: 0.5, y: -0.16666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 24
+      y: 172
+      width: 4
+      height: 6
+    spriteID: bde579596bb8a44e695cab3e9cc876ff
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 24, y: 172}
+  - name: shotgun shell_Frame_1
+    originalName: 
+    pivot: {x: 0.6, y: -0.16666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 24
+      y: 46
+      width: 5
+      height: 6
+    spriteID: 00580911fe9c242d0a370523f96f1f62
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 24, y: 46}
+  - name: shotgun shell_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: -0.16666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 24
+      y: 186
+      width: 4
+      height: 6
+    spriteID: 3e3810b7c19b441f28b8e66bbcd3ea75
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 24, y: 186}
+  - name: shotgun shell_Frame_3
+    originalName: 
+    pivot: {x: 0.5, y: -0.16666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 24
+      y: 200
+      width: 4
+      height: 6
+    spriteID: 70e56e1e28a20415cadf430689c7e385
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 24, y: 200}
+  - name: shotgun shell_Frame_4
+    originalName: 
+    pivot: {x: 0.4, y: -0.16666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 24
+      y: 60
+      width: 5
+      height: 6
+    spriteID: 1c72b86d3d7544408854b4c8533a1230
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 24, y: 60}
+  - name: shotgun shell_Frame_5
+    originalName: 
+    pivot: {x: 0.33333334, y: -0.16666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 208
+      width: 6
+      height: 6
+    spriteID: 5616b051749574354b5b47e8f4cdac45
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 208}
+  - name: shotgun shell_Frame_6
+    originalName: 
+    pivot: {x: 0.2857143, y: -0.16666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 180
+      width: 7
+      height: 6
+    spriteID: 9c3da2eacc3d94d6fa7c77e0f7cd1a5b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 180}
+  - name: shotgun shell_Frame_7
+    originalName: 
+    pivot: {x: 0.5, y: -0.16666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 24
+      y: 214
+      width: 4
+      height: 6
+    spriteID: 8a552e8d329e24bcdaaa41770e3914f6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 24, y: 214}
+  - name: shotgun shoot_Frame_0
+    originalName: 
+    pivot: {x: 0.5, y: -0.16666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 24
+      y: 228
+      width: 4
+      height: 6
+    spriteID: 00ead38fd13824d378ed66d21578f4b7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 24, y: 228}
+  - name: shotgun shoot_Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: -0.2}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 103
+      width: 4
+      height: 5
+    spriteID: c8909ebcfce6b45238d6b6de1332c1a6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 103}
+  - name: shotgun shoot_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: -0.25}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 222
+      width: 4
+      height: 4
+    spriteID: a460a773882484356a8bf85180560e8e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 222}
+  - name: shotgun shoot_Frame_3
+    originalName: 
+    pivot: {x: 0.5, y: -0.16666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 24
+      y: 242
+      width: 4
+      height: 6
+    spriteID: e6162b56f0af344bab25da445206de8c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 24, y: 242}
+  - name: shotgun shoot_Frame_4
+    originalName: 
+    pivot: {x: 0.5, y: -0.14285715}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 24
+      y: 88
+      width: 4
+      height: 7
+    spriteID: c92ea1fc712474ed0afd586c426a26eb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 24, y: 88}
+  - name: shotgun shoot_Frame_5
+    originalName: 
+    pivot: {x: 0.5, y: -0.25}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 234
+      width: 4
+      height: 4
+    spriteID: 9a7aac856d83946abb0f4a39861e7672
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 234}
+  - name: shotgun shoot_Frame_6
+    originalName: 
+    pivot: {x: 0.5, y: -0.2}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 116
+      width: 4
+      height: 5
+    spriteID: cecf3a06886be4fa8a0dea51b8a5090c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 116}
+  - name: shotgun shoot_Frame_7
+    originalName: 
+    pivot: {x: 0.5, y: -0.16666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 76
+      width: 4
+      height: 6
+    spriteID: 2b20f3031c7e744cc91b8f4d54c54382
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 76}
+  - name: pistol right reload_Frame_0
+    originalName: 
+    pivot: {x: 0.33333334, y: -0.16666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 222
+      width: 6
+      height: 6
+    spriteID: d2caa931a3ad144c79dc02a7330c1991
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 222}
+  - name: pistol right reload_Frame_1
+    originalName: 
+    pivot: {x: 0.2857143, y: -0.4}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 236
+      width: 7
+      height: 5
+    spriteID: dbc4dc917916748de80e65fca4803955
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 236}
+  - name: pistol right reload_Frame_2
+    originalName: 
+    pivot: {x: 0.14285715, y: -0.16666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 194
+      width: 7
+      height: 6
+    spriteID: 3d909f89925e94a37a856667806718c6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 194}
+  - name: pistol right reload_Frame_3
+    originalName: 
+    pivot: {x: 0.125, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 165
+      width: 8
+      height: 7
+    spriteID: 3b36176c6f482432e9a15ecfc4070809
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 165}
+  - name: pistol right reload_Frame_4
+    originalName: 
+    pivot: {x: 0.11111111, y: 0.125}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 49
+      width: 9
+      height: 8
+    spriteID: c414e415205de48508614ac556de1df2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 49}
+  - name: pistol right reload_Frame_5
+    originalName: 
+    pivot: {x: 0.25, y: -0.4}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 129
+      width: 4
+      height: 5
+    spriteID: 03bd50c6c783f46479211c66cff5738b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 129}
+  - name: pistol right reload_Frame_6
+    originalName: 
+    pivot: {x: 0.4, y: -0.4}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 24
+      y: 103
+      width: 5
+      height: 5
+    spriteID: 13398c82e31254a69880010c3dcbddf4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 24, y: 103}
+  - name: pistol right reload_Frame_7
+    originalName: 
+    pivot: {x: 0.4, y: -0.16666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 24
+      y: 74
+      width: 5
+      height: 6
+    spriteID: c682e2acc200940dd8b067e50af40a71
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 24, y: 74}
+  - name: pistol shoot left_Frame_0
+    originalName: 
+    pivot: {x: 1.5, y: -0.75}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 200
+      width: 2
+      height: 4
+    spriteID: ee73e53ad4fef46b1b2ec213ed41d4f9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 200}
+  - name: pistol shoot left_Frame_1
+    originalName: 
+    pivot: {x: 1.5, y: -1}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 63
+      y: 50
+      width: 2
+      height: 3
+    spriteID: 7d4ecaef85ce349f5b22e7c23d9aace7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 63, y: 50}
+  - name: pistol shoot left_Frame_2
+    originalName: 
+    pivot: {x: 1.5, y: -0.6666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 63
+      y: 61
+      width: 2
+      height: 3
+    spriteID: 65218140cdbf24adf8a5a57b005fdaa3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 63, y: 61}
+  - name: pistol shoot left_Frame_3
+    originalName: 
+    pivot: {x: 1.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 212
+      width: 2
+      height: 4
+    spriteID: 28322dc53e37b42e88caa614fe6a2c1b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 212}
+  - name: pistol shoot left_Frame_4
+    originalName: 
+    pivot: {x: 1.5, y: -0.4}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 70
+      width: 2
+      height: 5
+    spriteID: 6975b00f538f149e6947a1aa1219c84a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 70}
+  - name: pistol shoot left_Frame_5
+    originalName: 
+    pivot: {x: 1.5, y: -0.6666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 63
+      y: 72
+      width: 2
+      height: 3
+    spriteID: 48d442b1ea9884936baf7bb0b968e588
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 63, y: 72}
+  - name: pistol shoot left_Frame_6
+    originalName: 
+    pivot: {x: 1.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 224
+      width: 2
+      height: 4
+    spriteID: a3c6c718a7c82456e864d6e7d99d08d6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 224}
+  - name: pistol shoot left_Frame_7
+    originalName: 
+    pivot: {x: 1.5, y: -0.75}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 236
+      width: 2
+      height: 4
+    spriteID: af641524c590442cf89a5237fbe1507a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 236}
+  - name: pistol shoot right_Frame_0
+    originalName: 
+    pivot: {x: -0.5, y: -0.75}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 248
+      width: 2
+      height: 4
+    spriteID: 460465cac1b914f339b880745bc4afec
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 248}
+  - name: pistol shoot right_Frame_1
+    originalName: 
+    pivot: {x: -0.5, y: -1}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 63
+      y: 83
+      width: 2
+      height: 3
+    spriteID: 9f8e095abd1d545b2a6f803450f1b665
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 63, y: 83}
+  - name: pistol shoot right_Frame_2
+    originalName: 
+    pivot: {x: -0.5, y: -0.6666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 63
+      y: 94
+      width: 2
+      height: 3
+    spriteID: d1910aa558d5a408d8d2bd5d7b011c3b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 63, y: 94}
+  - name: pistol shoot right_Frame_3
+    originalName: 
+    pivot: {x: -0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 63
+      y: 14
+      width: 2
+      height: 4
+    spriteID: d0f859f1043c04698a8233b841291e04
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 63, y: 14}
+  - name: pistol shoot right_Frame_4
+    originalName: 
+    pivot: {x: -0.5, y: -0.4}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 83
+      width: 2
+      height: 5
+    spriteID: b109e901afbf2468e86eb4eb0214a5cd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 83}
+  - name: pistol shoot right_Frame_5
+    originalName: 
+    pivot: {x: -0.5, y: -0.6666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 63
+      y: 105
+      width: 2
+      height: 3
+    spriteID: 7c61be985d6c04fb59d85a360dc2cd57
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 63, y: 105}
+  - name: pistol shoot right_Frame_6
+    originalName: 
+    pivot: {x: -0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 63
+      y: 26
+      width: 2
+      height: 4
+    spriteID: 951263b699cfb46f0b92393d147b231a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 63, y: 26}
+  - name: pistol shoot right_Frame_7
+    originalName: 
+    pivot: {x: -0.5, y: -0.75}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 63
+      y: 38
+      width: 2
+      height: 4
+    spriteID: 15110868913f644efb2aef3854b4c4e2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 63, y: 38}
+  - name: pickaxe_Frame_0
+    originalName: 
+    pivot: {x: -0.5, y: -0.4}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 96
+      width: 2
+      height: 5
+    spriteID: 550d2b42aeb4a4c00a228cd01daa9d07
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 96}
+  - name: pickaxe_Frame_1
+    originalName: 
+    pivot: {x: -0.5, y: -0.2}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 109
+      width: 2
+      height: 5
+    spriteID: de4bdb7199f1341c0a3c0bb7cadef065
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 109}
+  - name: pickaxe_Frame_2
+    originalName: 
+    pivot: {x: -0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 122
+      width: 2
+      height: 5
+    spriteID: a463c733371d4426b9cea296fc1a178b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 122}
+  - name: pickaxe_Frame_3
+    originalName: 
+    pivot: {x: -0.5, y: -0.2}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 135
+      width: 2
+      height: 5
+    spriteID: f9ccb9a9ddf534ceeb0b2b4c00b4f30b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 135}
+  - name: pickaxe_Frame_4
+    originalName: 
+    pivot: {x: -0.5, y: -0.4}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 148
+      width: 2
+      height: 5
+    spriteID: aafe72208cd5541f99d5d46485526a86
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 148}
+  - name: pickaxe_Frame_5
+    originalName: 
+    pivot: {x: -0.5, y: -0.6}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 161
+      width: 2
+      height: 5
+    spriteID: 5a71f570a7a5647c5806387c0db6612d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 161}
+  - name: pickaxe_Frame_6
+    originalName: 
+    pivot: {x: -0.5, y: -0.6}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 174
+      width: 2
+      height: 5
+    spriteID: 48f6f3fa5faeb4960a982997bd2009fb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 174}
+  - name: pickaxe_Frame_7
+    originalName: 
+    pivot: {x: -0.5, y: -0.6}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 187
+      width: 2
+      height: 5
+    spriteID: ba3e9a621069a47b3a854892c1e3f187
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 187}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: -611891439
+    name: walking
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: walking_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 8
+        y: 5
+        width: 1
+        height: 1
+      spriteId: c9ea9440feec046bc880207f246ff068
+    - name: walking_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 5
+        y: 1
+        width: 7
+        height: 8
+      spriteId: 602b7734a4a6f49dbb9882c90d1250b7
+    - name: walking_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 5
+        y: 0
+        width: 7
+        height: 10
+      spriteId: 231101f3dbb714338b0d0dd0d5b64dfb
+    - name: walking_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 5
+        y: 1
+        width: 7
+        height: 8
+      spriteId: 521db4362f5714da98e12ef11fe30dd2
+    - name: walking_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 8
+        y: 5
+        width: 1
+        height: 1
+      spriteId: 6a41585a71a174ababcd2c7e67869c3c
+    - name: walking_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 4
+        y: 1
+        width: 7
+        height: 8
+      spriteId: 879465314d4594faa96e06abcc28a72a
+    - name: walking_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 4
+        y: 0
+        width: 7
+        height: 10
+      spriteId: b19e2b36507344252a4d38e1aa783027
+    - name: walking_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 4
+        y: 1
+        width: 7
+        height: 8
+      spriteId: 05e101cea227a43ae834fea92b8e77b9
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 1
+    guid: -1966251890
+    name: prisoner left arm
+    layerFlags: 19
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: prisoner left arm
+      frameIndex: 0
+      cellRect:
+        x: 3
+        y: 8
+        width: 4
+        height: 3
+      spriteId: 29d60355a624d457394401e5cb2651fe
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 2
+    guid: -1765163404
+    name: prisoner right arm
+    layerFlags: 19
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: prisoner right arm
+      frameIndex: 0
+      cellRect:
+        x: 9
+        y: 8
+        width: 4
+        height: 3
+      spriteId: 862bf1ad153ae4e0ea22b784675bb961
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 3
+    guid: 663495381
+    name: prisoner
+    layerFlags: 19
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: prisoner
+      frameIndex: 0
+      cellRect:
+        x: 2
+        y: 2
+        width: 12
+        height: 7
+      spriteId: dd9f269f6d56047b8a7666285a875509
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 4
+    guid: -476266702
+    name: player left arm
+    layerFlags: 19
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: player left arm
+      frameIndex: 0
+      cellRect:
+        x: 3
+        y: 8
+        width: 4
+        height: 3
+      spriteId: 69454726c41c94662a9ee4f2f5847ebd
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 5
+    guid: 262761996
+    name: player right arm
+    layerFlags: 19
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: player right arm
+      frameIndex: 0
+      cellRect:
+        x: 9
+        y: 8
+        width: 4
+        height: 3
+      spriteId: dd2665f58769348498789b73a20a0636
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 6
+    guid: 1671627737
+    name: player
+    layerFlags: 19
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: player
+      frameIndex: 0
+      cellRect:
+        x: 2
+        y: 2
+        width: 12
+        height: 7
+      spriteId: 7ab3662f1dc684766a5ed9d72618eeb7
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 7
+    guid: 800741941
+    name: guard left arm
+    layerFlags: 19
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: guard left arm
+      frameIndex: 0
+      cellRect:
+        x: 3
+        y: 8
+        width: 4
+        height: 3
+      spriteId: ab16cfc8d642c4cc18d3da553bdd8d2d
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 8
+    guid: 624360635
+    name: guard right arm
+    layerFlags: 19
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: guard right arm
+      frameIndex: 0
+      cellRect:
+        x: 9
+        y: 8
+        width: 4
+        height: 3
+      spriteId: 5d974c7c282644dc0957caa67600e6f5
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 9
+    guid: -984260652
+    name: guard
+    layerFlags: 19
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: guard
+      frameIndex: 0
+      cellRect:
+        x: 2
+        y: 2
+        width: 12
+        height: 7
+      spriteId: 424160bcdbe774b498fac1eb739b0d11
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 10
+    guid: 1931301096
+    name: hair 8
+    layerFlags: 19
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: hair 8
+      frameIndex: 0
+      cellRect:
+        x: 6
+        y: 2
+        width: 4
+        height: 3
+      spriteId: ff7bf3587a8ff4b818e84285d8829d62
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 11
+    guid: -1794434626
+    name: hair 7
+    layerFlags: 19
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: hair 7
+      frameIndex: 0
+      cellRect:
+        x: 5
+        y: 5
+        width: 6
+        height: 2
+      spriteId: a7369679027774c7c97618780073ff23
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 12
+    guid: -759501288
+    name: hair 6
+    layerFlags: 19
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: hair 6
+      frameIndex: 0
+      cellRect:
+        x: 5
+        y: 3
+        width: 6
+        height: 4
+      spriteId: b1c95704059b14448b725c4ca9b6331b
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 13
+    guid: 430665978
+    name: hair 5
+    layerFlags: 19
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: hair 5
+      frameIndex: 0
+      cellRect:
+        x: 6
+        y: 3
+        width: 4
+        height: 5
+      spriteId: b50525f87f5fb40a49b795262df9eeb6
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 14
+    guid: 1465599320
+    name: hair 4
+    layerFlags: 19
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: hair 4
+      frameIndex: 0
+      cellRect:
+        x: 5
+        y: 3
+        width: 6
+        height: 3
+      spriteId: 276161e2d7d8444f08ea96d4a57d7584
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 15
+    guid: -1639200714
+    name: hair 3
+    layerFlags: 19
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: hair 3
+      frameIndex: 0
+      cellRect:
+        x: 5
+        y: 3
+        width: 6
+        height: 3
+      spriteId: ec45b63f4259b46039bedf0179eb6260
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 16
+    guid: -604267384
+    name: hair 2
+    layerFlags: 19
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: hair 2
+      frameIndex: 0
+      cellRect:
+        x: 5
+        y: 3
+        width: 6
+        height: 4
+      spriteId: 6f234a19d042d4028b12081e1546eb7f
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 17
+    guid: 585899882
+    name: hair 1
+    layerFlags: 19
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: hair 1
+      frameIndex: 0
+      cellRect:
+        x: 5
+        y: 3
+        width: 6
+        height: 4
+      spriteId: 64540abc57eee4962a270cd6776046f8
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 18
+    guid: -658113984
+    name: two hand stone swing
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: two hand stone swing_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 5
+        y: 11
+        width: 6
+        height: 4
+      spriteId: f1f8fd2484b72418b9d4af499d3c0dc1
+    - name: two hand stone swing_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 5
+        y: 10
+        width: 6
+        height: 3
+      spriteId: 743fe9b14af9e4edc851ba47085664d0
+    - name: two hand stone swing_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 5
+        y: 8
+        width: 6
+        height: 3
+      spriteId: a22830f9d35d54c50a1b63f63afc4eb3
+    - name: two hand stone swing_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 5
+        y: 6
+        width: 6
+        height: 3
+      spriteId: fcde5b87da75f42edb464a1a183cc27b
+    - name: two hand stone swing_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 5
+        y: 8
+        width: 6
+        height: 3
+      spriteId: dc9e4d1402777457498558b259ac6f85
+    - name: two hand stone swing_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 5
+        y: 10
+        width: 6
+        height: 3
+      spriteId: a3256e63e3f774a6d9d7bd1e9e3be412
+    - name: two hand stone swing_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 5
+        y: 11
+        width: 6
+        height: 4
+      spriteId: 8f070154689e0461583b440a75291106
+    - name: two hand stone swing_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 5
+        y: 11
+        width: 6
+        height: 4
+      spriteId: 71a46653fe76b4be18447d706c369410
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 19
+    guid: -417480620
+    name: punch left
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: punch left_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 5
+        y: 9
+        width: 2
+        height: 2
+      spriteId: c7bf88fc3b7d64cf4a9f2b240ee1a3d6
+    - name: punch left_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 5
+        y: 10
+        width: 2
+        height: 2
+      spriteId: 1e5b09be767254a6f839f47074f3e42b
+    - name: punch left_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 5
+        y: 11
+        width: 2
+        height: 2
+      spriteId: 098b0f618c1db4cf9b4bbb3807eeb236
+    - name: punch left_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 6
+        y: 11
+        width: 2
+        height: 2
+      spriteId: d281aefc1cbbc43de81b28cb4754f028
+    - name: punch left_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 6
+        y: 11
+        width: 2
+        height: 2
+      spriteId: 6963b4143bcd84358bfea1285f6863ef
+    - name: punch left_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 5
+        y: 11
+        width: 2
+        height: 2
+      spriteId: 170c7bd9c306844bd93916cfe9110863
+    - name: punch left_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 5
+        y: 10
+        width: 2
+        height: 2
+      spriteId: 9f1eba0b0fed24da3b717ef1d1f6c348
+    - name: punch left_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 5
+        y: 9
+        width: 2
+        height: 2
+      spriteId: 555aca51e1f964c2bb2fae3ea5fdda7f
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 20
+    guid: 2028829768
+    name: punch right
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: punch right_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 9
+        y: 9
+        width: 2
+        height: 2
+      spriteId: 818a58d15a3a141efa7e4e2fa475c853
+    - name: punch right_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 9
+        y: 10
+        width: 2
+        height: 2
+      spriteId: 66d28902ed2d645a48f5731a690b9b6d
+    - name: punch right_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 9
+        y: 11
+        width: 2
+        height: 2
+      spriteId: 4b70d56ce38744cf58ec38501014052e
+    - name: punch right_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 8
+        y: 11
+        width: 2
+        height: 2
+      spriteId: e78ac0f6140de4faa857bb4206a0ca19
+    - name: punch right_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 8
+        y: 11
+        width: 2
+        height: 2
+      spriteId: 7ebef9e8f2fce4955a633e1174b1b782
+    - name: punch right_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 9
+        y: 11
+        width: 2
+        height: 2
+      spriteId: 289d63e97929e479bbf23a5e8c7ba78d
+    - name: punch right_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 9
+        y: 10
+        width: 2
+        height: 2
+      spriteId: f2f7204c92fd041958265a7b1b29fb13
+    - name: punch right_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 9
+        y: 9
+        width: 2
+        height: 2
+      spriteId: e614f22fdaf964acb988756dfba8f02d
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 21
+    guid: 695169335
+    name: shotgun load shell
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: shotgun load shell_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 6
+        y: 9
+        width: 4
+        height: 6
+      spriteId: 6a0efcb7237e240529bce036b99fe920
+    - name: shotgun load shell_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 5
+        y: 9
+        width: 5
+        height: 6
+      spriteId: eac40158ff6a248ac80bbeaea6eb3584
+    - name: shotgun load shell_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 5
+        y: 9
+        width: 5
+        height: 6
+      spriteId: 899259b2e3ab447e883b03047a9d10d4
+    - name: shotgun load shell_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 5
+        y: 9
+        width: 5
+        height: 6
+      spriteId: 68ccff913cbd34710a0cc02085fc90d5
+    - name: shotgun load shell_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 6
+        y: 9
+        width: 4
+        height: 6
+      spriteId: 73db6bdc3b0504bf29cb078c7a078ccb
+    - name: shotgun load shell_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 7
+        y: 9
+        width: 3
+        height: 6
+      spriteId: 63dc2eefee1ef423ebae320b46478e64
+    - name: shotgun load shell_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 6
+        y: 9
+        width: 4
+        height: 6
+      spriteId: e032700bf46b44547aba067c39a7b55d
+    - name: shotgun load shell_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 6
+        y: 9
+        width: 4
+        height: 6
+      spriteId: 3f2bdc1cd8b6c486c8e453f42fca85aa
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 22
+    guid: 1789029180
+    name: shotgun shell
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: shotgun shell_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 6
+        y: 9
+        width: 4
+        height: 6
+      spriteId: bde579596bb8a44e695cab3e9cc876ff
+    - name: shotgun shell_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 5
+        y: 9
+        width: 5
+        height: 6
+      spriteId: 00580911fe9c242d0a370523f96f1f62
+    - name: shotgun shell_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 6
+        y: 9
+        width: 4
+        height: 6
+      spriteId: 3e3810b7c19b441f28b8e66bbcd3ea75
+    - name: shotgun shell_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 6
+        y: 9
+        width: 4
+        height: 6
+      spriteId: 70e56e1e28a20415cadf430689c7e385
+    - name: shotgun shell_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 6
+        y: 9
+        width: 5
+        height: 6
+      spriteId: 1c72b86d3d7544408854b4c8533a1230
+    - name: shotgun shell_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 6
+        y: 9
+        width: 6
+        height: 6
+      spriteId: 5616b051749574354b5b47e8f4cdac45
+    - name: shotgun shell_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 6
+        y: 9
+        width: 7
+        height: 6
+      spriteId: 9c3da2eacc3d94d6fa7c77e0f7cd1a5b
+    - name: shotgun shell_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 6
+        y: 9
+        width: 4
+        height: 6
+      spriteId: 8a552e8d329e24bcdaaa41770e3914f6
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 23
+    guid: -1315739884
+    name: shotgun shoot
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: shotgun shoot_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 6
+        y: 9
+        width: 4
+        height: 6
+      spriteId: 00ead38fd13824d378ed66d21578f4b7
+    - name: shotgun shoot_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 6
+        y: 9
+        width: 4
+        height: 5
+      spriteId: c8909ebcfce6b45238d6b6de1332c1a6
+    - name: shotgun shoot_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 6
+        y: 9
+        width: 4
+        height: 4
+      spriteId: a460a773882484356a8bf85180560e8e
+    - name: shotgun shoot_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 6
+        y: 9
+        width: 4
+        height: 6
+      spriteId: e6162b56f0af344bab25da445206de8c
+    - name: shotgun shoot_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 6
+        y: 9
+        width: 4
+        height: 7
+      spriteId: c92ea1fc712474ed0afd586c426a26eb
+    - name: shotgun shoot_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 6
+        y: 9
+        width: 4
+        height: 4
+      spriteId: 9a7aac856d83946abb0f4a39861e7672
+    - name: shotgun shoot_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 6
+        y: 9
+        width: 4
+        height: 5
+      spriteId: cecf3a06886be4fa8a0dea51b8a5090c
+    - name: shotgun shoot_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 6
+        y: 9
+        width: 4
+        height: 6
+      spriteId: 2b20f3031c7e744cc91b8f4d54c54382
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 24
+    guid: 187464864
+    name: pistol right reload
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: pistol right reload_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 6
+        y: 9
+        width: 6
+        height: 6
+      spriteId: d2caa931a3ad144c79dc02a7330c1991
+    - name: pistol right reload_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 6
+        y: 10
+        width: 7
+        height: 5
+      spriteId: dbc4dc917916748de80e65fca4803955
+    - name: pistol right reload_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 7
+        y: 9
+        width: 7
+        height: 6
+      spriteId: 3d909f89925e94a37a856667806718c6
+    - name: pistol right reload_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 7
+        y: 8
+        width: 8
+        height: 7
+      spriteId: 3b36176c6f482432e9a15ecfc4070809
+    - name: pistol right reload_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 7
+        y: 7
+        width: 9
+        height: 8
+      spriteId: c414e415205de48508614ac556de1df2
+    - name: pistol right reload_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 7
+        y: 10
+        width: 4
+        height: 5
+      spriteId: 03bd50c6c783f46479211c66cff5738b
+    - name: pistol right reload_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 6
+        y: 10
+        width: 5
+        height: 5
+      spriteId: 13398c82e31254a69880010c3dcbddf4
+    - name: pistol right reload_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 6
+        y: 9
+        width: 5
+        height: 6
+      spriteId: c682e2acc200940dd8b067e50af40a71
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 25
+    guid: 1747538768
+    name: pistol shoot left
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: pistol shoot left_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 5
+        y: 11
+        width: 2
+        height: 4
+      spriteId: ee73e53ad4fef46b1b2ec213ed41d4f9
+    - name: pistol shoot left_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 5
+        y: 11
+        width: 2
+        height: 3
+      spriteId: 7d4ecaef85ce349f5b22e7c23d9aace7
+    - name: pistol shoot left_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 5
+        y: 10
+        width: 2
+        height: 3
+      spriteId: 65218140cdbf24adf8a5a57b005fdaa3
+    - name: pistol shoot left_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 5
+        y: 10
+        width: 2
+        height: 4
+      spriteId: 28322dc53e37b42e88caa614fe6a2c1b
+    - name: pistol shoot left_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 5
+        y: 10
+        width: 2
+        height: 5
+      spriteId: 6975b00f538f149e6947a1aa1219c84a
+    - name: pistol shoot left_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 5
+        y: 10
+        width: 2
+        height: 3
+      spriteId: 48d442b1ea9884936baf7bb0b968e588
+    - name: pistol shoot left_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 5
+        y: 10
+        width: 2
+        height: 4
+      spriteId: a3c6c718a7c82456e864d6e7d99d08d6
+    - name: pistol shoot left_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 5
+        y: 11
+        width: 2
+        height: 4
+      spriteId: af641524c590442cf89a5237fbe1507a
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 26
+    guid: 1467272826
+    name: pistol shoot right
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: pistol shoot right_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 9
+        y: 11
+        width: 2
+        height: 4
+      spriteId: 460465cac1b914f339b880745bc4afec
+    - name: pistol shoot right_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 9
+        y: 11
+        width: 2
+        height: 3
+      spriteId: 9f8e095abd1d545b2a6f803450f1b665
+    - name: pistol shoot right_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 9
+        y: 10
+        width: 2
+        height: 3
+      spriteId: d1910aa558d5a408d8d2bd5d7b011c3b
+    - name: pistol shoot right_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 9
+        y: 10
+        width: 2
+        height: 4
+      spriteId: d0f859f1043c04698a8233b841291e04
+    - name: pistol shoot right_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 9
+        y: 10
+        width: 2
+        height: 5
+      spriteId: b109e901afbf2468e86eb4eb0214a5cd
+    - name: pistol shoot right_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 9
+        y: 10
+        width: 2
+        height: 3
+      spriteId: 7c61be985d6c04fb59d85a360dc2cd57
+    - name: pistol shoot right_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 9
+        y: 10
+        width: 2
+        height: 4
+      spriteId: 951263b699cfb46f0b92393d147b231a
+    - name: pistol shoot right_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 9
+        y: 11
+        width: 2
+        height: 4
+      spriteId: 15110868913f644efb2aef3854b4c4e2
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 27
+    guid: -1549294286
+    name: pickaxe
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: pickaxe_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 9
+        y: 10
+        width: 2
+        height: 5
+      spriteId: 550d2b42aeb4a4c00a228cd01daa9d07
+    - name: pickaxe_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 9
+        y: 9
+        width: 2
+        height: 5
+      spriteId: de4bdb7199f1341c0a3c0bb7cadef065
+    - name: pickaxe_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 9
+        y: 8
+        width: 2
+        height: 5
+      spriteId: a463c733371d4426b9cea296fc1a178b
+    - name: pickaxe_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 9
+        y: 9
+        width: 2
+        height: 5
+      spriteId: f9ccb9a9ddf534ceeb0b2b4c00b4f30b
+    - name: pickaxe_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 9
+        y: 10
+        width: 2
+        height: 5
+      spriteId: aafe72208cd5541f99d5d46485526a86
+    - name: pickaxe_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 9
+        y: 11
+        width: 2
+        height: 5
+      spriteId: 5a71f570a7a5647c5806387c0db6612d
+    - name: pickaxe_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 9
+        y: 11
+        width: 2
+        height: 5
+      spriteId: 48f6f3fa5faeb4960a982997bd2009fb
+    - name: pickaxe_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 9
+        y: 11
+        width: 2
+        height: 5
+      spriteId: ba3e9a621069a47b3a854892c1e3f187
+    linkedCells: []
+    parentIndex: -1
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: iPhone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: WebGL
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  generatePhysicsShape: 0
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 16, y: 16}

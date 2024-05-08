@@ -1,6 +1,2 @@
-You are free to use this asset pack for your game!
-Credits are always appreciated. 
-
-adarshsofficial@gmail.com
-adarshs.itch.io
-twitter.com/adarshsofficial
+do not modify the .aseprite files which end with a version number, these are archived versions of the sprites.
+modifying an imported .aseprite file can break sprite reference

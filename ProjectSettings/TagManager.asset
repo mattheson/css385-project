@@ -3,17 +3,21 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Item
+  - Character
+  - Undefined
+  - Bullet
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - BreakableWallTilemap
   - Water
   - UI
-  - Objects
-  - Obstacles
-  - Player
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -40,13 +44,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Level
-    uniqueID: 3072318955
-    locked: 0
-  - name: Entities
-    uniqueID: 3123161769
-    locked: 0
-  - name: HUD
-    uniqueID: 1639412209
     locked: 0
