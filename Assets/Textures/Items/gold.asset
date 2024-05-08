@@ -9,8 +9,8 @@ Sprite:
   m_Name: gold
   m_Rect:
     serializedVersion: 2
-    x: 0
-    y: 23
+    x: 16
+    y: 20
     width: 12
     height: 6
   m_Offset: {x: 0, y: 0}
@@ -22,7 +22,7 @@ Sprite:
   m_AtlasName: 
   m_PackingTag: 
   m_RenderDataKey:
-    76827f503ef1f4a9eb7d4f4f66fa7871: 2582044513267351056
+    76827f503ef1f4a9eb7d4f4f66fa7871: 4409655844773099850
   m_AtlasTags: []
   m_SpriteAtlas: {fileID: 0}
   m_RD:
@@ -103,18 +103,18 @@ Sprite:
         format: 0
         dimension: 0
       m_DataSize: 80
-      _typelessdata: 0000c0be0000403e000000000000c03e0000403e000000000000c0be000040be000000000000c03e000040be00000000000000000000683f0000403f0000683f000000000000383f0000403f0000383f
+      _typelessdata: 0000c0be0000403e000000000000c03e0000403e000000000000c0be000040be000000000000c03e000040be000000000000003f0000503f0000603f0000503f0000003f0000203f0000603f0000203f
     m_Bindpose: []
     textureRect:
       serializedVersion: 2
-      x: 0
-      y: 23
+      x: 16
+      y: 20
       width: 12
       height: 6
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
     settingsRaw: 0
-    uvTransform: {x: 16, y: 6, z: 16, w: 26}
+    uvTransform: {x: 16, y: 22, z: 16, w: 23}
     downscaleMultiplier: 1
   m_AtlasRD:
     serializedVersion: 3
@@ -194,20 +194,20 @@ Sprite:
         format: 0
         dimension: 0
       m_DataSize: 80
-      _typelessdata: 0000c0be0000403e000000000000c03e0000403e000000000000c0be000040be000000000000c03e000040be00000000000000000000683f0000403f0000683f000000000000383f0000403f0000383f
+      _typelessdata: 0000c0be0000403e000000000000c03e0000403e000000000000c0be000040be000000000000c03e000040be000000000000003f0000503f0000603f0000503f0000003f0000203f0000603f0000203f
     m_Bindpose: []
     textureRect:
       serializedVersion: 2
-      x: 0
-      y: 23
+      x: 16
+      y: 20
       width: 12
       height: 6
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
     settingsRaw: 0
-    uvTransform: {x: 16, y: 6, z: 16, w: 26}
+    uvTransform: {x: 16, y: 22, z: 16, w: 23}
     downscaleMultiplier: 1
   m_PhysicsShape: []
   m_Bones: []
   m_ScriptableObjects: []
-  m_SpriteID: 1ab52f35c5ace401085a233fc557357c
+  m_SpriteID: f819450a890f443119ce84d3d04d80c6

@@ -154,7 +154,11 @@ MonoBehaviour:
   animator: {fileID: 8016078493381780592}
   charaterRigidbody: {fileID: 3710638931522298357}
   health: 100
-  target: {fileID: 0}
+  bounds: {fileID: 0}
+  fieldOfView: 170
+  shootingFieldOfView: 40
+  viewDistance: 20
+  numberOfRaysToCast: 50
 --- !u!212 &201450987675076531
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using AYellowpaper.SerializedCollections;
+using NavMeshPlus.Extensions;
 
 public class GameController : MonoBehaviour
 {
     [SerializeField] Grid grid;
     [SerializeField] GameObject itemPrefab;
     [SerializeField] GameObject bulletPrefab;
+    [SerializeField] Material deadCharacterMaterial;
 
     // TODO this is the cleanest way of associating item info with an enum
     // that I have found so far, maybe there is something i'm missing
@@ -35,7 +37,7 @@ public class GameController : MonoBehaviour
 
     }
 
-    public void spawnItem(Vector2 pos, Items item, int? ammo = null)
+    public void spawnItem(Vector2 pos, Items item, int ammo = 0)
     {
         GameObject i = Instantiate(itemPrefab, grid.GetCellCenterWorld(
             grid.WorldToCell(new Vector3(pos.x, pos.y, 0))), Quaternion.identity);
@@ -44,12 +46,12 @@ public class GameController : MonoBehaviour
         instance.ammo = ammo;
     }
 
-    public void spawnBullet(Vector2 bulletSpawnPos, Vector2 bulletDirection, string shooterTag) {
+    public void spawnBullet(Vector2 bulletSpawnPos, Vector2 bulletDirection, Character firer) {
         GameObject bulletObj = Instantiate(bulletPrefab, new Vector3(bulletSpawnPos.x, bulletSpawnPos.y, 0),
             Quaternion.identity);
         bulletObj.transform.up = bulletDirection;
         Bullet bullet = bulletObj.GetComponent<Bullet>(); 
-        bullet.shooterTag = shooterTag;
+        bullet.firer = firer;
         bullet.startBullet();
     }
 
@@ -57,10 +59,26 @@ public class GameController : MonoBehaviour
         return itemInfo[item].groundSprite;
     }
 
-
     public void playerSwungPickaxe(Vector2 playerPos, Vector2 direction) {
         // find the closest wall that the player is facing
         // make sure they're within meleeDistance of the wall
         // find the tile and fade it
+    }
+
+    public Material getDeadCharacterMaterial() {
+        return deadCharacterMaterial;
+    }
+
+    public Vector3 getNextPatrolPosition(Guard guard) {
+        // TODO
+        // allocate this guard to a patrol route
+        // store some index and return it
+        // increment the index when the guard reaches the position
+        return guard.transform.position;
+    }
+
+    public void freePatroller(Guard guard) {
+        // TODO
+        // called when guard dies
     }
 }

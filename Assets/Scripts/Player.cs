@@ -5,6 +5,7 @@ using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 using System;
+using UnityEngine.SceneManagement;
 
 public class Player : Character
 {
@@ -21,7 +22,7 @@ public class Player : Character
 
     private HUD hud;
 
-    void Start()
+    public override void OnStart()
     {
         reserve[Items.Pistol] = 0;
         clip[Items.Pistol] = 0;
@@ -33,6 +34,10 @@ public class Player : Character
     public override void OnUpdate()
     {
         if (!hud) hud = FindAnyObjectByType<HUD>();
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            SceneManager.LoadScene("Game");
+        }
 
         move(Input.GetKey(KeyCode.W), Input.GetKey(KeyCode.S),
             Input.GetKey(KeyCode.A), Input.GetKey(KeyCode.D), Input.GetKey(KeyCode.LeftShift));
@@ -77,6 +82,10 @@ public class Player : Character
         if (Input.GetKeyDown(KeyCode.R))
         {
             reloadItem();
+        }
+
+        if (Input.GetKeyDown(KeyCode.G)) {
+            FindFirstObjectByType<Door>().toggleDoor();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1) && inventory.Count >= 1)
@@ -205,5 +214,16 @@ public class Player : Character
                 Destroy(item);
             }
         }
+        if (itemType == Items.MasterKey) {
+            if (inventory.Contains(Items.MasterKey)) {
+                Debug.LogError("two master keys?");
+            }
+            inventory.Add(Items.MasterKey);
+            Destroy(item);
+        }
+    }
+
+    public override void OnDeath()
+    {
     }
 }

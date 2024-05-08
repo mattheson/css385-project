@@ -6,17 +6,12 @@ using UnityEngine;
 
 public class ItemInstance : MonoBehaviour
 {
-    private ItemInfo _info;
-    public ItemInfo info {
-        get {
-            return _info;
-        }
-        set {
-            _info = value;
-            GetComponent<SpriteRenderer>().sprite = _info.groundSprite;
-        }
+    public ItemInfo info = null;
+
+    void Update() {
+        if (info) GetComponent<SpriteRenderer>().sprite = info.groundSprite;
     }
 
     // ammo if this is a gun
-    public int? ammo;
+    public int ammo = 0;
 }

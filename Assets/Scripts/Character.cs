@@ -2,12 +2,21 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEditor.Callbacks;
 using UnityEditor.Search;
 using UnityEngine;
 
+// base class to prevent method hiding of Unity functions
+// DO NOT inherit from this, only Character should
+public abstract class CharacterBase : MonoBehaviour {
+    public abstract void Start();
+    public abstract void Update();
+    public abstract void FixedUpdate();
+}
+
 [RequireComponent(typeof(SpriteRenderer), typeof(Rigidbody2D))]
-public abstract class Character : MonoBehaviour
+public abstract class Character : CharacterBase 
 {
     // this is an abstract class for all characters to inherit from
     // contains basic character functionality
@@ -32,37 +41,56 @@ public abstract class Character : MonoBehaviour
 
     private float agentSecsSinceLast, agentSecsStuck;
 
-    private GameController controller;
+    protected GameController controller;
 
-    void Start()
+    public sealed override void Start()
     {
         GetComponent<SpriteRenderer>().sprite = bodySprite;
         animator.character = this;
         movementVel = Vector3.zero;
         health = 100;
+
+        OnStart();
     }
 
-    void Update() {
-        if (!controller) {
+    public sealed override void Update()
+    {
+        // TODO clean up these assignment statements
+        // i found that some assignment statements didn't work in Start(),
+        // and i didn't want to use inspector references which resulted in this
+        // probably best to just use inspector references though
+        if (!controller)
+        {
             controller = FindFirstObjectByType<GameController>();
         }
 
-        if (animator.character != this) {
+        if (animator.character != this)
+        {
             animator.character = this;
         }
 
-        OnUpdate();
+        if (health == 0)
+        {
+            equippedItem = null;
+            movementVel = Vector2.zero;
+            animator.clearAllAnimations();
+            GetComponent<SpriteRenderer>().material = controller.getDeadCharacterMaterial();
+        } else {
+            OnUpdate();
+        }
     }
 
-    void FixedUpdate()
+    public sealed override void FixedUpdate()
     {
         charaterRigidbody.velocity = movementVel;
         charaterRigidbody.velocity += new Vector2(agentNudge.x, agentNudge.y);
     }
 
     // all character movement happens here
-    public void move(bool up, bool down, bool left, bool right, bool running) {
-        if (animator.isSwingingTwoHandStone()) {
+    public void move(bool up, bool down, bool left, bool right, bool running)
+    {
+        if (animator.isSwingingTwoHandStone() || health == 0)
+        {
             movementVel = Vector3.zero;
             animator.stopWalking();
             return;
@@ -94,35 +122,52 @@ public abstract class Character : MonoBehaviour
         curr = curr.normalized * speed;
         movementVel = curr;
 
-        if (moved) {
+        if (moved)
+        {
             animator.startWalking();
             transform.rotation = Quaternion.LookRotation(Vector3.forward, curr);
-        } else {
+        }
+        else
+        {
             animator.stopWalking();
         }
     }
 
     // move an agent in the given direction
     // simulates player keypresses but will nudge if agent gets stuck 
-    public void moveAgent(Vector2 direction, bool running) {
-        if (agentSecsSinceLast > agentNewKeyTime) {
+    public void moveInDirection(Vector2 direction, bool running)
+    {
+        if (health == 0) {
+            Debug.Log("agent");
+            movementVel = Vector2.zero;
+            return;
+        }
+
+        if (agentSecsSinceLast > agentNewKeyTime)
+        {
             bool4 keys = GameHelpers.convertDirectionToButtons(direction);
             move(keys[0], keys[1], keys[2], keys[3], running);
             agentSecsSinceLast = 0;
-        } else {
+        }
+        else
+        {
             agentSecsSinceLast += Time.deltaTime;
         }
 
         // check if guard is stuck
         // if so, apply a 'nudge' which just applies random velocity
         // TODO this might not be good
-        if ((agentLastPos - transform.position).magnitude <= stuckThresh) {
+        if ((agentLastPos - transform.position).magnitude <= stuckThresh)
+        {
             agentSecsStuck += Time.deltaTime;
-            if (agentSecsStuck > nudgeAfter) {
+            if (agentSecsStuck > nudgeAfter)
+            {
                 Debug.Log("nudging agent");
-                agentNudge = new Vector2((UnityEngine.Random.value * 2) - 1, (UnityEngine.Random.value * 2) - 1).normalized * nudgeAmount; 
+                agentNudge = new Vector2((UnityEngine.Random.value * 2) - 1, (UnityEngine.Random.value * 2) - 1).normalized * nudgeAmount;
             }
-        } else {
+        }
+        else
+        {
             agentLastPos = transform.position;
             agentSecsStuck = 0f;
             agentNudge = Vector3.zero;
@@ -130,63 +175,102 @@ public abstract class Character : MonoBehaviour
     }
 
     // use equipped item
-    public void useItem() {
-        if (equippedItem == null) {
+    public void useItem()
+    {
+        if (health == 0) return;
+        if (equippedItem == null)
+        {
             animator.punch();
-        } else if (equippedItem == Items.Pistol) {
+        }
+        else if (equippedItem == Items.Pistol)
+        {
             animator.shootPistol();
-        } else if (equippedItem == Items.Pickaxe) {
+        }
+        else if (equippedItem == Items.Pickaxe)
+        {
             animator.swingPickaxe();
-        } else if (equippedItem == Items.TwoHandStone) {
+        }
+        else if (equippedItem == Items.TwoHandStone)
+        {
             animator.swingTwoHandStone();
         }
     }
 
     // play reload animation
-    public void reloadItem() {
-        if (equippedItem == Items.Pistol) {
+    public void reloadItem()
+    {
+        if (health == 0) return;
+        if (equippedItem == Items.Pistol)
+        {
             animator.reloadPistol();
-        } else if (equippedItem == Items.Shotgun) {
+        }
+        else if (equippedItem == Items.Shotgun)
+        {
 
         }
     }
 
     // just used to reset punch as of now
-    public void idleItem() {
+    public void idleItem()
+    {
         animator.resetPunch();
     }
 
-    public void spawnPistolBullet() {
+    public void spawnPistolBullet()
+    {
         Vector2 offset = transform.rotation * pistolBulletOffset;
-        controller.spawnBullet(new Vector2(transform.position.x + offset.x, transform.position.y + offset.y), transform.up, tag);
+        controller.spawnBullet(new Vector2(transform.position.x + offset.x, transform.position.y + offset.y),
+            transform.up, this);
     }
 
-    public void punchImpact() {
+    public void punchImpact()
+    {
         Debug.Log("punch");
     }
 
-    public void pickaxeImpact() {
+    public void pickaxeImpact()
+    {
         // pickaxe logic here
         Debug.Log("pickaxe");
     }
 
-    public void twoHandStoneImpact() {
+    public void twoHandStoneImpact()
+    {
         Debug.Log("stone");
     }
 
-    void OnTriggerEnter2D(Collider2D col) {
-        if (col.gameObject.CompareTag("Item")) {
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Item"))
+        {
             OnWalkedOverItem(col.gameObject);
         }
     }
 
-    public void hitByBullet(Vector2 incomingDirection, float force) {
+    public void hitByBullet(int damage, Vector2 incomingDirection, float force, Character firer)
+    {
         charaterRigidbody.velocity += incomingDirection * force;
         Debug.Log("hit");
-        Debug.Log(health--);
+        applyDamage(damage);
+        Debug.Log(health);
+    }
+
+    public void applyDamage(int damage) {
+        if (health > 0) {
+            health -= damage;
+            if (health < 0) health = 0;
+            if (health == 0) {
+                OnDeath();
+            }
+        }
     }
 
     // Abstract functions
     public abstract void OnWalkedOverItem(GameObject item);
+
+    // called in Start(), Update(), etc.
+    // do not override Start(), Update(), override these functions
+    public abstract void OnStart();
     public abstract void OnUpdate();
+    public abstract void OnDeath();
 }

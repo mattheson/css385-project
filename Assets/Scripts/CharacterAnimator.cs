@@ -13,7 +13,6 @@ public class CharacterAnimator : MonoBehaviour
 
     // character receives events in animations
     [NonSerialized] public Character character;
-    [NonSerialized] public string idleAnimationName;
     [SerializeField] SpriteRenderer leftArmRenderer, rightArmRenderer, hairRenderer, handsRenderer;
     [SerializeField] public Sprite leftArmSprite, rightArmSprite, hairSprite, idleHandsSprite;
 
@@ -60,12 +59,27 @@ public class CharacterAnimator : MonoBehaviour
                     leftArmRenderer.enabled = true;
                     animator.Play("Two Hand Stone Idle", 1);
                 }
+                if (character.equippedItem == Items.MasterKey)
+                {
+                    rightArmRenderer.enabled = true;
+                    animator.Play("Master Key Idle", 1);
+                }
             }
             else
             {
+                rightArmRenderer.enabled = false;
+                leftArmRenderer.enabled = false;
                 animator.Play("Idle", 1);
             }
         }
+    }
+
+    public void clearAllAnimations()
+    {
+        leftArmRenderer.enabled = false;
+        rightArmRenderer.enabled = false;
+        animator.Play("Idle", 0);
+        animator.Play("Idle", 1);
     }
 
     public void startWalking()
@@ -145,7 +159,6 @@ public class CharacterAnimator : MonoBehaviour
         }
     }
 
-
     public void reloadPistol()
     {
         if (!animator.GetCurrentAnimatorStateInfo(1).IsName("Pistol Reload Right"))
@@ -157,7 +170,8 @@ public class CharacterAnimator : MonoBehaviour
         }
     }
 
-    public bool isSwingingTwoHandStone() {
+    public bool isSwingingTwoHandStone()
+    {
         return animator.GetCurrentAnimatorStateInfo(1).IsName("Two Hand Stone Swing");
     }
 

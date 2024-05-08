@@ -8,7 +8,7 @@ public class CameraFollowPlayer : MonoBehaviour
     public float smooth = 1f;
     private Vector3 vel = Vector3.zero;
 
-    void Update()
+    void LateUpdate()
     {
         if (player != null)
         {

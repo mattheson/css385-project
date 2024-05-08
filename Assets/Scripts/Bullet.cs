@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     // TODO this probably can be cleaner
     public float bulletSpeed;
     public float bulletForce;
-    [NonSerialized] public string shooterTag;
+    public Character firer;
 
     // number of updates for the bullet to stay around after reaching target
     public int numberOfUpdatesToLag;
@@ -25,13 +25,10 @@ public class Bullet : MonoBehaviour
 
     public void startBullet()
     {
-        Debug.Log("start: " + transform.position.ToString());
-        Debug.Log("direction: " + Vector2.up);
         RaycastHit2D[] rays = Physics2D.RaycastAll(transform.position, transform.up);
         foreach (RaycastHit2D r in rays)
         {
-            Debug.Log(r.transform.tag);
-            if (!r.transform.CompareTag("Bullet"))
+            if (!r.transform.gameObject.Equals(firer.gameObject))
             {
                 hit = r.transform.gameObject;
                 point = r.point;
@@ -70,12 +67,10 @@ public class Bullet : MonoBehaviour
         transform.position += (Vector3) movement;
         distanceTravelled += movement.magnitude;
 
-        Debug.Log(Math.Abs(distanceToTravel - distanceTravelled));
-
         if (Math.Abs(distanceToTravel - distanceTravelled) <= 0.005) {
             Character maybeCharacter = hit.GetComponent<Character>();
             if (maybeCharacter) {
-                maybeCharacter.hitByBullet(transform.up, bulletForce);
+                maybeCharacter.hitByBullet(34, transform.up, bulletForce, firer);
             }
             hitDest = true;
         }

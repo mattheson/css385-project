@@ -32,3 +32,7 @@ public enum Phase
 {
     Mealtime, Work, FreeTime, ReturnToCell, Nighttime
 }
+
+public enum CharacterTypes {
+    Player, Prisoner, Guard, BoundedGuard
+}

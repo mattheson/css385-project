@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class Prisoner : Character 
 {
+    public override void OnStart()
+    {
+    }
     public override void OnUpdate()
     {
     }
 
     public override void OnWalkedOverItem(GameObject item)
+    {
+    }
+
+    public override void OnDeath()
     {
     }
 }
