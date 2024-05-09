@@ -33,14 +33,17 @@ public abstract class Character : CharacterBase
 
     // seconds to nudge after, magnitude of random velocity to apply,
     // threshold under which magnitude of diff of two positions is considered stuck
-    private const float nudgeAfter = 1f, nudgeAmount = 10f, stuckThresh = 0.05f;
+    private const float nudgeAfter = 1f, nudgeAmount = 20f, stuckThresh = 0.05f, noClipTime = 3f, timeNoClipped = 1f;
+    private int amountOfNudges = 0;
 
     // minimum number of seconds needed for agent to switch keypresses
     public const float agentNewKeyTime = 0.25f;
 
-    private float agentSecsSinceLast, agentSecsStuck;
+    private float agentSecsSinceLast, agentSecsStuck, collisionTimer, noClipTimer;
 
     protected GameController controller;
+
+    public bool isCollidingWithAgent, isNoClipping;
 
     public sealed override void Start()
     {
@@ -81,8 +84,37 @@ public abstract class Character : CharacterBase
         } else {
             OnUpdate();
         }
-    }
+        if(isCollidingWithAgent)
+        {
+            collisionTimer += Time.deltaTime;
+        }
+        if(collisionTimer > noClipTime)
+        {
+            gameObject.layer = LayerMask.NameToLayer("CharacterIgnoreCollision");
+            isNoClipping = true;
+        }
+        if (isNoClipping)
+        {
+            noClipTimer += Time.deltaTime;
+        }
+        if(noClipTimer > timeNoClipped)
+        {
+            gameObject.layer = LayerMask.NameToLayer("Default");
+            isNoClipping = false;
+            noClipTimer = 0;
+            collisionTimer = 0;
 
+        }
+        Debug.Log(collisionTimer);
+    }
+    public float getStuckThresh()
+    {
+        return stuckThresh;
+    }
+    public Vector3 getLasPos()
+    {
+        return agentLastPos;
+    }
     public sealed override void FixedUpdate()
     {
         charaterRigidbody.velocity = movementVel;
@@ -165,16 +197,21 @@ public abstract class Character : CharacterBase
             agentSecsStuck += Time.deltaTime;
             if (agentSecsStuck > nudgeAfter)
             {
-                Debug.Log("nudging agent");
-                agentNudge = new Vector2((UnityEngine.Random.value * 2) - 1, (UnityEngine.Random.value * 2) - 1).normalized * nudgeAmount;
+                
+                //Debug.Log("nudging agent");
+                //agentNudge = new Vector2((UnityEngine.Random.value * 2) - 1.5f, (UnityEngine.Random.value * 2) - 1.5f).normalized * nudgeAmount * ( amountOfNudges + 1);
+                //amountOfNudges++;
+                //Debug.Log(amountOfNudges);
             }
         }
         else
         {
+            amountOfNudges = 0;
             agentLastPos = transform.position;
             agentSecsStuck = 0f;
             agentNudge = Vector3.zero;
         }
+        
     }
 
     // use equipped item
@@ -266,6 +303,24 @@ public abstract class Character : CharacterBase
                 OnDeath();
             }
         }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Character"))
+        {
+            isCollidingWithAgent = true;
+        }
+
+    }
+    public void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Character"))
+        {
+            isCollidingWithAgent = false;
+            collisionTimer = 0;
+        }
+
     }
 
     // Abstract functions

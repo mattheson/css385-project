@@ -32,6 +32,7 @@ public class Player : Character
 
     public override void OnUpdate()
     {
+        health = 100;
         if (!hud) hud = FindAnyObjectByType<HUD>();
 
         if (Input.GetKeyDown(KeyCode.Escape)) {

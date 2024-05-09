@@ -53,7 +53,6 @@ public class Guard : Character
 
     public override void OnUpdate()
     {
-        Debug.Log(level);
         if (!player)
         {
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
@@ -120,6 +119,7 @@ public class Guard : Character
             equippedItem = null;
             if (bounds)
             {
+                //TODO: Make this reliant on the schedule so that they return to where they are supposed to at that time
                 if (randomPos == null || (transform.position - randomPos.Value).magnitude <= 2f)
                 {
                     Debug.Log("bruh");
@@ -134,7 +134,10 @@ public class Guard : Character
                 agent.SetDestination(controller.getNextPatrolPosition(this));
             }
         }
-
+        if ((getLasPos() - transform.position).magnitude <= getStuckThresh())
+        {
+            agent.SetDestination(new Vector3(transform.position.x, transform.position.y + 0.1f, 0));
+        }
         if (agent.pathStatus == NavMeshPathStatus.PathComplete)
         {
             Vector3 dir = agent.steeringTarget - transform.position;
@@ -162,4 +165,5 @@ public class Guard : Character
     public override void OnTriggerEnterExtra(Collider2D col)
     {
     }
+
 }

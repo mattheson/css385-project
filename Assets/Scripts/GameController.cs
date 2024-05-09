@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour
     [SerializeField]
     [SerializedDictionary("Item", "Item Info")]
     SerializedDictionary<Items, ItemInfo> itemInfo;
+    public Phase phase = Phase.Mealtime;
 
     void Start()
     {
@@ -35,7 +36,26 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Keypad0))
+        {
+            phase = Phase.Mealtime;
+        }
+        else if(Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            phase = Phase.Work;
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            phase = Phase.Nighttime;
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            phase = Phase.FreeTime;
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            phase = Phase.ReturnToCell;
+        }
     }
 
     public void spawnItem(Vector2 pos, Items item, int ammo = 0)
@@ -127,6 +147,6 @@ public class GameController : MonoBehaviour
     }
     public Phase getCurrentPhase()
     {
-        return Phase.Work;
+        return phase;
     }
 }
