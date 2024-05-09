@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using AYellowpaper.SerializedCollections;
 using NavMeshPlus.Extensions;
+using UnityEngine.TextCore;
 
 public class GameController : MonoBehaviour
 {
@@ -123,5 +124,9 @@ public class GameController : MonoBehaviour
     {
         // TODO
         // called when guard dies
+    }
+    public Phase getCurrentPhase()
+    {
+        return Phase.Work;
     }
 }

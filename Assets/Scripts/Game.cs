@@ -28,6 +28,13 @@ public enum ItemEquippability
     SingleHand, DoubleHand, NotEquippable
 }
 
+// 8 am mealtime
+// 11 am work
+// 4 pm free time
+// 8 pm return to cell
+// 9 pm nighttime
+
+// need some kind of sleep functionality
 public enum Phase
 {
     Mealtime, Work, FreeTime, ReturnToCell, Nighttime
