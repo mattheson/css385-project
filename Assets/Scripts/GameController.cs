@@ -125,6 +125,53 @@ public class GameController : MonoBehaviour
             }
         }
     }
+    public void playerSwungMelee(Vector2 playerPos, Vector2 direction, Items weapon)
+    {
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            Debug.Log("Player Not Null");
+            PolygonCollider2D playerCollider = player.GetComponent<PolygonCollider2D>();
+            if (playerCollider != null)
+            {
+                Debug.Log("PlayerCollider not Null");
+                Vector2 weaponDirection = direction.normalized;
+                // Calculate the maximum distance from the center to any vertex
+                float maxDistance = 10f;
+                foreach (Vector2 vertex in playerCollider.points)
+                {
+                    float distance = Vector2.Distance(playerCollider.transform.TransformPoint(vertex), playerCollider.transform.position);
+                    if (distance > maxDistance)
+                    {
+                        maxDistance = distance;
+                    }
+                }
+
+                float raycastOffset = maxDistance;
+                Vector2 raycastOrigin = playerPos + weaponDirection * raycastOffset;
+                RaycastHit2D hit = Physics2D.Raycast(raycastOrigin, weaponDirection, Game.meleeDistance);
+                Debug.Log(hit.collider);
+                if (hit.collider != null)
+                {
+                    Debug.Log("Collision");
+                    if (hit.transform.gameObject.CompareTag("Character"))
+                    {
+                        Character hitEnemey = hit.transform.gameObject.GetComponent<Character>();
+                        if (weapon == Items.TwoHandStone)
+                        {
+                            hitEnemey.applyDamage(100);
+                        }
+                        else if (weapon == Items.Hand)
+                        {
+                            hitEnemey.applyDamage(30);
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
 
     public Material getDeadCharacterMaterial()
     {

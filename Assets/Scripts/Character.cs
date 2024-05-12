@@ -105,7 +105,7 @@ public abstract class Character : CharacterBase
             collisionTimer = 0;
 
         }
-        Debug.Log(collisionTimer);
+        //Debug.Log(collisionTimer);
     }
     public float getStuckThresh()
     {
@@ -265,6 +265,7 @@ public abstract class Character : CharacterBase
 
     public void punchImpact()
     {
+        controller.playerSwungMelee(transform.position, transform.up, Items.Hand);
         Debug.Log("punch");
     }
 
@@ -275,6 +276,7 @@ public abstract class Character : CharacterBase
 
     public void twoHandStoneImpact()
     {
+        controller.playerSwungMelee(transform.position, transform.up, Items.TwoHandStone);
         Debug.Log("stone");
     }
 
@@ -292,7 +294,7 @@ public abstract class Character : CharacterBase
     {
         charaterRigidbody.velocity += incomingDirection * force;
         applyDamage(damage);
-        Debug.Log(health);
+        //Debug.Log(health);
     }
 
     public void applyDamage(int damage) {

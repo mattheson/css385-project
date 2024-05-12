@@ -21,7 +21,7 @@ public static class Game
 // items you can pick up off the ground
 public enum Items
 {
-    Gold, TwoHandStone, Pickaxe, Pistol, Shotgun, MasterKey, Key
+    Gold, TwoHandStone, Pickaxe, Pistol, Shotgun, MasterKey, Key, Hand
 }
 public enum ItemEquippability
 {

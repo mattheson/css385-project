@@ -81,7 +81,7 @@ public class Guard : Character
             if (Mathf.Abs(ray.Item2) <= shootingFieldOfView)
             {
                 useItem();
-                Debug.Log("shooting");
+                
             }
             level = CHASING;
             lastPlayerPosition = ray.Item1.transform.position;
@@ -122,7 +122,6 @@ public class Guard : Character
                 //TODO: Make this reliant on the schedule so that they return to where they are supposed to at that time
                 if (randomPos == null || (transform.position - randomPos.Value).magnitude <= 2f)
                 {
-                    Debug.Log("bruh");
                     float xOffset = UnityEngine.Random.Range(-bounds.bounds.extents.x, bounds.bounds.extents.x);
                     float yOffset = UnityEngine.Random.Range(-bounds.bounds.extents.y, bounds.bounds.extents.y);
                     randomPos = new Vector3(bounds.transform.position.x + xOffset, bounds.transform.position.y + yOffset, 0);
@@ -134,10 +133,10 @@ public class Guard : Character
                 agent.SetDestination(controller.getNextPatrolPosition(this));
             }
         }
-        if ((getLasPos() - transform.position).magnitude <= getStuckThresh())
-        {
-            agent.SetDestination(new Vector3(transform.position.x, transform.position.y + 0.1f, 0));
-        }
+        //if ((getLasPos() - transform.position).magnitude <= getStuckThresh())
+        //{
+        //    agent.SetDestination(new Vector3(transform.position.x, transform.position.y + 0.1f, 0));
+        //}
         if (agent.pathStatus == NavMeshPathStatus.PathComplete)
         {
             Vector3 dir = agent.steeringTarget - transform.position;
