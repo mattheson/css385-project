@@ -5,7 +5,7 @@ using UnityEngine;
 public class Keyhole : MonoBehaviour
 {
     public Door door; 
-    public Items keyType;
+    public Game.Items keyType;
 
     void OnTriggerEnter2D(Collider2D col) {
         Character maybeCharacter = col.GetComponent<Character>();

@@ -22,7 +22,7 @@ public class HUD : MonoBehaviour
     [SerializeField] float slotPaddingPercent;
     [SerializeField] Player player;
     [SerializeField] GameController controller;
-    [SerializeField] public TMP_Text goldText, pistolAmmoText, shotgunAmmoText, healthText, winText;
+    [SerializeField] public TMP_Text goldText, pistolAmmoText, shotgunAmmoText, healthText, winText, timeText, phaseText;
 
     public int? highlighted;
 
@@ -44,12 +44,14 @@ public class HUD : MonoBehaviour
     }
 
     void Update() {
+        if (!controller) controller = FindFirstObjectByType<GameController>();
+
         goldText.text = player.gold.ToString();
 
-        int pistolClip = player.clip.GetValueOrDefault(Items.Pistol, 0);
-        int pistolReserve = player.reserve.GetValueOrDefault(Items.Pistol, 0);
-        int shotgunChambered = player.clip.GetValueOrDefault(Items.Shotgun, 0);
-        int shotgunReserve = player.reserve.GetValueOrDefault(Items.Shotgun, 0);
+        int pistolClip = player.clip.GetValueOrDefault(Game.Items.Pistol, 0);
+        int pistolReserve = player.reserve.GetValueOrDefault(Game.Items.Pistol, 0);
+        int shotgunChambered = player.clip.GetValueOrDefault(Game.Items.Shotgun, 0);
+        int shotgunReserve = player.reserve.GetValueOrDefault(Game.Items.Shotgun, 0);
 
         pistolAmmoText.text = pistolClip + " / " + pistolReserve;
         shotgunAmmoText.text = shotgunChambered + " / " + shotgunReserve;
@@ -70,6 +72,9 @@ public class HUD : MonoBehaviour
         while (i < numSlots) {
             slots[i++].itemImage.enabled = false;
         }
+
+        timeText.SetText(controller.getTime().ToString(@"hh\:mm"));
+        phaseText.SetText(Game.PhaseNames[(int) controller.phase]);
     }
 
     private void addSlot()

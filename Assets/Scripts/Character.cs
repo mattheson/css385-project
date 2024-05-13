@@ -8,27 +8,38 @@ using UnityEngine.SceneManagement;
 
 // base class to prevent method hiding of Unity functions
 // DO NOT inherit from this, only Character should
-public abstract class CharacterBase : MonoBehaviour {
+public abstract class CharacterBase : MonoBehaviour
+{
     public abstract void Start();
     public abstract void Update();
     public abstract void FixedUpdate();
 }
 
 [RequireComponent(typeof(SpriteRenderer), typeof(Rigidbody2D))]
-public abstract class Character : CharacterBase 
+public abstract class Character : CharacterBase
 {
     // this is an abstract class for all characters to inherit from
     // contains basic character functionality
 
+    // --------------------------------------------------------------------
+    // constants/offsets for spawning bullets, melee, etc.
+    // offset is when character is facing upwards (towards +y)
+    private readonly Vector2 pistolOffset = new Vector2(0.15f, 0.9f);
+    private readonly Vector2 pickaxeOffset = new Vector2(0.15f, 0.9f);
+    private readonly Vector2 rightPunchOffset = new Vector2(0.15f, 0.7f);
+    private readonly Vector2 leftPunchOffset = new Vector2(-0.15f, 0.7f);
+    // --------------------------------------------------------------------
+
     [SerializeField] Sprite bodySprite;
     [SerializeField] CharacterAnimator animator;
-    [SerializeField] Rigidbody2D charaterRigidbody;
+    Rigidbody2D characterRigidbody;
 
-    // bullet spawning offset
-    private readonly Vector2 pistolBulletOffset = new Vector2(0.15f, 0.9f);
-    private Vector3 movementVel, agentLastPos, agentNudge;
+    // cell assigned to this character
+    [NonSerialized] public Bounds cellBounds;
 
-    public Items? equippedItem;
+    private Vector3 movementVel, agentLastPos, agentNudge, hitVelocity;
+
+    public Game.Items? equippedItem;
     public int health;
 
     // seconds to nudge after, magnitude of random velocity to apply,
@@ -44,6 +55,7 @@ public abstract class Character : CharacterBase
 
     public sealed override void Start()
     {
+        characterRigidbody = GetComponent<Rigidbody2D>();
         GetComponent<SpriteRenderer>().sprite = bodySprite;
         animator.character = this;
         movementVel = Vector3.zero;
@@ -54,8 +66,11 @@ public abstract class Character : CharacterBase
 
     public sealed override void Update()
     {
+        if (!characterRigidbody) characterRigidbody = GetComponent<Rigidbody2D>();
+
         // TODO remove this, just for demo
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
             SceneManager.LoadScene("Game");
         }
         // TODO clean up these assignment statements
@@ -78,15 +93,19 @@ public abstract class Character : CharacterBase
             movementVel = Vector2.zero;
             animator.clearAllAnimations();
             GetComponent<SpriteRenderer>().material = controller.getDeadCharacterMaterial();
-        } else {
+        }
+        else
+        {
             OnUpdate();
         }
     }
 
     public sealed override void FixedUpdate()
     {
-        charaterRigidbody.velocity = movementVel;
-        charaterRigidbody.velocity += new Vector2(agentNudge.x, agentNudge.y);
+        characterRigidbody.velocity = movementVel;
+        characterRigidbody.velocity += (Vector2) hitVelocity;
+        hitVelocity = new Vector3(hitVelocity.x * 0.25f, hitVelocity.y * 0.25f, 0);
+        characterRigidbody.velocity += new Vector2(agentNudge.x, agentNudge.y);
     }
 
     // all character movement happens here
@@ -140,8 +159,8 @@ public abstract class Character : CharacterBase
     // simulates player keypresses but will nudge if agent gets stuck 
     public void moveInDirection(Vector2 direction, bool running)
     {
-        if (health == 0) {
-            Debug.Log("agent");
+        if (health == 0)
+        {
             movementVel = Vector2.zero;
             return;
         }
@@ -185,15 +204,15 @@ public abstract class Character : CharacterBase
         {
             animator.punch();
         }
-        else if (equippedItem == Items.Pistol)
+        else if (equippedItem == Game.Items.Pistol)
         {
             animator.shootPistol();
         }
-        else if (equippedItem == Items.Pickaxe)
+        else if (equippedItem == Game.Items.Pickaxe)
         {
             animator.swingPickaxe();
         }
-        else if (equippedItem == Items.TwoHandStone)
+        else if (equippedItem == Game.Items.TwoHandStone)
         {
             animator.swingTwoHandStone();
         }
@@ -203,11 +222,11 @@ public abstract class Character : CharacterBase
     public void reloadItem()
     {
         if (health == 0) return;
-        if (equippedItem == Items.Pistol)
+        if (equippedItem == Game.Items.Pistol)
         {
             animator.reloadPistol();
         }
-        else if (equippedItem == Items.Shotgun)
+        else if (equippedItem == Game.Items.Shotgun)
         {
 
         }
@@ -221,19 +240,56 @@ public abstract class Character : CharacterBase
 
     public void spawnPistolBullet()
     {
-        Vector2 offset = transform.rotation * pistolBulletOffset;
+        Vector2 offset = transform.rotation * pistolOffset;
         controller.spawnBullet(new Vector2(transform.position.x + offset.x, transform.position.y + offset.y),
             transform.up, this);
     }
 
-    public void punchImpact()
+    public void rightPunchImpact()
     {
-        Debug.Log("punch");
+        punchImpact(rightPunchOffset);
+    }
+
+    public void leftPunchImpact()
+    {
+        punchImpact(leftPunchOffset);
+    }
+
+    private void punchImpact(Vector2 offset) {
+        RaycastHit2D? ray = castMeleeRay(offset);
+        if (ray != null) {
+            if (ray.Value.collider.CompareTag("Character") || ray.Value.collider.CompareTag("Player")) {
+                ray.Value.collider.GetComponent<Character>().hit(
+                    CompareTag("Player") ? Game.playerFistsDamage : Game.agentFistsDamage,
+                    transform.up,
+                    Game.fistsForce,
+                    this
+                );
+            }
+        }
     }
 
     public void pickaxeImpact()
     {
-        controller.playerSwungPickaxe(transform.position, transform.up);
+        RaycastHit2D? ray = castMeleeRay(pickaxeOffset);
+        if (ray != null)
+        {
+            if (ray.Value.collider.CompareTag("Breakable Walls"))
+            {
+                ray.Value.collider.GetComponent<BreakableWallTilemap>().pickaxeHit(
+                    controller.worldToCell(ray.Value.point)
+                );
+            }
+            else if (ray.Value.collider.CompareTag("Character") || ray.Value.collider.CompareTag("Player"))
+            {
+                ray.Value.collider.gameObject.GetComponent<Character>().hit(
+                    CompareTag("Player") ? Game.playerPickaxeDamage : Game.agentPickaxeDamage,
+                    transform.up,
+                    Game.pickaxeForce,
+                    this
+                );
+            }
+        }
     }
 
     public void twoHandStoneImpact()
@@ -246,26 +302,51 @@ public abstract class Character : CharacterBase
         if (col.gameObject.CompareTag("Item"))
         {
             OnWalkedOverItem(col.gameObject);
-        } else {
+        }
+        else
+        {
             OnTriggerEnterExtra(col);
         }
     }
 
-    public void hitByBullet(int damage, Vector2 incomingDirection, float force, Character firer)
+    public void hit(int damage, Vector2 incomingDirection, float force, Character firer)
     {
-        charaterRigidbody.velocity += incomingDirection * force;
+        hitVelocity += (Vector3) incomingDirection * force;
+        Debug.Log(characterRigidbody.velocity);
         applyDamage(damage);
         Debug.Log(health);
     }
 
-    public void applyDamage(int damage) {
-        if (health > 0) {
+    public void applyDamage(int damage)
+    {
+        if (health > 0)
+        {
             health -= damage;
             if (health < 0) health = 0;
-            if (health == 0) {
+            if (health == 0)
+            {
                 OnDeath();
             }
         }
+    }
+
+    // returns gameobject hit by melee
+    // if nothing hit returns null
+    private RaycastHit2D? castMeleeRay(Vector2 offset)
+    {
+        offset = transform.rotation * offset;
+        Vector2 origin = new Vector2(transform.position.x + offset.x,
+            transform.position.y + offset.y);
+        Vector2 direction = transform.up;
+        Debug.DrawLine(origin, origin + (direction * Game.meleeDistance), Color.red, 5);
+        RaycastHit2D[] rays = Physics2D.RaycastAll(origin, direction,
+            Game.meleeDistance, ~LayerMask.GetMask("Ignore Raycast"));
+        foreach (RaycastHit2D r in rays)
+        {
+            Debug.Log(r);
+            if (!r.collider.gameObject.Equals(gameObject)) return r;
+        }
+        return null;
     }
 
     // Abstract functions

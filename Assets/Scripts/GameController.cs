@@ -1,19 +1,42 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using AYellowpaper.SerializedCollections;
-using NavMeshPlus.Extensions;
-using UnityEngine.TextCore;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Tilemaps;
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.ExceptionServices;
+using System.Drawing;
+using Unity.Mathematics;
+using UnityEngine.Events;
+using Unity.VisualScripting;
 
+// contains logic for
+// - associating item enum with ItemInfo (see comment below)
+// - world time, getting current phase/time
+// - spawning items and bullets
 public class GameController : MonoBehaviour
 {
     [SerializeField] Grid grid;
     [SerializeField] GameObject itemPrefab;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Material deadCharacterMaterial;
+    [SerializeField] Light2D worldLight;
+    [SerializeField] Gradient worldLightGradient;
+    [SerializeField] int startingHour;
 
-    // TODO this is the cleanest way of associating item info with an enum
+    // we are using this as a way to specify cell bounds
+    // composite collider creates multiple physics shapes from one tilemap collider
+    [SerializeField] CompositeCollider2D cellBounds;
+
+    // queue of available cells we can assign to prisoners
+    Queue<Bounds> availableCells = new Queue<Bounds>();
+
+    private TimeSpan time;
+    private Game.Phase _phase;
+    public Game.Phase phase { get => _phase; }
+
+    // TODO this is the cleanest way of associating ItemInfo with an enum
     // that I have found so far, maybe there is something i'm missing
     // i wanted these things:
     // - an item enum
@@ -26,19 +49,72 @@ public class GameController : MonoBehaviour
     // https://github.com/ayellowpaper/SerializedDictionary
     [SerializeField]
     [SerializedDictionary("Item", "Item Info")]
-    SerializedDictionary<Items, ItemInfo> itemInfo;
+    SerializedDictionary<Game.Items, ItemInfo> itemInfo;
+
+    private const float minutesInDay = 24 * 60;
+
+
+    void addMinute()
+    {
+        time += TimeSpan.FromMinutes(1);
+        // 8 am -  10:59am: Mealtime
+        // 11 am - 3:59 pm: Work
+        // 4 pm - 7:59 pm: FreeTime
+        // 8 pm - 8 am: Nighttime
+        if (time.Hours >= 8 && time.Hours < 11)
+        {
+            _phase = Game.Phase.Mealtime;
+        }
+        else if (time.Hours >= 11 && time.Hours < 16)
+        {
+            _phase = Game.Phase.Work;
+        }
+        else if (time.Hours >= 16 && time.Hours < 21)
+        {
+            _phase = Game.Phase.FreeTime;
+        }
+        else
+        {
+            _phase = Game.Phase.Nighttime;
+        }
+    }
 
     void Start()
     {
         Time.timeScale = 1f;
+
+        // populate available cells
+        for (int i = 0; i < cellBounds.pathCount; i++)
+        {
+            float xMin = Mathf.Infinity, xMax = Mathf.NegativeInfinity,
+                yMin = Mathf.Infinity, yMax = Mathf.NegativeInfinity;
+            Vector2[] points = new Vector2[cellBounds.GetPathPointCount(i)];
+            cellBounds.GetPath(i, points);
+            foreach (Vector2 p in points)
+            {
+                xMin = Math.Min(xMin, p.x);
+                xMax = Math.Max(xMax, p.x);
+                yMin = Math.Min(yMin, p.y);
+                yMax = Math.Max(yMax, p.y);
+            }
+            Bounds bounds = new Bounds(
+                new Vector3((xMin + xMax) / 2, (yMin + yMax) / 2, 0),
+                new Vector3((xMax - xMin) / 2, (yMax - yMin) / 2, 0)
+            );
+            // Debug.Log(bounds);
+            availableCells.Enqueue(bounds);
+        }
+
+        time = new TimeSpan(startingHour, 0, 0);
+        InvokeRepeating("addMinute", Game.minuteLengthInSeconds, Game.minuteLengthInSeconds);
     }
 
     void Update()
     {
-
+        worldLight.color = worldLightGradient.Evaluate((float)time.TotalMinutes % minutesInDay / minutesInDay);
     }
 
-    public void spawnItem(Vector2 pos, Items item, int ammo = 0)
+    public void spawnItem(Vector2 pos, Game.Items item, int ammo = 0)
     {
         GameObject i = Instantiate(itemPrefab, grid.GetCellCenterWorld(
             grid.WorldToCell(new Vector3(pos.x, pos.y, 0))), Quaternion.identity);
@@ -57,54 +133,14 @@ public class GameController : MonoBehaviour
         bullet.startBullet();
     }
 
-    public Sprite getGroundItemSprite(Items item)
+    public Sprite getGroundItemSprite(Game.Items item)
     {
         return itemInfo[item].groundSprite;
     }
 
-
-    public void playerSwungPickaxe(Vector2 playerPos, Vector2 direction)
-    {
-        // find the closest tile that the player is facing
-        // make sure they're within meleeDistance of the wall
-        // find the tile and fade it
-        // Find the player object
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            // Get the PolygonCollider2D component from the player object
-            PolygonCollider2D playerCollider = player.GetComponent<PolygonCollider2D>();
-            if (playerCollider != null)
-            {
-                Vector2 pickaxeDirection = direction.normalized;
-                // Calculate the maximum distance from the center to any vertex
-                float maxDistance = 0f;
-                foreach (Vector2 vertex in playerCollider.points)
-                {
-                    float distance = Vector2.Distance(playerCollider.transform.TransformPoint(vertex), playerCollider.transform.position);
-                    if (distance > maxDistance)
-                    {
-                        maxDistance = distance;
-                    }
-                }
-
-                float raycastOffset = maxDistance;
-                Vector2 raycastOrigin = playerPos + pickaxeDirection * raycastOffset;
-
-                Debug.Log(LayerMask.GetMask("BreakableWallTilemap"));
-                RaycastHit2D hit = Physics2D.Raycast(raycastOrigin, pickaxeDirection, Game.meleeDistance, LayerMask.GetMask("BreakableWallTilemap"));
-                if (hit.collider != null)
-                {
-                    Debug.Log("here");
-                    BreakableWallTilemap tilemap = hit.collider.GetComponent<BreakableWallTilemap>();
-                    if (tilemap != null)
-                    {
-                        tilemap.pickaxeHit(grid.WorldToCell(hit.point));
-                    }
-                }
-            }
-        }
-    }
+    public Vector3Int worldToCell(Vector3 point) {
+        return grid.WorldToCell(point);
+    } 
 
     public Material getDeadCharacterMaterial()
     {
@@ -125,8 +161,9 @@ public class GameController : MonoBehaviour
         // TODO
         // called when guard dies
     }
-    public Phase getCurrentPhase()
+
+    public TimeSpan getTime()
     {
-        return Phase.Work;
+        return time;
     }
 }

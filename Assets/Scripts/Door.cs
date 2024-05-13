@@ -24,7 +24,6 @@ public class Door : MonoBehaviour
         Vector3 dist = (isOpen ? doorOpenCenterPosition.position : doorClosedCenterPosition.position) - transform.position;
         if (dist.magnitude <= 0.01) return;
         dist = dist.normalized;
-        Debug.Log(dist);
         rb.MovePosition(transform.position + (dist * doorOpeningSpeed * Time.fixedDeltaTime));
     }
 

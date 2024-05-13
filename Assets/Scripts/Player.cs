@@ -11,27 +11,28 @@ public class Player : Character
     public int gold = 0;
 
     // total ammo in reserve
-    public Dictionary<Items, int> reserve = new Dictionary<Items, int>();
+    public Dictionary<Game.Items, int> reserve = new Dictionary<Game.Items, int>();
 
     // number of bullets in current clip/number of shells in chamber
-    public Dictionary<Items, int> clip = new Dictionary<Items, int>();
+    public Dictionary<Game.Items, int> clip = new Dictionary<Game.Items, int>();
 
     // inventory just contains equippable items as of now
-    public List<Items> inventory = new List<Items>();
+    public List<Game.Items> inventory = new List<Game.Items>();
 
     private HUD hud;
 
     public override void OnStart()
     {
-        reserve[Items.Pistol] = 0;
-        clip[Items.Pistol] = 0;
+        reserve[Game.Items.Pistol] = 0;
+        clip[Game.Items.Pistol] = 0;
 
-        reserve[Items.Shotgun] = 0;
-        clip[Items.Shotgun] = 0;
+        reserve[Game.Items.Shotgun] = 0;
+        clip[Game.Items.Shotgun] = 0;
     }
 
     public override void OnUpdate()
     {
+        health = 100;
         if (!hud) hud = FindAnyObjectByType<HUD>();
 
         if (Input.GetKeyDown(KeyCode.Escape)) {
@@ -54,28 +55,28 @@ public class Player : Character
         {
             FindFirstObjectByType<GameController>().spawnItem(
                 new Vector2(transform.position.x, transform.position.y + 5),
-                Items.Pistol, 48);
+                Game.Items.Pistol, 48);
         }
 
         if (Input.GetKeyDown(KeyCode.N))
         {
             FindFirstObjectByType<GameController>().spawnItem(
                 new Vector2(transform.position.x, transform.position.y + 5),
-                Items.Pickaxe);
+                Game.Items.Pickaxe);
         }
 
         if (Input.GetKeyDown(KeyCode.O))
         {
             FindFirstObjectByType<GameController>().spawnItem(
                 new Vector2(transform.position.x, transform.position.y + 5),
-                Items.Gold);
+                Game.Items.Gold);
         }
 
         if (Input.GetKeyDown(KeyCode.P))
         {
             FindFirstObjectByType<GameController>().spawnItem(
                 new Vector2(transform.position.x, transform.position.y + 5),
-                Items.TwoHandStone);
+                Game.Items.TwoHandStone);
         }
 
         if (Input.GetKeyDown(KeyCode.R))
@@ -158,16 +159,16 @@ public class Player : Character
         }
     }
 
-    public void pickUpAmmo(Items type, int ammo)
+    public void pickUpAmmo(Game.Items type, int ammo)
     {
-        if (type == Items.Pistol)
+        if (type == Game.Items.Pistol)
         {
-            reserve[Items.Pistol] = Math.Clamp(reserve.GetValueOrDefault(Items.Pistol, 0) + ammo, 0,
+            reserve[Game.Items.Pistol] = Math.Clamp(reserve.GetValueOrDefault(Game.Items.Pistol, 0) + ammo, 0,
                 Game.maxPistolClips * Game.pistolClipSize);
         }
-        else if (type == Items.Shotgun)
+        else if (type == Game.Items.Shotgun)
         {
-            reserve[Items.Shotgun] = Math.Clamp(reserve.GetValueOrDefault(Items.Shotgun, 0) + ammo, 0, Game.maxShotgunShells);
+            reserve[Game.Items.Shotgun] = Math.Clamp(reserve.GetValueOrDefault(Game.Items.Shotgun, 0) + ammo, 0, Game.maxShotgunShells);
         }
         else
         {
@@ -178,46 +179,46 @@ public class Player : Character
     public override void OnWalkedOverItem(GameObject item)
     {
         ItemInstance instance = item.GetComponent<ItemInstance>();
-        Items itemType = instance.info.item;
+        Game.Items itemType = instance.info.item;
 
-        if (itemType == Items.Gold)
+        if (itemType == Game.Items.Gold)
         {
             gold++;
             Destroy(item);
         }
 
-        if (itemType == Items.Pistol)
+        if (itemType == Game.Items.Pistol)
         {
-            if (!inventory.Contains(Items.Pistol))
+            if (!inventory.Contains(Game.Items.Pistol))
             {
-                inventory.Add(Items.Pistol);
+                inventory.Add(Game.Items.Pistol);
             }
-            pickUpAmmo(Items.Pistol, (int)instance.ammo);
+            pickUpAmmo(Game.Items.Pistol, (int)instance.ammo);
             Destroy(item);
         }
 
-        if (itemType == Items.Pickaxe)
+        if (itemType == Game.Items.Pickaxe)
         {
-            if (!inventory.Contains(Items.Pickaxe))
+            if (!inventory.Contains(Game.Items.Pickaxe))
             {
-                inventory.Add(Items.Pickaxe);
+                inventory.Add(Game.Items.Pickaxe);
                 Destroy(item);
             }
         }
 
-        if (itemType == Items.TwoHandStone)
+        if (itemType == Game.Items.TwoHandStone)
         {
-            if (!inventory.Contains(Items.TwoHandStone))
+            if (!inventory.Contains(Game.Items.TwoHandStone))
             {
-                inventory.Add(Items.TwoHandStone);
+                inventory.Add(Game.Items.TwoHandStone);
                 Destroy(item);
             }
         }
-        if (itemType == Items.MasterKey) {
-            if (inventory.Contains(Items.MasterKey)) {
+        if (itemType == Game.Items.MasterKey) {
+            if (inventory.Contains(Game.Items.MasterKey)) {
                 Debug.LogError("two master keys?");
             }
-            inventory.Add(Items.MasterKey);
+            inventory.Add(Game.Items.MasterKey);
             Destroy(item);
         }
     }

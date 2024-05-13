@@ -7,13 +7,14 @@ using NUnit.Framework.Interfaces;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Tilemaps;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class Guard : Character
 {
     // if this is null the guard will get a patrol position from the GameController
     // otherwise we generate a random position within bounds
-    public BoxCollider2D bounds;
+    public TilemapCollider2D bounds;
 
     // fov when raycasting, fov for agent to shoot, distance agent can see
     public float fieldOfView, shootingFieldOfView, viewDistance;
@@ -53,7 +54,6 @@ public class Guard : Character
 
     public override void OnUpdate()
     {
-        Debug.Log(level);
         if (!player)
         {
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
@@ -78,7 +78,7 @@ public class Guard : Character
         if (ray != null)
         {
             // we spotted player
-            equippedItem = Items.Pistol;
+            equippedItem = Game.Items.Pistol;
             if (Mathf.Abs(ray.Item2) <= shootingFieldOfView)
             {
                 useItem();
@@ -122,10 +122,9 @@ public class Guard : Character
             {
                 if (randomPos == null || (transform.position - randomPos.Value).magnitude <= 2f)
                 {
-                    Debug.Log("bruh");
                     float xOffset = UnityEngine.Random.Range(-bounds.bounds.extents.x, bounds.bounds.extents.x);
                     float yOffset = UnityEngine.Random.Range(-bounds.bounds.extents.y, bounds.bounds.extents.y);
-                    randomPos = new Vector3(bounds.transform.position.x + xOffset, bounds.transform.position.y + yOffset, 0);
+                    randomPos = new Vector3(bounds.bounds.center.x + xOffset, bounds.bounds.center.y + yOffset, 0);
                 }
                 agent.SetDestination(randomPos.Value);
             }
@@ -153,12 +152,6 @@ public class Guard : Character
         controller.freePatroller(this);
     }
 
-    private Vector3 generateRandomPositionWithOffset(Vector3 center, float xOffsetRange, float yOffsetRange)
-    {
-        float xOffset = UnityEngine.Random.Range(-xOffsetRange, xOffsetRange);
-        float yOffset = UnityEngine.Random.Range(-yOffsetRange, yOffsetRange);
-        return new Vector3(center.x + xOffset, center.y + yOffset, 0);
-    }
     public override void OnTriggerEnterExtra(Collider2D col)
     {
     }

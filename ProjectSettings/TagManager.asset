@@ -8,6 +8,8 @@ TagManager:
   - Character
   - Undefined
   - Bullet
+  - Breakable Walls
+  - Unbreakable Walls
   layers:
   - Default
   - TransparentFX

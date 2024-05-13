@@ -7,39 +7,67 @@ public static class Game
     public const float walkingSpeed = 5f;
     public const float runningSpeed = 10f;
 
-    // seconds after which an agent is allowed to change direction
+    // seconds after which an agent (guard, prisoner) is allowed to change direction
     public const float agentDirectionChangeLimit = 0.25f;
 
+    // max distance you can melee something
     public const float meleeDistance = 0.5f;
 
     public const int pistolClipSize = 12;
     public const int shotgunCapacity = 8;
     public const int maxPistolClips = 5;
     public const int maxShotgunShells = 48;
-}
 
-// items you can pick up off the ground
-public enum Items
-{
-    Gold, TwoHandStone, Pickaxe, Pistol, Shotgun, MasterKey, Key
-}
-public enum ItemEquippability
-{
-    SingleHand, DoubleHand, NotEquippable
-}
+    public const float minuteLengthInSeconds = 0.5f;
 
-// 8 am mealtime
-// 11 am work
-// 4 pm free time
-// 8 pm return to cell
-// 9 pm nighttime
+    // ---------------------------------------------------------
+    // weapon damage constants
+    // player... = damage that player applies using the weapon
+    // agent... = damage that agent applies to player using the weapon
+    public const int playerFistsDamage = 10;
+    public const int agentFistsDamage = 5;
+    public const int playerPickaxeDamage = 25;
+    public const int agentPickaxeDamage = 10;
+    public const int playerPistolDamage = 34;
+    public const int agentPistolDamage = 15;
+    // ---------------------------------------------------------
 
-// need some kind of sleep functionality
-public enum Phase
-{
-    Mealtime, Work, FreeTime, ReturnToCell, Nighttime
-}
+    // ---------------------------------------------------------
+    // weapon force constants
+    // (force applied when weapon hits character)
+    public const float fistsForce = 80;
+    public const float pickaxeForce = 60;
+    public const float pistolForce = 50; 
+    // ---------------------------------------------------------
 
-public enum CharacterTypes {
-    Player, Prisoner, Guard, BoundedGuard
-}
+
+    // items you can pick up off the ground
+    public enum Items
+    {
+        Gold, TwoHandStone, Pickaxe, Pistol, Shotgun, MasterKey, Key
+    }
+    public enum ItemEquippability
+    {
+        SingleHand, DoubleHand, NotEquippable
+    }
+
+    public enum Phase
+    {
+        Mealtime = 0, Work = 1, FreeTime = 2, ReturnToCell = 3, Nighttime = 4
+    }
+
+    // string names for phases
+    // order needs to be same
+    public static readonly string[] PhaseNames = {
+        "Breakfast",
+        "Work",
+        "Free Time",
+        "Return to Cell",
+        "Night Time"
+    };
+
+    public enum CharacterTypes
+    {
+        Player, Prisoner, Guard, BoundedGuard
+    }
+};
