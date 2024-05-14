@@ -69,7 +69,7 @@ public class Bullet : MonoBehaviour
         if (Math.Abs(distanceToTravel - distanceTravelled) <= 0.005) {
             Character maybeCharacter = hit.GetComponent<Character>();
             if (maybeCharacter) {
-                maybeCharacter.hit(34, transform.up, Game.pistolForce, firer);
+                maybeCharacter.hit(34, transform.up, Game.pistolForce, Game.pistolForceDuration, firer);
             }
             hitDest = true;
         }

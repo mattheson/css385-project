@@ -218,8 +218,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySprite: {fileID: -7685115284680833274, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
   animator: {fileID: 8016078493381780592}
-  charaterRigidbody: {fileID: 3710638931522298357}
   health: 100
+  agent: {fileID: 0}
 --- !u!1001 &2288708018394927947
 PrefabInstance:
   m_ObjectHideFlags: 0

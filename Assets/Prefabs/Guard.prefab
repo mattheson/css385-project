@@ -152,7 +152,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySprite: {fileID: -3434092934263180461, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
   animator: {fileID: 8016078493381780592}
-  characterRigidbody: {fileID: 3710638931522298357}
   health: 100
   bounds: {fileID: 0}
   fieldOfView: 170

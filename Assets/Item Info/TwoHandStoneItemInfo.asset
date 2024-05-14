@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: 1
   equippability: 1
-  groundSprite: {fileID: 21300000, guid: d1ccb8db6c06248bea20a1f28ff79806, type: 2}
+  groundSprite: {fileID: 21300000, guid: d58c2e6dbd686450fa5a629e69631439, type: 2}

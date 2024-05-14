@@ -196,6 +196,15 @@ public class Player : Character
             pickUpAmmo(Game.Items.Pistol, (int)instance.ammo);
             Destroy(item);
         }
+        if (itemType == Game.Items.Shotgun)
+        {
+            if (!inventory.Contains(Game.Items.Shotgun))
+            {
+                inventory.Add(Game.Items.Shotgun);
+            }
+            pickUpAmmo(Game.Items.Shotgun, (int)instance.ammo);
+            Destroy(item);
+        }
 
         if (itemType == Game.Items.Pickaxe)
         {

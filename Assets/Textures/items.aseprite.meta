@@ -121,6 +121,26 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
+  - name: pistol
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 16
+      y: 0
+      width: 14
+      height: 10
+    spriteID: e984dc565b8854d18bd9876075d28929
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 16, y: 0}
   - name: key
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -132,7 +152,7 @@ ScriptedImporter:
       y: 0
       width: 16
       height: 16
-    spriteID: 2aabf5cf5817545c2a0b51f84f423e98
+    spriteID: de38e193db1d447b48c8b6c8f86d5c49
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -149,10 +169,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 16
-      y: 0
+      y: 10
       width: 14
       height: 10
-    spriteID: 360dd00ad5a9a4e02a2192cfe673ba0f
+    spriteID: f6428d7a6dcbb41beba18402fee9983a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -160,7 +180,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 16, y: 0}
+    uvTransform: {x: 16, y: 10}
   - name: pickaxe
     originalName: 
     pivot: {x: 0.53333336, y: 0.4615385}
@@ -172,7 +192,7 @@ ScriptedImporter:
       y: 16
       width: 15
       height: 13
-    spriteID: 74b939e14796e4e2c9b94d0a4884f7b2
+    spriteID: ea1b5971811314868bf9d4ae65a9dc67
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -181,26 +201,6 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 16}
-  - name: pistol
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 16
-      y: 10
-      width: 14
-      height: 10
-    spriteID: e984dc565b8854d18bd9876075d28929
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 16, y: 10}
   - name: gold
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -212,7 +212,7 @@ ScriptedImporter:
       y: 20
       width: 12
       height: 6
-    spriteID: f819450a890f443119ce84d3d04d80c6
+    spriteID: a7ff0f21dd0e444e087774ddbb27f0db
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -223,57 +223,6 @@ ScriptedImporter:
     uvTransform: {x: 16, y: 20}
   spriteSheetImportData: []
   asepriteLayers:
-  - layerIndex: 0
-    guid: 1290678219
-    name: key
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: key
-      frameIndex: 0
-      cellRect:
-        x: 0
-        y: 0
-        width: 16
-        height: 16
-      spriteId: 2aabf5cf5817545c2a0b51f84f423e98
-    linkedCells: []
-    parentIndex: -1
-  - layerIndex: 1
-    guid: 1048444201
-    name: two hand stone
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: two hand stone
-      frameIndex: 0
-      cellRect:
-        x: 1
-        y: 3
-        width: 14
-        height: 10
-      spriteId: 360dd00ad5a9a4e02a2192cfe673ba0f
-    linkedCells: []
-    parentIndex: -1
-  - layerIndex: 2
-    guid: -1549294293
-    name: pickaxe
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: pickaxe
-      frameIndex: 0
-      cellRect:
-        x: 0
-        y: 2
-        width: 15
-        height: 13
-      spriteId: 74b939e14796e4e2c9b94d0a4884f7b2
-    linkedCells: []
-    parentIndex: -1
   - layerIndex: 3
     guid: 2129075434
     name: pistol
@@ -291,6 +240,57 @@ ScriptedImporter:
       spriteId: e984dc565b8854d18bd9876075d28929
     linkedCells: []
     parentIndex: -1
+  - layerIndex: 0
+    guid: 1290678219
+    name: key
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: key
+      frameIndex: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      spriteId: de38e193db1d447b48c8b6c8f86d5c49
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 1
+    guid: 1048444201
+    name: two hand stone
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: two hand stone
+      frameIndex: 0
+      cellRect:
+        x: 1
+        y: 3
+        width: 14
+        height: 10
+      spriteId: f6428d7a6dcbb41beba18402fee9983a
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 2
+    guid: -1549294293
+    name: pickaxe
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: pickaxe
+      frameIndex: 0
+      cellRect:
+        x: 0
+        y: 2
+        width: 15
+        height: 13
+      spriteId: ea1b5971811314868bf9d4ae65a9dc67
+    linkedCells: []
+    parentIndex: -1
   - layerIndex: 4
     guid: -150548800
     name: gold
@@ -305,7 +305,7 @@ ScriptedImporter:
         y: 5
         width: 12
         height: 6
-      spriteId: f819450a890f443119ce84d3d04d80c6
+      spriteId: a7ff0f21dd0e444e087774ddbb27f0db
     linkedCells: []
     parentIndex: -1
   platformSettings:

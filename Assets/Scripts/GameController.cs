@@ -19,11 +19,12 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] Grid grid;
     [SerializeField] GameObject itemPrefab;
-    [SerializeField] GameObject bulletPrefab;
+    [SerializeField] GameObject pistolBulletPrefab, shotgunBulletPrefab;
     [SerializeField] Material deadCharacterMaterial;
     [SerializeField] Light2D worldLight;
     [SerializeField] Gradient worldLightGradient;
     [SerializeField] int startingHour;
+    [SerializeField] List<Door> cellDoors;
 
     // we are using this as a way to specify cell bounds
     // composite collider creates multiple physics shapes from one tilemap collider
@@ -52,7 +53,6 @@ public class GameController : MonoBehaviour
     SerializedDictionary<Game.Items, ItemInfo> itemInfo;
 
     private const float minutesInDay = 24 * 60;
-
 
     void addMinute()
     {
@@ -111,6 +111,11 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.LeftBracket)) {
+            foreach (Door d in cellDoors) {
+                d.toggleDoor();
+            }
+        }
         worldLight.color = worldLightGradient.Evaluate((float)time.TotalMinutes % minutesInDay / minutesInDay);
     }
 
@@ -123,9 +128,9 @@ public class GameController : MonoBehaviour
         instance.ammo = ammo;
     }
 
-    public void spawnBullet(Vector2 bulletSpawnPos, Vector2 bulletDirection, Character firer)
+    public void spawnPistolBullet(Vector2 bulletSpawnPos, Vector2 bulletDirection, Character firer)
     {
-        GameObject bulletObj = Instantiate(bulletPrefab, new Vector3(bulletSpawnPos.x, bulletSpawnPos.y, 0),
+        GameObject bulletObj = Instantiate(pistolBulletPrefab, new Vector3(bulletSpawnPos.x, bulletSpawnPos.y, 0),
             Quaternion.identity);
         bulletObj.transform.up = bulletDirection;
         Bullet bullet = bulletObj.GetComponent<Bullet>();
@@ -133,14 +138,30 @@ public class GameController : MonoBehaviour
         bullet.startBullet();
     }
 
+    public void spawnShotgunShot(Vector2 shotSpawnPos, Vector2 shotDirection, Character firer)
+    {
+        for (int i = 0; i < Game.bulletsSpawnedShotgun; i++)
+        {
+            GameObject bulletObj = Instantiate(shotgunBulletPrefab, new Vector3(shotSpawnPos.x, shotSpawnPos.y, 0),
+                Quaternion.identity);
+            Debug.Log(bulletObj.transform.up);
+            bulletObj.transform.up = Quaternion.Euler(0, 0, UnityEngine.Random.Range(-8, 8)) * shotDirection;
+            Debug.Log(bulletObj.transform.up);
+            Bullet bullet = bulletObj.GetComponent<Bullet>();
+            bullet.firer = firer;
+            bullet.startBullet();
+        }
+    }
+
     public Sprite getGroundItemSprite(Game.Items item)
     {
         return itemInfo[item].groundSprite;
     }
 
-    public Vector3Int worldToCell(Vector3 point) {
+    public Vector3Int worldToCell(Vector3 point)
+    {
         return grid.WorldToCell(point);
-    } 
+    }
 
     public Material getDeadCharacterMaterial()
     {

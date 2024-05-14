@@ -51,7 +51,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -77,7 +77,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySprite: {fileID: -1311286337752481573, guid: dd78095b5d8ed461fa917d1eecf6bc60, type: 3}
   animator: {fileID: 1692068194403807287}
-  characterRigidbody: {fileID: 384649985814039068}
   health: 100
   gold: 0
   inventory: 

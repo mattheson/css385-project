@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Analytics;
@@ -20,7 +22,20 @@ public class CharacterAnimator : MonoBehaviour
 
     private bool punchingWithRight = true;
 
-    private bool inAnimation = false;
+    private bool inAnimation
+    {
+        get
+        {
+            return
+                !animator.GetCurrentAnimatorStateInfo(1).IsName("Idle") &&
+                !animator.GetCurrentAnimatorStateInfo(1).IsName("Pistol Idle Right") &&
+                !animator.GetCurrentAnimatorStateInfo(1).IsName("Pickaxe Idle") && 
+                !animator.GetCurrentAnimatorStateInfo(1).IsName("Two Hand Stone Idle") &&
+                !animator.GetCurrentAnimatorStateInfo(1).IsName("Master Key Idle") &&
+                !animator.GetCurrentAnimatorStateInfo(1).IsName("Shotgun Idle")
+            ;
+        }
+    }
 
     void Start()
     {
@@ -47,6 +62,11 @@ public class CharacterAnimator : MonoBehaviour
                 {
                     rightArmRenderer.enabled = true;
                     animator.Play("Pistol Idle Right", 1);
+                }
+                if (character.equippedItem == Game.Items.Shotgun) {
+                    rightArmRenderer.enabled = true;
+                    leftArmRenderer.enabled = true;
+                    animator.Play("Shotgun Idle");
                 }
                 if (character.equippedItem == Game.Items.Pickaxe)
                 {
@@ -94,14 +114,20 @@ public class CharacterAnimator : MonoBehaviour
 
     private void punchRight()
     {
-        rightArmRenderer.enabled = true;
-        animator.Play("Punch Right", 1);
+        if (!inAnimation)
+        {
+            rightArmRenderer.enabled = true;
+            animator.Play("Punch Right", 1);
+        }
     }
 
     private void punchLeft()
     {
-        leftArmRenderer.enabled = true;
-        animator.Play("Punch Left", 1);
+        if (!inAnimation)
+        {
+            leftArmRenderer.enabled = true;
+            animator.Play("Punch Left", 1);
+        }
     }
 
     // toggles between left and right
@@ -109,7 +135,6 @@ public class CharacterAnimator : MonoBehaviour
     {
         if (!inAnimation)
         {
-            inAnimation = true;
             if (punchingWithRight)
             {
                 punchRight();
@@ -130,19 +155,25 @@ public class CharacterAnimator : MonoBehaviour
 
     public void shootPistol()
     {
-        if (!animator.GetCurrentAnimatorStateInfo(1).IsName("Pistol Shoot Right"))
+        if (!inAnimation)
         {
-            inAnimation = true;
             rightArmRenderer.enabled = true;
             animator.Play("Pistol Shoot Right", 1);
         }
     }
 
+    public void shootShotgun() {
+        if (!inAnimation) {
+            rightArmRenderer.enabled = true;
+            leftArmRenderer.enabled = true;
+            animator.Play("Shotgun Shoot", 1);
+        }
+    }
+
     public void swingPickaxe()
     {
-        if (!animator.GetCurrentAnimatorStateInfo(1).IsName("Pickaxe Swing"))
+        if (!inAnimation)
         {
-            inAnimation = true;
             rightArmRenderer.enabled = true;
             animator.Play("Pickaxe Swing", 1);
         }
@@ -150,9 +181,8 @@ public class CharacterAnimator : MonoBehaviour
 
     public void swingTwoHandStone()
     {
-        if (!animator.GetCurrentAnimatorStateInfo(1).IsName("Two Hand Stone Swing"))
+        if (!inAnimation)
         {
-            inAnimation = true;
             rightArmRenderer.enabled = true;
             leftArmRenderer.enabled = true;
             animator.Play("Two Hand Stone Swing", 1);
@@ -161,12 +191,19 @@ public class CharacterAnimator : MonoBehaviour
 
     public void reloadPistol()
     {
-        if (!animator.GetCurrentAnimatorStateInfo(1).IsName("Pistol Reload Right"))
+        if (!inAnimation)
         {
-            inAnimation = true;
             leftArmRenderer.enabled = true;
             rightArmRenderer.enabled = true;
             animator.Play("Pistol Reload Right", 1);
+        }
+    }
+
+    public void loadShotgun() {
+        if (!inAnimation) {
+            leftArmRenderer.enabled = true;
+            rightArmRenderer.enabled = true;
+            animator.Play("Shotgun Load", 1);
         }
     }
 
@@ -181,14 +218,12 @@ public class CharacterAnimator : MonoBehaviour
     {
         rightArmRenderer.enabled = false;
         animator.Play("Idle", 1);
-        inAnimation = false;
     }
 
     public void leftArmAnimationDone()
     {
         leftArmRenderer.enabled = false;
         animator.Play("Idle", 1);
-        inAnimation = false;
     }
 
     public void bothHandAnimationDone()
@@ -196,20 +231,33 @@ public class CharacterAnimator : MonoBehaviour
         leftArmRenderer.enabled = false;
         rightArmRenderer.enabled = false;
         animator.Play("Idle", 1);
-        inAnimation = false;
     }
 
-    public void animationRightPunchImpact() {
+    public void animationRightPunchImpact()
+    {
         character.rightPunchImpact();
     }
 
-    public void animationLeftPunchImpact() {
+    public void animationLeftPunchImpact()
+    {
         character.leftPunchImpact();
     }
 
     public void animationPistolShot()
     {
         character.spawnPistolBullet();
+    }
+
+    public void animationPistolReload() {
+        character.pistolReload();
+    }
+
+    public void animationShotgunLoad() {
+        character.shotgunLoad();
+    }
+    
+    public void animationShotgunShot() {
+        character.spawnShotgunShot();
     }
 
     public void animationPickaxeImpact()

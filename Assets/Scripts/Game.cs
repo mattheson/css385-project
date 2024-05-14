@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public static class Game
@@ -18,6 +19,8 @@ public static class Game
     public const int maxPistolClips = 5;
     public const int maxShotgunShells = 48;
 
+    public const int bulletsSpawnedShotgun = 8;
+
     public const float minuteLengthInSeconds = 0.5f;
 
     // ---------------------------------------------------------
@@ -30,16 +33,22 @@ public static class Game
     public const int agentPickaxeDamage = 10;
     public const int playerPistolDamage = 34;
     public const int agentPistolDamage = 15;
+    public const int playerTwoHandStoneDamage = 100;
+    public const int agentTwoHandStoneDamage = 80;
     // ---------------------------------------------------------
 
     // ---------------------------------------------------------
     // weapon force constants
     // (force applied when weapon hits character)
-    public const float fistsForce = 80;
-    public const float pickaxeForce = 60;
-    public const float pistolForce = 50; 
+    public const float fistsForce = 5;
+    public const float fistsForceDuration = 1;
+    public const float pickaxeForce = 5;
+    public const float pickaxeForceDuration = 0.5f;
+    public const float pistolForce = 5; 
+    public const float pistolForceDuration = 0.25f;
+    public const float twoHandStoneForce = 10;
+    public const float twoHandStoneForceDuration = 1;
     // ---------------------------------------------------------
-
 
     // items you can pick up off the ground
     public enum Items

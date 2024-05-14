@@ -23,11 +23,13 @@ public abstract class Character : CharacterBase
 
     // --------------------------------------------------------------------
     // constants/offsets for spawning bullets, melee, etc.
-    // offset is when character is facing upwards (towards +y)
+    // offset is relative to character is facing upwards (towards +y)
     private readonly Vector2 pistolOffset = new Vector2(0.15f, 0.9f);
+    private readonly Vector2 shotgunOffset = new Vector2(0.15f, 0.9f);
     private readonly Vector2 pickaxeOffset = new Vector2(0.15f, 0.9f);
     private readonly Vector2 rightPunchOffset = new Vector2(0.15f, 0.7f);
     private readonly Vector2 leftPunchOffset = new Vector2(-0.15f, 0.7f);
+    private readonly Vector2 twoHandStoneOffset = new Vector2(0.0f, 0.7f);
     // --------------------------------------------------------------------
 
     [SerializeField] Sprite bodySprite;
@@ -37,7 +39,7 @@ public abstract class Character : CharacterBase
     // cell assigned to this character
     [NonSerialized] public Bounds cellBounds;
 
-    private Vector3 movementVel, agentLastPos, agentNudge, hitVelocity;
+    private Vector3 movementVel, agentLastPos, agentNudge;
 
     public Game.Items? equippedItem;
     public int health;
@@ -52,6 +54,8 @@ public abstract class Character : CharacterBase
     private float agentSecsSinceLast, agentSecsStuck;
 
     protected GameController controller;
+
+    private List<Tuple<float, float, Vector2>> hits = new List<Tuple<float, float, Vector2>>();
 
     public sealed override void Start()
     {
@@ -103,8 +107,23 @@ public abstract class Character : CharacterBase
     public sealed override void FixedUpdate()
     {
         characterRigidbody.velocity = movementVel;
-        characterRigidbody.velocity += (Vector2) hitVelocity;
-        hitVelocity = new Vector3(hitVelocity.x * 0.25f, hitVelocity.y * 0.25f, 0);
+        for (int i = 0; i < hits.Count;)
+        {
+            (float remaining, float total, Vector2 force) = hits[i];
+            remaining -= Time.fixedDeltaTime;
+            if (remaining <= 0)
+            {
+                hits.RemoveAt(i);
+                continue;
+            }
+            else
+            {
+                characterRigidbody.velocity += force * (remaining / total);
+                Debug.Log(characterRigidbody.velocity);
+            }
+            hits[i] = new Tuple<float, float, Vector2>(remaining, total, force);
+            i++;
+        }
         characterRigidbody.velocity += new Vector2(agentNudge.x, agentNudge.y);
     }
 
@@ -208,6 +227,10 @@ public abstract class Character : CharacterBase
         {
             animator.shootPistol();
         }
+        else if (equippedItem == Game.Items.Shotgun)
+        {
+            animator.shootShotgun();
+        }
         else if (equippedItem == Game.Items.Pickaxe)
         {
             animator.swingPickaxe();
@@ -228,7 +251,7 @@ public abstract class Character : CharacterBase
         }
         else if (equippedItem == Game.Items.Shotgun)
         {
-
+            animator.loadShotgun();
         }
     }
 
@@ -241,7 +264,14 @@ public abstract class Character : CharacterBase
     public void spawnPistolBullet()
     {
         Vector2 offset = transform.rotation * pistolOffset;
-        controller.spawnBullet(new Vector2(transform.position.x + offset.x, transform.position.y + offset.y),
+        controller.spawnPistolBullet(new Vector2(transform.position.x + offset.x, transform.position.y + offset.y),
+            transform.up, this);
+    }
+
+    public void spawnShotgunShot()
+    {
+        Vector2 offset = transform.rotation * shotgunOffset;
+        controller.spawnShotgunShot(new Vector2(transform.position.x + offset.x, transform.position.y + offset.y),
             transform.up, this);
     }
 
@@ -255,14 +285,18 @@ public abstract class Character : CharacterBase
         punchImpact(leftPunchOffset);
     }
 
-    private void punchImpact(Vector2 offset) {
+    private void punchImpact(Vector2 offset)
+    {
         RaycastHit2D? ray = castMeleeRay(offset);
-        if (ray != null) {
-            if (ray.Value.collider.CompareTag("Character") || ray.Value.collider.CompareTag("Player")) {
+        if (ray != null)
+        {
+            if (ray.Value.collider.CompareTag("Character") || ray.Value.collider.CompareTag("Player"))
+            {
                 ray.Value.collider.GetComponent<Character>().hit(
                     CompareTag("Player") ? Game.playerFistsDamage : Game.agentFistsDamage,
                     transform.up,
                     Game.fistsForce,
+                    Game.fistsForceDuration,
                     this
                 );
             }
@@ -286,6 +320,7 @@ public abstract class Character : CharacterBase
                     CompareTag("Player") ? Game.playerPickaxeDamage : Game.agentPickaxeDamage,
                     transform.up,
                     Game.pickaxeForce,
+                    Game.pickaxeForceDuration,
                     this
                 );
             }
@@ -294,7 +329,30 @@ public abstract class Character : CharacterBase
 
     public void twoHandStoneImpact()
     {
-        Debug.Log("stone");
+        RaycastHit2D? ray = castMeleeRay(twoHandStoneOffset);
+        if (ray != null)
+        {
+            if (ray != null)
+            {
+                if (ray.Value.collider.CompareTag("Character") || ray.Value.collider.CompareTag("Player"))
+                {
+                    ray.Value.collider.GetComponent<Character>().hit(
+                        CompareTag("Player") ? Game.playerTwoHandStoneDamage : Game.agentTwoHandStoneDamage,
+                        transform.up,
+                        Game.twoHandStoneForce,
+                        Game.twoHandStoneForceDuration,
+                        this
+                    );
+                }
+            }
+        }
+    }
+    public void pistolReload() {
+        Debug.Log("pistol reload");
+    }
+
+    public void shotgunLoad() {
+        Debug.Log("shotgun load");
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -309,12 +367,10 @@ public abstract class Character : CharacterBase
         }
     }
 
-    public void hit(int damage, Vector2 incomingDirection, float force, Character firer)
+    public void hit(int damage, Vector2 incomingDirection, float force, float forceTime, Character firer)
     {
-        hitVelocity += (Vector3) incomingDirection * force;
-        Debug.Log(characterRigidbody.velocity);
+        hits.Add(new Tuple<float, float, Vector2>(forceTime, forceTime, incomingDirection * force));
         applyDamage(damage);
-        Debug.Log(health);
     }
 
     public void applyDamage(int damage)

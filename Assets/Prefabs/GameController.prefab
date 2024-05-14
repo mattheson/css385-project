@@ -46,8 +46,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grid: {fileID: 0}
   itemPrefab: {fileID: 4498896178639128708, guid: 42f93aec674e145b89a3ca3e886fc09e, type: 3}
-  bulletPrefab: {fileID: 4969112302136237781, guid: 4df1beb54d4854bfd8b71f20d84aeb79, type: 3}
+  pistolBulletPrefab: {fileID: 4969112302136237781, guid: 4df1beb54d4854bfd8b71f20d84aeb79, type: 3}
+  shotgunBulletPrefab: {fileID: 4969112302136237781, guid: 85b090001ed904328aa12a6d2e0fd41c, type: 3}
   deadCharacterMaterial: {fileID: -876546973899608171, guid: 6b6f9f2023fde446e9e8639ec1c030e9, type: 3}
+  worldLight: {fileID: 0}
+  worldLightGradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  startingHour: 0
+  cellBounds: {fileID: 0}
   itemInfo:
     _serializedList:
     - Key: 3
@@ -60,3 +94,5 @@ MonoBehaviour:
       Value: {fileID: 11400000, guid: 923bf1f0ba84a438f9465a3e70f20ca0, type: 2}
     - Key: 5
       Value: {fileID: 11400000, guid: 9e496f7e997754c159b1603ea2dd4de8, type: 2}
+    - Key: 4
+      Value: {fileID: 11400000, guid: 886d4265d8684430ab737fb6b0c10f15, type: 2}
