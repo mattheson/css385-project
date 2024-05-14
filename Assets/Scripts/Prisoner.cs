@@ -7,6 +7,7 @@ public class Prisoner : Character
 {
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform t;
+    public Bounds cell;
 
     public override void OnStart()
     {
@@ -16,6 +17,7 @@ public class Prisoner : Character
         agent.updatePosition = false;
         agent.autoRepath = true;
     }
+
     public override void OnUpdate()
     {
         if (t) {
@@ -27,6 +29,7 @@ public class Prisoner : Character
             moveInDirection(new Vector2(dir.x, dir.y).normalized, false);
         }
         agent.nextPosition = transform.position;
+        checkForAgentDesync(agent);
     }
 
     public override void OnWalkedOverItem(GameObject item)

@@ -12,9 +12,10 @@ using UnityEngine.Tilemaps;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Guard : Character
 {
-    // if this is null the guard will get a patrol position from the GameController
-    // otherwise we generate a random position within bounds
-    public TilemapCollider2D bounds;
+    // set `path` if you want a guard that will follow path throughout the day
+    // set `bounds` if you want a guard that will stay within bounds
+    public GameController.GuardPath path;
+    public Bounds bounds;
 
     // fov when raycasting, fov for agent to shoot, distance agent can see
     public float fieldOfView, shootingFieldOfView, viewDistance;
@@ -52,6 +53,8 @@ public class Guard : Character
         }
     }
 
+    // old logic
+    /*
     public override void OnUpdate()
     {
         if (!player)
@@ -106,7 +109,6 @@ public class Guard : Character
                     float xOffset = UnityEngine.Random.Range(-randomPosGenerationRange, randomPosGenerationRange);
                     float yOffset = UnityEngine.Random.Range(-randomPosGenerationRange, randomPosGenerationRange);
                     randomPos = new Vector3(lastPlayerPosition.x + xOffset, lastPlayerPosition.y + yOffset, 0);
-                    Debug.Log("bruh");
                 }
                 agent.SetDestination(randomPos.Value);
             } else if (level == CHASING) {
@@ -118,13 +120,13 @@ public class Guard : Character
         {
             // we are idling
             equippedItem = null;
-            if (bounds)
+            if (bounds == null)
             {
                 if (randomPos == null || (transform.position - randomPos.Value).magnitude <= 2f)
                 {
-                    float xOffset = UnityEngine.Random.Range(-bounds.bounds.extents.x, bounds.bounds.extents.x);
-                    float yOffset = UnityEngine.Random.Range(-bounds.bounds.extents.y, bounds.bounds.extents.y);
-                    randomPos = new Vector3(bounds.bounds.center.x + xOffset, bounds.bounds.center.y + yOffset, 0);
+                    float xOffset = UnityEngine.Random.Range(-bounds.extents.x, bounds.extents.x);
+                    float yOffset = UnityEngine.Random.Range(-bounds.extents.y, bounds.extents.y);
+                    randomPos = new Vector3(bounds.center.x + xOffset, bounds.center.y + yOffset, 0);
                 }
                 agent.SetDestination(randomPos.Value);
             }
@@ -139,11 +141,14 @@ public class Guard : Character
             Vector3 dir = agent.steeringTarget - transform.position;
             moveInDirection(new Vector2(dir.x, dir.y).normalized, false);
         }
-
         agent.nextPosition = transform.position;
-        // agent.Warp(transform.position);
     }
+    */
 
+    public override void OnUpdate()
+    {
+
+    }
     public override void OnWalkedOverItem(GameObject item)
     {
     }

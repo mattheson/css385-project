@@ -10,6 +10,7 @@ using System.Drawing;
 using Unity.Mathematics;
 using UnityEngine.Events;
 using Unity.VisualScripting;
+using System.Linq;
 
 // contains logic for
 // - associating item enum with ItemInfo (see comment below)
@@ -17,22 +18,27 @@ using Unity.VisualScripting;
 // - spawning items and bullets
 public class GameController : MonoBehaviour
 {
+    [Serializable] public class GuardPath {
+        public List<Transform> points;
+    }
     [SerializeField] Grid grid;
     [SerializeField] GameObject itemPrefab;
-    [SerializeField] GameObject pistolBulletPrefab, shotgunBulletPrefab, goldPrefab, twoHandStonePrefab;
+    [SerializeField] GameObject pistolBulletPrefab, shotgunBulletPrefab, goldPrefab, twoHandStonePrefab, guardPrefab, prisonerPrefab;
     [SerializeField] Material deadCharacterMaterial;
     [SerializeField] Light2D worldLight;
     [SerializeField] Gradient worldLightGradient;
     [SerializeField] int startingHour;
     [SerializeField] List<Door> cellDoors;
-    [SerializeField] List<List<Transform>> guardPaths;
+    [SerializeField] List<GuardPath> guardPaths;
 
     // we are using this as a way to specify cell bounds
     // composite collider creates multiple physics shapes from one tilemap collider
     [SerializeField] CompositeCollider2D cellBounds;
+    [SerializeField] Transform guardSpawnPoint;
 
     // queue of available cells we can assign to prisoners
     Queue<Bounds> availableCells = new Queue<Bounds>();
+    Queue<GuardPath> availablePaths = new Queue<GuardPath>();
 
     private TimeSpan time;
     private Game.Phase _phase;
@@ -52,6 +58,10 @@ public class GameController : MonoBehaviour
     [SerializeField]
     [SerializedDictionary("Item", "Item Info")]
     SerializedDictionary<Game.Items, ItemInfo> itemInfo;
+
+    [SerializeField]
+    [SerializedDictionary("Phase", "Phase Zone")]
+    SerializedDictionary<Game.Phase, TilemapCollider2D> phaseZones;
 
     private const float minutesInDay = 24 * 60;
 
@@ -104,6 +114,10 @@ public class GameController : MonoBehaviour
             );
             // Debug.Log(bounds);
             availableCells.Enqueue(bounds);
+        }
+
+        foreach (GuardPath path in guardPaths) {
+            availablePaths.Append(path);
         }
 
         time = new TimeSpan(startingHour, 0, 0);
@@ -199,5 +213,18 @@ public class GameController : MonoBehaviour
     public TimeSpan getTime()
     {
         return time;
+    }
+
+    // returns random pos within activity
+    public Vector3 getRandomPosInCurrentActivity() {
+        return new Vector3(
+            phaseZones[phase].bounds.center.x +
+                UnityEngine.Random.Range(-phaseZones[phase].bounds.extents.x,
+                    phaseZones[phase].bounds.extents.x),
+            phaseZones[phase].bounds.center.y +
+                UnityEngine.Random.Range(-phaseZones[phase].bounds.extents.y,
+                    phaseZones[phase].bounds.extents.y),
+            0
+        );
     }
 }

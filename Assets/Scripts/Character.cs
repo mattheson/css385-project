@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 // base class to prevent method hiding of Unity functions
@@ -50,6 +51,10 @@ public abstract class Character : CharacterBase
 
     // minimum number of seconds needed for agent to switch keypresses
     public const float agentNewKeyTime = 0.25f;
+    
+    // if agent is further than this away from character transform
+    // agent will be warped
+    public const float agentDesyncMagnitude = 10;
 
     private float agentSecsSinceLast, agentSecsStuck;
 
@@ -403,6 +408,12 @@ public abstract class Character : CharacterBase
             if (!r.collider.gameObject.Equals(gameObject)) return r;
         }
         return null;
+    }
+
+    public void checkForAgentDesync(NavMeshAgent agent) {
+        if ((agent.nextPosition - transform.position).magnitude >= agentDesyncMagnitude) {
+            agent.Warp(transform.position);
+        }
     }
 
     // Abstract functions
