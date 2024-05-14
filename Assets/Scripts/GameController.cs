@@ -10,6 +10,7 @@ using System.Drawing;
 using Unity.Mathematics;
 using UnityEngine.Events;
 using Unity.VisualScripting;
+using Unity.Mathematics;
 
 // contains logic for
 // - associating item enum with ItemInfo (see comment below)
@@ -19,7 +20,7 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] Grid grid;
     [SerializeField] GameObject itemPrefab;
-    [SerializeField] GameObject pistolBulletPrefab, shotgunBulletPrefab;
+    [SerializeField] GameObject pistolBulletPrefab, shotgunBulletPrefab, goldPrefab, twoHandStonePrefab;
     [SerializeField] Material deadCharacterMaterial;
     [SerializeField] Light2D worldLight;
     [SerializeField] Gradient worldLightGradient;
@@ -181,6 +182,18 @@ public class GameController : MonoBehaviour
     {
         // TODO
         // called when guard dies
+    }
+
+    public void stoneTileDestroyed(Vector2 pos) {
+        float random = UnityEngine.Random.value;
+
+        if (random >= 0 && random <= 0.25) {
+            Instantiate(goldPrefab, pos, Quaternion.identity);
+        } else if (random > 0.25 && random <= 0.25) {
+            Instantiate(twoHandStonePrefab, pos, Quaternion.identity);
+        }
+
+        Debug.Log(pos);
     }
 
     public TimeSpan getTime()

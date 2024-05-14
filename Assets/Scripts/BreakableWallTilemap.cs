@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class BreakableWallTilemap : MonoBehaviour
 {
+    private GameController controller;
     public Tilemap destructibleTilemap;
     private Dictionary<Vector3Int, float> health = new Dictionary<Vector3Int, float>();
     public float tileStartHealth;
@@ -17,6 +19,8 @@ public class BreakableWallTilemap : MonoBehaviour
     // Method to handle pickaxe hit
     public void pickaxeHit(Vector3Int tilePosition)
     {
+        if (!controller) controller = FindFirstObjectByType<GameController>();
+
         if (!destructibleTilemap.HasTile(tilePosition)) return;
 
         if (!health.ContainsKey(tilePosition)) {
@@ -27,8 +31,14 @@ public class BreakableWallTilemap : MonoBehaviour
 
         if (health[tilePosition] <= 0)
         {
+            GameObject tile = destructibleTilemap.GetTile<Tile>(tilePosition).gameObject;
+            bool isStone = tile.CompareTag("Stone Tile");
+            Debug.Log(tile);
             destructibleTilemap.SetTile(tilePosition, null);
             health.Remove(tilePosition);
+            if (isStone) {
+                controller.stoneTileDestroyed(destructibleTilemap.GetCellCenterWorld(tilePosition));
+            }
         }
         else
         {

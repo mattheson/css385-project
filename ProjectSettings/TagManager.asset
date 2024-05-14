@@ -10,6 +10,7 @@ TagManager:
   - Bullet
   - Breakable Walls
   - Unbreakable Walls
+  - Stone Tile
   layers:
   - Default
   - TransparentFX
