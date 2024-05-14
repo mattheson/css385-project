@@ -10,7 +10,6 @@ using System.Drawing;
 using Unity.Mathematics;
 using UnityEngine.Events;
 using Unity.VisualScripting;
-using Unity.Mathematics;
 
 // contains logic for
 // - associating item enum with ItemInfo (see comment below)
@@ -26,6 +25,7 @@ public class GameController : MonoBehaviour
     [SerializeField] Gradient worldLightGradient;
     [SerializeField] int startingHour;
     [SerializeField] List<Door> cellDoors;
+    [SerializeField] List<List<Transform>> guardPaths;
 
     // we are using this as a way to specify cell bounds
     // composite collider creates multiple physics shapes from one tilemap collider

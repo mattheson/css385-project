@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class Prisoner : Character
 {
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] Transform t;
 
     public override void OnStart()
     {
@@ -17,6 +18,15 @@ public class Prisoner : Character
     }
     public override void OnUpdate()
     {
+        if (t) {
+            agent.SetDestination(t.position);
+        }
+        if (agent.pathStatus == NavMeshPathStatus.PathComplete)
+        {
+            Vector3 dir = agent.steeringTarget - transform.position;
+            moveInDirection(new Vector2(dir.x, dir.y).normalized, false);
+        }
+        agent.nextPosition = transform.position;
     }
 
     public override void OnWalkedOverItem(GameObject item)
