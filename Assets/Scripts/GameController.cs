@@ -18,12 +18,16 @@ using System.Linq;
 // - spawning items and bullets
 public class GameController : MonoBehaviour
 {
-    [Serializable] public class GuardPath {
+    [Serializable]
+    public class GuardPath
+    {
         public List<Transform> points;
     }
     [SerializeField] Grid grid;
     [SerializeField] GameObject itemPrefab;
-    [SerializeField] GameObject pistolBulletPrefab, shotgunBulletPrefab, goldPrefab, twoHandStonePrefab, guardPrefab, prisonerPrefab;
+    [SerializeField]
+    GameObject pistolBulletPrefab, shotgunBulletPrefab, goldPrefab, twoHandStonePrefab,
+        guardPrefab, prisonerPrefab, playerPrefab;
     [SerializeField] Material deadCharacterMaterial;
     [SerializeField] Light2D worldLight;
     [SerializeField] Gradient worldLightGradient;
@@ -35,6 +39,7 @@ public class GameController : MonoBehaviour
     // composite collider creates multiple physics shapes from one tilemap collider
     [SerializeField] CompositeCollider2D cellBounds;
     [SerializeField] Transform guardSpawnPoint;
+    [SerializeField] Player player;
 
     // queue of available cells we can assign to prisoners
     Queue<Bounds> availableCells = new Queue<Bounds>();
@@ -43,6 +48,8 @@ public class GameController : MonoBehaviour
     private TimeSpan time;
     private Game.Phase _phase;
     public Game.Phase phase { get => _phase; }
+
+    private bool _playerFailedToCollectGold;
 
     // TODO this is the cleanest way of associating ItemInfo with an enum
     // that I have found so far, maybe there is something i'm missing
@@ -68,9 +75,10 @@ public class GameController : MonoBehaviour
     void addMinute()
     {
         time += TimeSpan.FromMinutes(1);
-        // 8 am -  10:59am: Mealtime
+        // 8 am -  10:59am: Mealtime (breakfast)
         // 11 am - 3:59 pm: Work
-        // 4 pm - 7:59 pm: FreeTime
+        // 4 pm - 6:59 pm: FreeTime
+        // 7 pm - 7:59 pm: Return to Cell
         // 8 pm - 8 am: Nighttime
         if (time.Hours >= 8 && time.Hours < 11)
         {
@@ -80,9 +88,20 @@ public class GameController : MonoBehaviour
         {
             _phase = Game.Phase.Work;
         }
-        else if (time.Hours >= 16 && time.Hours < 21)
+        else if (time.Hours >= 16 && time.Hours < 19)
         {
+            if (!player) player = FindFirstObjectByType<Player>();
+            if (player.gold < 3)
+            {
+                Debug.Log("failed to collect gold");
+                _playerFailedToCollectGold = true;
+            }
+            player.gold = 0;
             _phase = Game.Phase.FreeTime;
+        }
+        else if (time.Hours == 19)
+        {
+            _phase = Game.Phase.ReturnToCell;
         }
         else
         {
@@ -92,6 +111,8 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        _playerFailedToCollectGold = false;
+
         Time.timeScale = 1f;
 
         // populate available cells
@@ -112,12 +133,47 @@ public class GameController : MonoBehaviour
                 new Vector3((xMin + xMax) / 2, (yMin + yMax) / 2, 0),
                 new Vector3((xMax - xMin) / 2, (yMax - yMin) / 2, 0)
             );
-            // Debug.Log(bounds);
             availableCells.Enqueue(bounds);
         }
 
-        foreach (GuardPath path in guardPaths) {
-            availablePaths.Append(path);
+        foreach (GuardPath path in guardPaths)
+        {
+            Debug.Log("hi");
+            availablePaths.Enqueue(path);
+        }
+
+        Debug.Log(availablePaths.Count);
+
+        // spawn guards, allocate one per path
+        while (availablePaths.Count > 0)
+        {
+            Debug.Log("spawning path");
+            Guard newGuard = Instantiate(guardPrefab, guardSpawnPoint.position,
+                Quaternion.identity).GetComponent<Guard>();
+            newGuard.path = availablePaths.Dequeue();
+        }
+
+        // spawn prisoners, one per cell
+        // also spawn player here
+
+        int playerCell = UnityEngine.Random.Range(0, availableCells.Count - 1);
+        int cellIdx = 0;
+        while (availableCells.Count > 0)
+        {
+            Bounds cell = availableCells.Dequeue();
+            if (cellIdx == playerCell)
+            {
+                Player player = Instantiate(playerPrefab,
+                    cell.center, Quaternion.identity).GetComponent<Player>();
+                player.cell = cell;
+            }
+            else
+            {
+                Prisoner newPrisoner = Instantiate(prisonerPrefab,
+                    cell.center, Quaternion.identity).GetComponent<Prisoner>();
+                newPrisoner.cell = cell;
+            }
+            cellIdx++;
         }
 
         time = new TimeSpan(startingHour, 0, 0);
@@ -126,10 +182,40 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftBracket)) {
-            foreach (Door d in cellDoors) {
-                d.toggleDoor();
+        if (phase == Game.Phase.Nighttime)
+        {
+            foreach (Door d in cellDoors)
+            {
+                d.open(false);
             }
+        }
+        else
+        {
+            foreach (Door d in cellDoors)
+            {
+                d.open(true);
+            }
+        }
+
+        // p for breakfast
+        // [ for work
+        // ] for free time
+        // \ for return to cell (after which comes night time)
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            time = new TimeSpan(8, 0, 0);
+        }
+        if (Input.GetKeyDown(KeyCode.LeftBracket))
+        {
+            time = new TimeSpan(11, 0, 0);
+        }
+        if (Input.GetKeyDown(KeyCode.RightBracket))
+        {
+            time = new TimeSpan(16, 0, 0);
+        }
+        if (Input.GetKeyDown(KeyCode.Backslash))
+        {
+            time = new TimeSpan(19, 0, 0);
         }
         worldLight.color = worldLightGradient.Evaluate((float)time.TotalMinutes % minutesInDay / minutesInDay);
     }
@@ -192,18 +278,24 @@ public class GameController : MonoBehaviour
         return guard.transform.position;
     }
 
-    public void freePatroller(Guard guard)
-    {
-        // TODO
-        // called when guard dies
-    }
+    // dont think we need this, maybe just have fixed number of guards
+    // we arent respawning guards
+    // public void freePatroller(Guard guard)
+    // {
+    //     // TODO
+    //     // called when guard dies
+    // }
 
-    public void stoneTileDestroyed(Vector2 pos) {
+    public void stoneTileDestroyed(Vector2 pos)
+    {
         float random = UnityEngine.Random.value;
 
-        if (random >= 0 && random <= 0.25) {
+        if (random >= 0 && random <= 0.25)
+        {
             Instantiate(goldPrefab, pos, Quaternion.identity);
-        } else if (random > 0.25 && random <= 0.25) {
+        }
+        else if (random > 0.25 && random <= 0.25)
+        {
             Instantiate(twoHandStonePrefab, pos, Quaternion.identity);
         }
 
@@ -215,16 +307,34 @@ public class GameController : MonoBehaviour
         return time;
     }
 
-    // returns random pos within activity
-    public Vector3 getRandomPosInCurrentActivity() {
-        return new Vector3(
-            phaseZones[phase].bounds.center.x +
-                UnityEngine.Random.Range(-phaseZones[phase].bounds.extents.x,
-                    phaseZones[phase].bounds.extents.x),
-            phaseZones[phase].bounds.center.y +
-                UnityEngine.Random.Range(-phaseZones[phase].bounds.extents.y,
-                    phaseZones[phase].bounds.extents.y),
-            0
-        );
+    // returns null if there is no set bounds for a given phase
+    public Bounds? getBoundsOfCurrentPhase()
+    {
+        if (phaseZones.ContainsKey(phase))
+        {
+            return phaseZones[phase].bounds;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    // whether the player missed collecting gold for one work period
+    public bool playerFailedToCollectGold()
+    {
+        return _playerFailedToCollectGold;
+    }
+
+
+    // called by player when sleeping
+    // does nothing when not nighttime
+    public void sleep()
+    {
+        // TODO add fade out effect and make this look pretty
+        if (phase == Game.Phase.Nighttime)
+        {
+            time = new TimeSpan(8, 0, 0);
+        }
     }
 }

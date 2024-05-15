@@ -22,8 +22,10 @@ public class BreakableWallTilemap : MonoBehaviour
         if (!controller) controller = FindFirstObjectByType<GameController>();
 
         if (!destructibleTilemap.HasTile(tilePosition)) return;
+        Debug.Log("hi there");
 
-        if (!health.ContainsKey(tilePosition)) {
+        if (!health.ContainsKey(tilePosition))
+        {
             health[tilePosition] = tileStartHealth;
         }
 
@@ -32,12 +34,19 @@ public class BreakableWallTilemap : MonoBehaviour
         if (health[tilePosition] <= 0)
         {
             GameObject tile = destructibleTilemap.GetTile<Tile>(tilePosition).gameObject;
-            bool isStone = tile.CompareTag("Stone Tile");
-            Debug.Log(tile);
+
             destructibleTilemap.SetTile(tilePosition, null);
             health.Remove(tilePosition);
-            if (isStone) {
-                controller.stoneTileDestroyed(destructibleTilemap.GetCellCenterWorld(tilePosition));
+
+            // logic for stone tiles
+            if (tile != null)
+            {
+                bool isStone = tile.CompareTag("Stone Tile");
+                Debug.Log(tile);
+                if (isStone)
+                {
+                    controller.stoneTileDestroyed(destructibleTilemap.GetCellCenterWorld(tilePosition));
+                }
             }
         }
         else

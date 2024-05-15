@@ -37,9 +37,6 @@ public abstract class Character : CharacterBase
     [SerializeField] CharacterAnimator animator;
     Rigidbody2D characterRigidbody;
 
-    // cell assigned to this character
-    [NonSerialized] public Bounds cellBounds;
-
     private Vector3 movementVel, agentLastPos, agentNudge;
 
     public Game.Items? equippedItem;
@@ -51,7 +48,7 @@ public abstract class Character : CharacterBase
 
     // minimum number of seconds needed for agent to switch keypresses
     public const float agentNewKeyTime = 0.25f;
-    
+
     // if agent is further than this away from character transform
     // agent will be warped
     public const float agentDesyncMagnitude = 10;
@@ -61,6 +58,14 @@ public abstract class Character : CharacterBase
     protected GameController controller;
 
     private List<Tuple<float, float, Vector2>> hits = new List<Tuple<float, float, Vector2>>();
+
+    // more agent unstuck stuff
+    private const float maxTimeCollided = 3f;
+    private const float totalNoclipTime = 1f;
+    private bool isCollidingWithAgent = false;
+    private float timeCollided = 0f;
+    private bool isNoClipping = false;
+    private float noClipTime = 0f;
 
     public sealed override void Start()
     {
@@ -107,6 +112,25 @@ public abstract class Character : CharacterBase
         {
             OnUpdate();
         }
+
+        if (isCollidingWithAgent) {
+            timeCollided += Time.deltaTime;
+        }
+
+        if (timeCollided > maxTimeCollided) {
+            gameObject.layer = LayerMask.NameToLayer("CharacterIgnoreCollisions");
+            isNoClipping = true;
+        }
+
+        if (isNoClipping) {
+            noClipTime += Time.deltaTime;
+        }
+        if (noClipTime > totalNoclipTime) {
+            gameObject.layer = LayerMask.NameToLayer("Default");
+            isNoClipping = false;
+            noClipTime = 0;
+            timeCollided = 0;
+        }
     }
 
     public sealed override void FixedUpdate()
@@ -124,7 +148,7 @@ public abstract class Character : CharacterBase
             else
             {
                 characterRigidbody.velocity += force * (remaining / total);
-                Debug.Log(characterRigidbody.velocity);
+                // Debug.Log(characterRigidbody.velocity);
             }
             hits[i] = new Tuple<float, float, Vector2>(remaining, total, force);
             i++;
@@ -290,6 +314,7 @@ public abstract class Character : CharacterBase
         punchImpact(leftPunchOffset);
     }
 
+    // TODO ive added sleeping and item usage stuff in here
     private void punchImpact(Vector2 offset)
     {
         RaycastHit2D? ray = castMeleeRay(offset);
@@ -304,6 +329,11 @@ public abstract class Character : CharacterBase
                     Game.fistsForceDuration,
                     this
                 );
+            }
+            
+            // sleep if we punched bed
+            if (ray.Value.collider.CompareTag("Bed")) {
+                controller.sleep();
             }
         }
     }
@@ -337,26 +367,25 @@ public abstract class Character : CharacterBase
         RaycastHit2D? ray = castMeleeRay(twoHandStoneOffset);
         if (ray != null)
         {
-            if (ray != null)
+            if (ray.Value.collider.CompareTag("Character") || ray.Value.collider.CompareTag("Player"))
             {
-                if (ray.Value.collider.CompareTag("Character") || ray.Value.collider.CompareTag("Player"))
-                {
-                    ray.Value.collider.GetComponent<Character>().hit(
-                        CompareTag("Player") ? Game.playerTwoHandStoneDamage : Game.agentTwoHandStoneDamage,
-                        transform.up,
-                        Game.twoHandStoneForce,
-                        Game.twoHandStoneForceDuration,
-                        this
-                    );
-                }
+                ray.Value.collider.GetComponent<Character>().hit(
+                    CompareTag("Player") ? Game.playerTwoHandStoneDamage : Game.agentTwoHandStoneDamage,
+                    transform.up,
+                    Game.twoHandStoneForce,
+                    Game.twoHandStoneForceDuration,
+                    this
+                );
             }
         }
     }
-    public void pistolReload() {
+    public void pistolReload()
+    {
         Debug.Log("pistol reload");
     }
 
-    public void shotgunLoad() {
+    public void shotgunLoad()
+    {
         Debug.Log("shotgun load");
     }
 
@@ -410,9 +439,35 @@ public abstract class Character : CharacterBase
         return null;
     }
 
-    public void checkForAgentDesync(NavMeshAgent agent) {
-        if ((agent.nextPosition - transform.position).magnitude >= agentDesyncMagnitude) {
+    public void checkForAgentDesync(NavMeshAgent agent)
+    {
+        if ((agent.nextPosition - transform.position).magnitude >= agentDesyncMagnitude)
+        {
             agent.Warp(transform.position);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        // all characters with "Character" tag are assumed to be agents
+        if (CompareTag("Character"))
+        {
+            if (col.gameObject.CompareTag("Character"))
+            {
+                isCollidingWithAgent = true;
+            }
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D col)
+    {
+        if (CompareTag("Character"))
+        {
+            if (col.gameObject.CompareTag("Character"))
+            {
+                isCollidingWithAgent = false;
+                timeCollided = 0;
+            }
         }
     }
 

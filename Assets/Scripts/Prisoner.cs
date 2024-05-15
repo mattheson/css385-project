@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class Prisoner : Character
 {
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] Transform t;
     public Bounds cell;
 
     public override void OnStart()
@@ -20,15 +19,27 @@ public class Prisoner : Character
 
     public override void OnUpdate()
     {
-        if (t) {
-            agent.SetDestination(t.position);
+        Bounds? maybePhaseBounds = controller.getBoundsOfCurrentPhase();
+        Vector3 dest = maybePhaseBounds != null ? maybePhaseBounds.Value.center : transform.position;
+
+        if (controller.phase == Game.Phase.ReturnToCell ||
+            controller.phase == Game.Phase.Nighttime) {
+            dest = cell.center;
         }
+
+        agent.SetDestination(dest);
+
         if (agent.pathStatus == NavMeshPathStatus.PathComplete)
         {
             Vector3 dir = agent.steeringTarget - transform.position;
             moveInDirection(new Vector2(dir.x, dir.y).normalized, false);
         }
+
         agent.nextPosition = transform.position;
+
+        // sometimes agent gets desynced when going through mine teleporter
+        // this is supposed to fix it but i dont know if it actually works
+        // TODO maybe find better fix for agent desync
         checkForAgentDesync(agent);
     }
 

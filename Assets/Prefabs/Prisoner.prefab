@@ -60,7 +60,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -220,6 +220,9 @@ MonoBehaviour:
   animator: {fileID: 8016078493381780592}
   health: 100
   agent: {fileID: 0}
+  cell:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
 --- !u!1001 &2288708018394927947
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ public class Keyhole : MonoBehaviour
         Character maybeCharacter = col.GetComponent<Character>();
         if (maybeCharacter) {
             if (maybeCharacter.equippedItem == keyType) {
-                door.toggleDoor();
+                door.open(true);
             }
         }
     }

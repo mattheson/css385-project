@@ -29,7 +29,7 @@ public class CharacterAnimator : MonoBehaviour
             return
                 !animator.GetCurrentAnimatorStateInfo(1).IsName("Idle") &&
                 !animator.GetCurrentAnimatorStateInfo(1).IsName("Pistol Idle Right") &&
-                !animator.GetCurrentAnimatorStateInfo(1).IsName("Pickaxe Idle") && 
+                !animator.GetCurrentAnimatorStateInfo(1).IsName("Pickaxe Idle") &&
                 !animator.GetCurrentAnimatorStateInfo(1).IsName("Two Hand Stone Idle") &&
                 !animator.GetCurrentAnimatorStateInfo(1).IsName("Master Key Idle") &&
                 !animator.GetCurrentAnimatorStateInfo(1).IsName("Shotgun Idle")
@@ -54,16 +54,16 @@ public class CharacterAnimator : MonoBehaviour
         if (!character) return;
         if (!inAnimation)
         {
-            leftArmRenderer.enabled = false;
-            rightArmRenderer.enabled = false;
             if (character.equippedItem != null)
             {
                 if (character.equippedItem == Game.Items.Pistol)
                 {
                     rightArmRenderer.enabled = true;
+                    leftArmRenderer.enabled = false;
                     animator.Play("Pistol Idle Right", 1);
                 }
-                if (character.equippedItem == Game.Items.Shotgun) {
+                if (character.equippedItem == Game.Items.Shotgun)
+                {
                     rightArmRenderer.enabled = true;
                     leftArmRenderer.enabled = true;
                     animator.Play("Shotgun Idle");
@@ -71,6 +71,7 @@ public class CharacterAnimator : MonoBehaviour
                 if (character.equippedItem == Game.Items.Pickaxe)
                 {
                     rightArmRenderer.enabled = true;
+                    leftArmRenderer.enabled = false;
                     animator.Play("Pickaxe Idle", 1);
                 }
                 if (character.equippedItem == Game.Items.TwoHandStone)
@@ -82,14 +83,9 @@ public class CharacterAnimator : MonoBehaviour
                 if (character.equippedItem == Game.Items.MasterKey)
                 {
                     rightArmRenderer.enabled = true;
+                    leftArmRenderer.enabled = false;
                     animator.Play("Master Key Idle", 1);
                 }
-            }
-            else
-            {
-                rightArmRenderer.enabled = false;
-                leftArmRenderer.enabled = false;
-                animator.Play("Idle", 1);
             }
         }
     }
@@ -162,8 +158,10 @@ public class CharacterAnimator : MonoBehaviour
         }
     }
 
-    public void shootShotgun() {
-        if (!inAnimation) {
+    public void shootShotgun()
+    {
+        if (!inAnimation)
+        {
             rightArmRenderer.enabled = true;
             leftArmRenderer.enabled = true;
             animator.Play("Shotgun Shoot", 1);
@@ -199,8 +197,10 @@ public class CharacterAnimator : MonoBehaviour
         }
     }
 
-    public void loadShotgun() {
-        if (!inAnimation) {
+    public void loadShotgun()
+    {
+        if (!inAnimation)
+        {
             leftArmRenderer.enabled = true;
             rightArmRenderer.enabled = true;
             animator.Play("Shotgun Load", 1);
@@ -248,15 +248,18 @@ public class CharacterAnimator : MonoBehaviour
         character.spawnPistolBullet();
     }
 
-    public void animationPistolReload() {
+    public void animationPistolReload()
+    {
         character.pistolReload();
     }
 
-    public void animationShotgunLoad() {
+    public void animationShotgunLoad()
+    {
         character.shotgunLoad();
     }
-    
-    public void animationShotgunShot() {
+
+    public void animationShotgunShot()
+    {
         character.spawnShotgunShot();
     }
 

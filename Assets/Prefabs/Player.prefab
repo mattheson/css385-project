@@ -80,6 +80,9 @@ MonoBehaviour:
   health: 100
   gold: 0
   inventory: 
+  cell:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
 --- !u!60 &295474782834769131
 PolygonCollider2D:
   m_ObjectHideFlags: 0

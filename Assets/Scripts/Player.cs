@@ -21,6 +21,8 @@ public class Player : Character
 
     private HUD hud;
 
+    public Bounds cell;
+
     public override void OnStart()
     {
         reserve[Game.Items.Pistol] = 0;
@@ -28,6 +30,9 @@ public class Player : Character
 
         reserve[Game.Items.Shotgun] = 0;
         clip[Game.Items.Shotgun] = 0;
+
+        hud = FindFirstObjectByType<HUD>();
+        hud.player = this;
     }
 
     public override void OnUpdate()
@@ -51,41 +56,37 @@ public class Player : Character
             idleItem();
         }
 
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            FindFirstObjectByType<GameController>().spawnItem(
-                new Vector2(transform.position.x, transform.position.y + 5),
-                Game.Items.Pistol, 48);
-        }
+        // if (Input.GetKeyDown(KeyCode.M))
+        // {
+        //     FindFirstObjectByType<GameController>().spawnItem(
+        //         new Vector2(transform.position.x, transform.position.y + 5),
+        //         Game.Items.Pistol, 48);
+        // }
 
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            FindFirstObjectByType<GameController>().spawnItem(
-                new Vector2(transform.position.x, transform.position.y + 5),
-                Game.Items.Pickaxe);
-        }
+        // if (Input.GetKeyDown(KeyCode.N))
+        // {
+        //     FindFirstObjectByType<GameController>().spawnItem(
+        //         new Vector2(transform.position.x, transform.position.y + 5),
+        //         Game.Items.Pickaxe);
+        // }
 
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            FindFirstObjectByType<GameController>().spawnItem(
-                new Vector2(transform.position.x, transform.position.y + 5),
-                Game.Items.Gold);
-        }
+        // if (Input.GetKeyDown(KeyCode.O))
+        // {
+        //     FindFirstObjectByType<GameController>().spawnItem(
+        //         new Vector2(transform.position.x, transform.position.y + 5),
+        //         Game.Items.Gold);
+        // }
 
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            FindFirstObjectByType<GameController>().spawnItem(
-                new Vector2(transform.position.x, transform.position.y + 5),
-                Game.Items.TwoHandStone);
-        }
+        // if (Input.GetKeyDown(KeyCode.P))
+        // {
+        //     FindFirstObjectByType<GameController>().spawnItem(
+        //         new Vector2(transform.position.x, transform.position.y + 5),
+        //         Game.Items.TwoHandStone);
+        // }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
             reloadItem();
-        }
-
-        if (Input.GetKeyDown(KeyCode.G)) {
-            FindFirstObjectByType<Door>().toggleDoor();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1) && inventory.Count >= 1)

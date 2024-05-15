@@ -22,13 +22,16 @@ public class Door : MonoBehaviour
     {
         if (!rb) rb = GetComponent<Rigidbody2D>();
         Vector3 dist = (isOpen ? doorOpenCenterPosition.position : doorClosedCenterPosition.position) - transform.position;
+        // this feels potentially sloppy but its fine
         if (dist.magnitude <= 0.01) return;
         dist = dist.normalized;
         rb.MovePosition(transform.position + (dist * doorOpeningSpeed * Time.fixedDeltaTime));
     }
 
-    public void toggleDoor()
+    // true to open door
+    // false to close
+    public void open(bool open)
     {
-        isOpen = !isOpen;
+        isOpen = open;
     }
 }

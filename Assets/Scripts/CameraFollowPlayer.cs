@@ -18,7 +18,10 @@ public class CameraFollowPlayer : MonoBehaviour
         }
         else
         {
-            player = GameObject.Find("Player");
+            Player p = GameObject.FindFirstObjectByType<Player>();
+            if (p) {
+                player = p.gameObject;
+            }
         }
     }
 }

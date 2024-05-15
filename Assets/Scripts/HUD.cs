@@ -20,7 +20,7 @@ public class HUD : MonoBehaviour
     [SerializeField] GameObject slotPrefab;
     [SerializeField] Transform slotsStart;
     [SerializeField] float slotPaddingPercent;
-    [SerializeField] Player player;
+    [SerializeField] public Player player;
     [SerializeField] GameController controller;
     [SerializeField] public TMP_Text goldText, pistolAmmoText, shotgunAmmoText, healthText, winText, timeText, phaseText;
 
@@ -45,6 +45,7 @@ public class HUD : MonoBehaviour
 
     void Update() {
         if (!controller) controller = FindFirstObjectByType<GameController>();
+        if (!player) return;
 
         goldText.text = player.gold.ToString();
 
