@@ -37,12 +37,12 @@ public class Player : Character
 
     public override void OnUpdate()
     {
-        health = 100;
-        if (!hud) hud = FindAnyObjectByType<HUD>();
-
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
             SceneManager.LoadScene("Game");
         }
+        health = 100;
+        if (!hud) hud = FindAnyObjectByType<HUD>();
 
         move(Input.GetKey(KeyCode.W), Input.GetKey(KeyCode.S),
             Input.GetKey(KeyCode.A), Input.GetKey(KeyCode.D), Input.GetKey(KeyCode.LeftShift));
@@ -225,8 +225,10 @@ public class Player : Character
                 Destroy(item);
             }
         }
-        if (itemType == Game.Items.MasterKey) {
-            if (inventory.Contains(Game.Items.MasterKey)) {
+        if (itemType == Game.Items.MasterKey)
+        {
+            if (inventory.Contains(Game.Items.MasterKey))
+            {
                 Debug.LogError("two master keys?");
             }
             inventory.Add(Game.Items.MasterKey);
@@ -240,7 +242,8 @@ public class Player : Character
 
     public override void OnTriggerEnterExtra(Collider2D col)
     {
-        if (col.gameObject.name.Equals("Win")) {
+        if (col.gameObject.name.Equals("Win"))
+        {
             hud.winText.enabled = true;
             Time.timeScale = 0f;
         }

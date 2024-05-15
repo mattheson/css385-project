@@ -12,6 +12,7 @@ TagManager:
   - Unbreakable Walls
   - Stone Tile
   - Bed
+  - Level Manager
   layers:
   - Default
   - TransparentFX

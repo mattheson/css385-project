@@ -82,11 +82,6 @@ public abstract class Character : CharacterBase
     {
         if (!characterRigidbody) characterRigidbody = GetComponent<Rigidbody2D>();
 
-        // TODO remove this, just for demo
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.LoadScene("Game");
-        }
         // TODO clean up these assignment statements
         // i found that some assignment statements didn't work in Start(),
         // and i didn't want to use inspector references which resulted in this

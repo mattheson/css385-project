@@ -100,7 +100,7 @@ public class GameController : MonoBehaviour
         {
             HUD hud = FindFirstObjectByType<HUD>();
             if (!player) player = FindFirstObjectByType<Player>();
-            if (player.gold < 3)
+            if (player.gold < 3 && !hud.quotaMetText.enabled)
             {
                 Debug.Log("failed to collect gold");
                 _playerFailedToCollectGold = true;
@@ -122,6 +122,10 @@ public class GameController : MonoBehaviour
         }
         else if (time.Hours == 19)
         {
+            HUD hud = FindFirstObjectByType<HUD>();
+            if (hud && hud.quotaMetText.enabled) {
+                hud.quotaMetText.enabled = false;
+            }
             _phase = Game.Phase.ReturnToCell;
         }
         else
