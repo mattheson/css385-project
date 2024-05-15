@@ -27,13 +27,14 @@ public class CharacterAnimator : MonoBehaviour
         get
         {
             return
-                !animator.GetCurrentAnimatorStateInfo(1).IsName("Idle") &&
-                !animator.GetCurrentAnimatorStateInfo(1).IsName("Pistol Idle Right") &&
-                !animator.GetCurrentAnimatorStateInfo(1).IsName("Pickaxe Idle") &&
-                !animator.GetCurrentAnimatorStateInfo(1).IsName("Two Hand Stone Idle") &&
-                !animator.GetCurrentAnimatorStateInfo(1).IsName("Master Key Idle") &&
-                !animator.GetCurrentAnimatorStateInfo(1).IsName("Shotgun Idle")
-            ;
+            !(
+                animator.GetCurrentAnimatorStateInfo(1).IsName("Idle") ||
+                animator.GetCurrentAnimatorStateInfo(1).IsName("Pistol Idle Right") ||
+                animator.GetCurrentAnimatorStateInfo(1).IsName("Pickaxe Idle") ||
+                animator.GetCurrentAnimatorStateInfo(1).IsName("Two Hand Stone Idle") ||
+                animator.GetCurrentAnimatorStateInfo(1).IsName("Master Key Idle") ||
+                animator.GetCurrentAnimatorStateInfo(1).IsName("Shotgun Idle")
+            );
         }
     }
 
@@ -47,45 +48,75 @@ public class CharacterAnimator : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(inAnimation);
         leftArmRenderer.sprite = leftArmSprite;
         rightArmRenderer.sprite = rightArmSprite;
         hairRenderer.sprite = hairSprite;
 
         if (!character) return;
-        if (!inAnimation)
+
+        if (character.equippedItem == null)
         {
-            if (character.equippedItem != null)
+            if (!inAnimation)
             {
-                if (character.equippedItem == Game.Items.Pistol)
-                {
-                    rightArmRenderer.enabled = true;
-                    leftArmRenderer.enabled = false;
-                    animator.Play("Pistol Idle Right", 1);
-                }
-                if (character.equippedItem == Game.Items.Shotgun)
-                {
-                    rightArmRenderer.enabled = true;
-                    leftArmRenderer.enabled = true;
-                    animator.Play("Shotgun Idle");
-                }
-                if (character.equippedItem == Game.Items.Pickaxe)
-                {
-                    rightArmRenderer.enabled = true;
-                    leftArmRenderer.enabled = false;
-                    animator.Play("Pickaxe Idle", 1);
-                }
-                if (character.equippedItem == Game.Items.TwoHandStone)
-                {
-                    rightArmRenderer.enabled = true;
-                    leftArmRenderer.enabled = true;
-                    animator.Play("Two Hand Stone Idle", 1);
-                }
-                if (character.equippedItem == Game.Items.MasterKey)
-                {
-                    rightArmRenderer.enabled = true;
-                    leftArmRenderer.enabled = false;
-                    animator.Play("Master Key Idle", 1);
-                }
+                rightArmRenderer.enabled = false;
+                leftArmRenderer.enabled = false;
+                animator.Play("Idle", 1);
+            }
+            else if (punchingWithRight)
+            {
+                rightArmRenderer.enabled = true;
+                leftArmRenderer.enabled = false;
+            }
+            else if (!punchingWithRight)
+            {
+                rightArmRenderer.enabled = false;
+                leftArmRenderer.enabled = true;
+            }
+        }
+        else if (character.equippedItem == Game.Items.Pistol)
+        {
+            rightArmRenderer.enabled = true;
+            leftArmRenderer.enabled = false;
+            if (!inAnimation)
+            {
+                animator.Play("Pistol Idle Right", 1);
+            }
+        }
+        else if (character.equippedItem == Game.Items.Shotgun)
+        {
+            rightArmRenderer.enabled = true;
+            leftArmRenderer.enabled = true;
+            if (!inAnimation)
+            {
+                animator.Play("Shotgun Idle", 1);
+            }
+        }
+        else if (character.equippedItem == Game.Items.Pickaxe)
+        {
+            rightArmRenderer.enabled = true;
+            leftArmRenderer.enabled = false;
+            if (!inAnimation)
+            {
+                animator.Play("Pickaxe Idle", 1);
+            }
+        }
+        else if (character.equippedItem == Game.Items.TwoHandStone)
+        {
+            rightArmRenderer.enabled = true;
+            leftArmRenderer.enabled = true;
+            if (!inAnimation)
+            {
+                animator.Play("Two Hand Stone Idle", 1);
+            }
+        }
+        else if (character.equippedItem == Game.Items.MasterKey)
+        {
+            rightArmRenderer.enabled = true;
+            leftArmRenderer.enabled = false;
+            if (!inAnimation)
+            {
+                animator.Play("Master Key Idle", 1);
             }
         }
     }
@@ -112,18 +143,26 @@ public class CharacterAnimator : MonoBehaviour
     {
         if (!inAnimation)
         {
-            rightArmRenderer.enabled = true;
             animator.Play("Punch Right", 1);
         }
+    }
+
+    private bool isPunchingRight()
+    {
+        return animator.GetCurrentAnimatorStateInfo(1).IsName("Punch Right");
     }
 
     private void punchLeft()
     {
         if (!inAnimation)
         {
-            leftArmRenderer.enabled = true;
             animator.Play("Punch Left", 1);
         }
+    }
+
+    private bool isPunchingLeft()
+    {
+        return animator.GetCurrentAnimatorStateInfo(1).IsName("Punch Left");
     }
 
     // toggles between left and right
@@ -134,12 +173,10 @@ public class CharacterAnimator : MonoBehaviour
             if (punchingWithRight)
             {
                 punchRight();
-                punchingWithRight = false;
             }
             else
             {
                 punchLeft();
-                punchingWithRight = true;
             }
         }
     }
@@ -153,46 +190,57 @@ public class CharacterAnimator : MonoBehaviour
     {
         if (!inAnimation)
         {
-            rightArmRenderer.enabled = true;
             animator.Play("Pistol Shoot Right", 1);
         }
+    }
+
+    private bool isShootingPistol()
+    {
+        return animator.GetCurrentAnimatorStateInfo(1).IsName("Pistol Shoot Right");
     }
 
     public void shootShotgun()
     {
         if (!inAnimation)
         {
-            rightArmRenderer.enabled = true;
-            leftArmRenderer.enabled = true;
             animator.Play("Shotgun Shoot", 1);
         }
+    }
+
+    private bool isShootingShotgun()
+    {
+        return animator.GetCurrentAnimatorStateInfo(1).IsName("Shotgun Shoot");
     }
 
     public void swingPickaxe()
     {
         if (!inAnimation)
         {
-            rightArmRenderer.enabled = true;
             animator.Play("Pickaxe Swing", 1);
         }
+    }
+    private bool isSwingingPickaxe()
+    {
+        return animator.GetCurrentAnimatorStateInfo(1).IsName("Pickaxe Swing");
     }
 
     public void swingTwoHandStone()
     {
         if (!inAnimation)
         {
-            rightArmRenderer.enabled = true;
-            leftArmRenderer.enabled = true;
             animator.Play("Two Hand Stone Swing", 1);
         }
+    }
+
+    public bool isSwingingTwoHandStone()
+    {
+        return animator.GetCurrentAnimatorStateInfo(1).IsName("Two Hand Stone Swing");
     }
 
     public void reloadPistol()
     {
         if (!inAnimation)
         {
-            leftArmRenderer.enabled = true;
-            rightArmRenderer.enabled = true;
             animator.Play("Pistol Reload Right", 1);
         }
     }
@@ -201,15 +249,8 @@ public class CharacterAnimator : MonoBehaviour
     {
         if (!inAnimation)
         {
-            leftArmRenderer.enabled = true;
-            rightArmRenderer.enabled = true;
             animator.Play("Shotgun Load", 1);
         }
-    }
-
-    public bool isSwingingTwoHandStone()
-    {
-        return animator.GetCurrentAnimatorStateInfo(1).IsName("Two Hand Stone Swing");
     }
 
     // Animation Events
@@ -271,5 +312,10 @@ public class CharacterAnimator : MonoBehaviour
     public void animationTwoHandStoneImpact()
     {
         character.twoHandStoneImpact();
+    }
+
+    public void togglePunchHand()
+    {
+        punchingWithRight = !punchingWithRight;
     }
 }

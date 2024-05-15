@@ -285,7 +285,7 @@ public abstract class Character : CharacterBase
     }
 
     // just used to reset punch as of now
-    public void idleItem()
+    public void resetPunch()
     {
         animator.resetPunch();
     }

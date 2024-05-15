@@ -86,18 +86,39 @@ public class GameController : MonoBehaviour
         }
         else if (time.Hours >= 11 && time.Hours < 16)
         {
+            HUD hud = FindFirstObjectByType<HUD>();
+            if (hud)
+            {
+                if (!hud.quotaFailText.enabled)
+                {
+                    hud.quotaMetText.enabled = false;
+                }
+            }
             _phase = Game.Phase.Work;
         }
         else if (time.Hours >= 16 && time.Hours < 19)
         {
+            HUD hud = FindFirstObjectByType<HUD>();
             if (!player) player = FindFirstObjectByType<Player>();
             if (player.gold < 3)
             {
                 Debug.Log("failed to collect gold");
                 _playerFailedToCollectGold = true;
+                if (hud)
+                {
+                    hud.quotaFailText.enabled = true;
+                }
+            }
+            else
+            {
+                if (hud)
+                {
+                    hud.quotaMetText.enabled = true;
+                }
             }
             player.gold = 0;
             _phase = Game.Phase.FreeTime;
+
         }
         else if (time.Hours == 19)
         {

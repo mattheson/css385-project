@@ -11,10 +11,10 @@ public class Player : Character
     public int gold = 0;
 
     // total ammo in reserve
-    public Dictionary<Game.Items, int> reserve = new Dictionary<Game.Items, int>();
+    // public Dictionary<Game.Items, int> reserve = new Dictionary<Game.Items, int>();
 
     // number of bullets in current clip/number of shells in chamber
-    public Dictionary<Game.Items, int> clip = new Dictionary<Game.Items, int>();
+    // public Dictionary<Game.Items, int> clip = new Dictionary<Game.Items, int>();
 
     // inventory just contains equippable items as of now
     public List<Game.Items> inventory = new List<Game.Items>();
@@ -25,11 +25,11 @@ public class Player : Character
 
     public override void OnStart()
     {
-        reserve[Game.Items.Pistol] = 0;
-        clip[Game.Items.Pistol] = 0;
+        // reserve[Game.Items.Pistol] = 0;
+        // clip[Game.Items.Pistol] = 0;
 
-        reserve[Game.Items.Shotgun] = 0;
-        clip[Game.Items.Shotgun] = 0;
+        // reserve[Game.Items.Shotgun] = 0;
+        // clip[Game.Items.Shotgun] = 0;
 
         hud = FindFirstObjectByType<HUD>();
         hud.player = this;
@@ -51,9 +51,10 @@ public class Player : Character
         {
             useItem();
         }
-        else
+
+        if (equippedItem == null && Input.GetKeyUp(KeyCode.Space))
         {
-            idleItem();
+            resetPunch();
         }
 
         // if (Input.GetKeyDown(KeyCode.M))
@@ -84,10 +85,10 @@ public class Player : Character
         //         Game.Items.TwoHandStone);
         // }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            reloadItem();
-        }
+        // if (Input.GetKeyDown(KeyCode.R))
+        // {
+        //     reloadItem();
+        // }
 
         if (Input.GetKeyDown(KeyCode.Alpha1) && inventory.Count >= 1)
         {
@@ -162,19 +163,19 @@ public class Player : Character
 
     public void pickUpAmmo(Game.Items type, int ammo)
     {
-        if (type == Game.Items.Pistol)
-        {
-            reserve[Game.Items.Pistol] = Math.Clamp(reserve.GetValueOrDefault(Game.Items.Pistol, 0) + ammo, 0,
-                Game.maxPistolClips * Game.pistolClipSize);
-        }
-        else if (type == Game.Items.Shotgun)
-        {
-            reserve[Game.Items.Shotgun] = Math.Clamp(reserve.GetValueOrDefault(Game.Items.Shotgun, 0) + ammo, 0, Game.maxShotgunShells);
-        }
-        else
-        {
-            Debug.LogError("tried to add ammo of type " + type.ToString());
-        }
+        // if (type == Game.Items.Pistol)
+        // {
+        //     reserve[Game.Items.Pistol] = Math.Clamp(reserve.GetValueOrDefault(Game.Items.Pistol, 0) + ammo, 0,
+        //         Game.maxPistolClips * Game.pistolClipSize);
+        // }
+        // else if (type == Game.Items.Shotgun)
+        // {
+        //     reserve[Game.Items.Shotgun] = Math.Clamp(reserve.GetValueOrDefault(Game.Items.Shotgun, 0) + ammo, 0, Game.maxShotgunShells);
+        // }
+        // else
+        // {
+        //     Debug.LogError("tried to add ammo of type " + type.ToString());
+        // }
     }
 
     public override void OnWalkedOverItem(GameObject item)

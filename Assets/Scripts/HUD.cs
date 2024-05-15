@@ -22,7 +22,8 @@ public class HUD : MonoBehaviour
     [SerializeField] float slotPaddingPercent;
     [SerializeField] public Player player;
     [SerializeField] GameController controller;
-    [SerializeField] public TMP_Text goldText, pistolAmmoText, shotgunAmmoText, healthText, winText, timeText, phaseText;
+    [SerializeField] public TMP_Text goldText, healthText, winText, timeText, phaseText, quotaFailText, quotaMetText;
+    // public TMP_Text pistolAmmoText, shotgunAmmoText;
 
     public int? highlighted;
 
@@ -47,15 +48,16 @@ public class HUD : MonoBehaviour
         if (!controller) controller = FindFirstObjectByType<GameController>();
         if (!player) return;
 
-        goldText.text = player.gold.ToString();
+        goldText.text = player.gold.ToString() + " / 3";
 
-        int pistolClip = player.clip.GetValueOrDefault(Game.Items.Pistol, 0);
-        int pistolReserve = player.reserve.GetValueOrDefault(Game.Items.Pistol, 0);
-        int shotgunChambered = player.clip.GetValueOrDefault(Game.Items.Shotgun, 0);
-        int shotgunReserve = player.reserve.GetValueOrDefault(Game.Items.Shotgun, 0);
+        // int pistolClip = player.clip.GetValueOrDefault(Game.Items.Pistol, 0);
+        // int pistolReserve = player.reserve.GetValueOrDefault(Game.Items.Pistol, 0);
+        // int shotgunChambered = player.clip.GetValueOrDefault(Game.Items.Shotgun, 0);
+        // int shotgunReserve = player.reserve.GetValueOrDefault(Game.Items.Shotgun, 0);
 
-        pistolAmmoText.text = pistolClip + " / " + pistolReserve;
-        shotgunAmmoText.text = shotgunChambered + " / " + shotgunReserve;
+        // pistolAmmoText.text = pistolClip + " / " + pistolReserve;
+        // shotgunAmmoText.text = shotgunChambered + " / " + shotgunReserve;
+
         healthText.text = player.health.ToString();
 
         int i = 0;
