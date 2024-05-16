@@ -1,3 +1,5 @@
+using NUnit.Framework.Internal;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,14 +8,24 @@ using UnityEngine.AI;
 
 public class Prisoner : Character
 {
+    public float fieldOfView = 170, shootingFieldOfView = 40, viewDistance = 10;
+    public int numberOfRaysToCast = 50;
+    private float angryTimer = 5;
     [SerializeField] NavMeshAgent agent;
     public Bounds cell;
     public Vector3? randomPos;
     public bool reachedSpot = false;
+    private Chasing chase = new Chasing();
+    private GameObject player;
+    private Vector3? dest;
+    Game.Phase currentPhase;
 
     public override void OnStart()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
+        chase.setFirer(gameObject);
+        chase.Start();
         agent.updateUpAxis = false;
         agent.updateRotation = false;
         agent.updatePosition = false;
@@ -22,6 +34,19 @@ public class Prisoner : Character
 
     public override void OnUpdate()
     {
+        if(currentPhase != controller.phase)
+        {
+            randomPos = null;
+        }
+        chase.onUpdate();
+
+        if (angry)
+        {
+            Debug.Log("IM ANGRY");
+
+            chase.setOnSight(true);
+            Debug.Log(chase.getOnSight());
+        }
         Bounds? maybePhaseBounds = controller.getBoundsOfCurrentPhase();
         //Vector3? dest = (maybePhaseBounds != null && randomPos == null) ? maybePhaseBounds.Value.center : randomPos;
 
@@ -29,36 +54,66 @@ public class Prisoner : Character
         //    controller.phase == Game.Phase.Nighttime) {
         //    dest = cell.center;
         //}
-        if (randomPos == null)
+        if (chase.getOnSight())
         {
-
-            float xOffset = UnityEngine.Random.Range(-maybePhaseBounds.Value.extents.x, maybePhaseBounds.Value.extents.x);
-            float yOffset = UnityEngine.Random.Range(-maybePhaseBounds.Value.extents.y, maybePhaseBounds.Value.extents.y);
-            randomPos = new Vector3(maybePhaseBounds.Value.center.x + xOffset, maybePhaseBounds.Value.center.y + yOffset, 0);
-            agent.SetDestination(randomPos.Value);
+            angryTimer -= Time.deltaTime;
+            Tuple<RaycastHit2D, float> ray = chase.getRay();
+            if (ray != null)
+            {
+                equippedItem = Game.Items.TwoHandStone;
+                if (Mathf.Abs(ray.Item2) <= shootingFieldOfView)
+                {
+                    useItem();
+                    Debug.Log("shooting");
+                }
+            }
+            else if (chase.getLevel() > -1)
+            {
+                dest = chase.getPosition().Value;
+            }
+            else
+            {
+                // we are idling
+                equippedItem = null;
+            }
+            if (dest.Value != null)
+            {
+                agent.SetDestination(dest.Value);
+            }
+        }
+        if(angryTimer <= 0)
+        {
+            angryTimer = 5;
+            angry = false;
+            chase.setOnSight(false);
+            randomPos = null;
         }
 
-            Vector3 dir = agent.steeringTarget - transform.position;
-            //Debug.Log((transform.position - randomPos.Value).magnitude);
-            if (!reachedSpot)
+        else
+        {
+            if (randomPos == null)
             {
-            if (Input.GetKey(KeyCode.Backspace))
-            {
-                moveInDirection(new Vector2(dir.x, dir.y).normalized, false);
+                currentPhase = controller.phase; 
+                float xOffset = UnityEngine.Random.Range(-maybePhaseBounds.Value.extents.x, maybePhaseBounds.Value.extents.x);
+                float yOffset = UnityEngine.Random.Range(-maybePhaseBounds.Value.extents.y, maybePhaseBounds.Value.extents.y);
+                randomPos = new Vector3(maybePhaseBounds.Value.center.x + xOffset, maybePhaseBounds.Value.center.y + yOffset, 0);
+                agent.SetDestination(randomPos.Value);
             }
-            else {
-                moveInDirection(Vector2.zero, false);
-            }
-                
-            }
-            if((transform.position - randomPos.Value).magnitude < 2f)
-            {
-                
-                moveInDirection(Vector2.zero, false);
-                //setMovementVelocity(Vector2.zero);
-                reachedSpot = true;
-            }
+        }
+        Vector3 dir = agent.steeringTarget - transform.position;
+        //Debug.Log((transform.position - randomPos.Value).magnitude);
+        if (!reachedSpot)
+        {
+            moveInDirection(new Vector2(dir.x, dir.y).normalized, false);
 
+        }
+        if ((transform.position - randomPos.Value).magnitude < 2f)
+        {
+
+            moveInDirection(Vector2.zero, false);
+            //setMovementVelocity(Vector2.zero);
+            reachedSpot = true;
+        }
         agent.nextPosition = transform.position;
 
         // sometimes agent gets desynced when going through mine teleporter

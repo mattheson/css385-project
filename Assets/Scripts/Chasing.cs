@@ -6,15 +6,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements.Experimental;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Chasing : MonoBehaviour
 {
-    public float fieldOfView, shootingFieldOfView, viewDistance;
-    public int numberOfRaysToCast;
+    public float fieldOfView = 170, shootingFieldOfView = 40, viewDistance = 10;
+    public int numberOfRaysToCast = 50;
 
 
 
     // -1 if agent is patrolling/idling
+    private GameObject firer;
     private int level = -1;
     private float timeInCurrentLevel = 0;
     private Vector3? randomPos;
@@ -30,9 +32,10 @@ public class Chasing : MonoBehaviour
 
     private Tuple<RaycastHit2D, float> ray;
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
+
     }
 
     // Update is called once per frame
@@ -42,11 +45,13 @@ public class Chasing : MonoBehaviour
     // Enable Chasing on vision 
     // Get position to chase too
     // All logic for finding player should be handeled here
-    void Update()
+    public void onUpdate()
     {
-        ray = AgentVision.lookForObject(gameObject, player, transform.position, transform.up,
+        //Debug.Log(player.transform.position);
+        //Debug.Log(firer);
+        ray = AgentVision.lookForObject(firer, player, firer.transform.position, firer.transform.up,
               viewDistance, numberOfRaysToCast, fieldOfView);
-
+        //Debug.Log(ray);
         // we spotted player
         if (onSight && ray != null)
         {
@@ -65,7 +70,7 @@ public class Chasing : MonoBehaviour
 
             if (level == SEARCHING)
             {
-                if (randomPos == null || (transform.position - randomPos.Value).magnitude <= 2f)
+                if (randomPos == null || (firer.transform.position - randomPos.Value).magnitude <= 2f)
                 {
                     float xOffset = UnityEngine.Random.Range(-randomPosGenerationRange, randomPosGenerationRange);
                     float yOffset = UnityEngine.Random.Range(-randomPosGenerationRange, randomPosGenerationRange);
@@ -102,9 +107,25 @@ public class Chasing : MonoBehaviour
     {
         onSight = s;
     }
+    public bool getOnSight()
+    {
+        return onSight;
+    }
     public void startChasing()
     {
         level = CHASING;
+    }
+    public void setFirer(GameObject f)
+    {
+        firer = f;
+    }
+    public void setLevel(int l)
+    {
+        level = l;
+    }
+    public int getLevel()
+    {
+        return level;
     }
 
 }

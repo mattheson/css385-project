@@ -11,6 +11,7 @@ public class AgentVision
     // TODO this could be cleaner
     public static Tuple<RaycastHit2D, float> lookForObject(GameObject firer, GameObject target, Vector2 origin, Vector2 direction, float distance, int numRays, float fov) {
         if (numRays % 2 == 1) {
+            //Debug.Log("Is Getting Called");
             RaycastHit2D? firstRay = castRayAndSearch(firer, target, origin, direction, distance);
             if (firstRay != null) {
                 return new Tuple<RaycastHit2D, float>(firstRay.Value, 0);

@@ -39,6 +39,7 @@ public abstract class Character : CharacterBase
     Rigidbody2D characterRigidbody;
 
     private Vector3 movementVel, agentLastPos, agentNudge;
+    public bool angry;
 
     public Game.Items? equippedItem;
     public int health;
@@ -211,7 +212,7 @@ public abstract class Character : CharacterBase
         {
             move(false, false, false, false, false);
             nudgingOn = false;
-            Debug.Log("Off");
+            //Debug.Log("Off");
             return;
         }
         else
@@ -337,6 +338,7 @@ public abstract class Character : CharacterBase
         {
             if (ray.Value.collider.CompareTag("Character") || ray.Value.collider.CompareTag("Player"))
             {
+                ray.Value.collider.GetComponent<Character>().angry = true;
                 ray.Value.collider.GetComponent<Character>().hit(
                     CompareTag("Player") ? Game.playerFistsDamage : Game.agentFistsDamage,
                     transform.up,
@@ -366,6 +368,7 @@ public abstract class Character : CharacterBase
             }
             else if (ray.Value.collider.CompareTag("Character") || ray.Value.collider.CompareTag("Player"))
             {
+                ray.Value.collider.GetComponent<Character>().angry = true;
                 ray.Value.collider.gameObject.GetComponent<Character>().hit(
                     CompareTag("Player") ? Game.playerPickaxeDamage : Game.agentPickaxeDamage,
                     transform.up,
@@ -384,6 +387,7 @@ public abstract class Character : CharacterBase
         {
             if (ray.Value.collider.CompareTag("Character") || ray.Value.collider.CompareTag("Player"))
             {
+                ray.Value.collider.GetComponent<Character>().angry = true;
                 ray.Value.collider.GetComponent<Character>().hit(
                     CompareTag("Player") ? Game.playerTwoHandStoneDamage : Game.agentTwoHandStoneDamage,
                     transform.up,
