@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -63,6 +64,7 @@ public abstract class Character : CharacterBase
     private const float maxTimeCollided = 3f;
     private const float totalNoclipTime = 1f;
     private bool isCollidingWithAgent = false;
+    public bool nudgingOn = true;
     private float timeCollided = 0f;
     private bool isNoClipping = false;
     private float noClipTime = 0f;
@@ -148,7 +150,10 @@ public abstract class Character : CharacterBase
             hits[i] = new Tuple<float, float, Vector2>(remaining, total, force);
             i++;
         }
-        characterRigidbody.velocity += new Vector2(agentNudge.x, agentNudge.y);
+        if (nudgingOn)
+        {
+            characterRigidbody.velocity += new Vector2(agentNudge.x, agentNudge.y);
+        }
     }
 
     // all character movement happens here
@@ -202,6 +207,18 @@ public abstract class Character : CharacterBase
     // simulates player keypresses but will nudge if agent gets stuck 
     public void moveInDirection(Vector2 direction, bool running)
     {
+        if(direction == Vector2.zero)
+        {
+            move(false, false, false, false, false);
+            nudgingOn = false;
+            Debug.Log("Off");
+            return;
+        }
+        else
+        {
+            //nudgingOn = true;
+        }
+        //Debug.Log(direction);
         if (health == 0)
         {
             movementVel = Vector2.zero;
@@ -222,20 +239,23 @@ public abstract class Character : CharacterBase
         // check if guard is stuck
         // if so, apply a 'nudge' which just applies random velocity
         // TODO this might not be good
-        if ((agentLastPos - transform.position).magnitude <= stuckThresh)
+        if (nudgingOn)
         {
-            agentSecsStuck += Time.deltaTime;
-            if (agentSecsStuck > nudgeAfter)
+            if ((agentLastPos - transform.position).magnitude <= stuckThresh)
             {
-                Debug.Log("nudging agent");
-                agentNudge = new Vector2((UnityEngine.Random.value * 2) - 1, (UnityEngine.Random.value * 2) - 1).normalized * nudgeAmount;
+                agentSecsStuck += Time.deltaTime;
+                if (agentSecsStuck > nudgeAfter)
+                {
+                    Debug.Log("nudging agent");
+                    agentNudge = new Vector2((UnityEngine.Random.value * 2) - 1, (UnityEngine.Random.value * 2) - 1).normalized * nudgeAmount;
+                }
             }
-        }
-        else
-        {
-            agentLastPos = transform.position;
-            agentSecsStuck = 0f;
-            agentNudge = Vector3.zero;
+            else
+            {
+                agentLastPos = transform.position;
+                agentSecsStuck = 0f;
+                agentNudge = Vector3.zero;
+            }
         }
     }
 
@@ -477,4 +497,9 @@ public abstract class Character : CharacterBase
 
     // TODO maybe remove this, added this for demo
     public abstract void OnTriggerEnterExtra(Collider2D col);
+
+    public void setMovementVelocity(Vector2 a)
+    {
+        movementVel = a;
+    }
 }

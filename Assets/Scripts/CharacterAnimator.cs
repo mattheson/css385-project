@@ -48,7 +48,7 @@ public class CharacterAnimator : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(inAnimation);
+        //Debug.Log(inAnimation);
         leftArmRenderer.sprite = leftArmSprite;
         rightArmRenderer.sprite = rightArmSprite;
         hairRenderer.sprite = hairSprite;
