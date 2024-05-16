@@ -22,7 +22,7 @@ public class HUD : MonoBehaviour
     [SerializeField] float slotPaddingPercent;
     [SerializeField] public Player player;
     [SerializeField] GameController controller;
-    [SerializeField] public TMP_Text goldText, healthText, winText, timeText, phaseText, quotaFailText, quotaMetText;
+    [SerializeField] public TMP_Text goldText, healthText, winText, timeText, phaseText, quotaFailText, quotaMetText, timerText;
     // public TMP_Text pistolAmmoText, shotgunAmmoText;
 
     public int? highlighted;
@@ -32,11 +32,15 @@ public class HUD : MonoBehaviour
     void Start()
     {
         Canvas canvas = GetComponent<Canvas>();
-        if (!GetComponent<Canvas>().worldCamera) {
+        if (!GetComponent<Canvas>().worldCamera)
+        {
             GameObject camera = GameObject.FindWithTag("MainCamera");
-            if (!camera) {
+            if (!camera)
+            {
                 Debug.LogError("HUD: could not find main camera");
-            } else {
+            }
+            else
+            {
                 canvas.worldCamera = camera.GetComponent<Camera>();
                 canvas.renderMode = RenderMode.ScreenSpaceCamera;
             }
@@ -44,7 +48,8 @@ public class HUD : MonoBehaviour
         numSlots = 5;
     }
 
-    void Update() {
+    void Update()
+    {
         if (!controller) controller = FindFirstObjectByType<GameController>();
         if (!player) return;
 
@@ -62,22 +67,33 @@ public class HUD : MonoBehaviour
 
         int i = 0;
 
-        for (; i < numSlots && i < player.inventory.Count; i++) {
+        for (; i < numSlots && i < player.inventory.Count; i++)
+        {
             slots[i].itemImage.sprite = controller.getGroundItemSprite(player.inventory[i]);
             slots[i].itemImage.enabled = true;
-            if (highlighted == i) {
+            if (highlighted == i)
+            {
                 slots[i].highlightImage.enabled = true;
-            } else {
+            }
+            else
+            {
                 slots[i].highlightImage.enabled = false;
             }
         }
 
-        while (i < numSlots) {
+        while (i < numSlots)
+        {
             slots[i++].itemImage.enabled = false;
         }
 
         timeText.SetText(controller.getTime().ToString(@"hh\:mm"));
-        phaseText.SetText(Game.PhaseNames[(int) controller.phase]);
+        phaseText.SetText(Game.PhaseNames[(int)controller.phase]);
+
+        if (controller.isTimerRunning)
+        {
+            TimeSpan elapsedTime = controller.elapsedTime;
+            timerText.text = "Timer      " + $"{elapsedTime.Hours:D2}:{elapsedTime.Minutes:D2}:{elapsedTime.Seconds:D2}";
+        }
     }
 
     private void addSlot()
@@ -107,7 +123,8 @@ public class HUD : MonoBehaviour
         hudslot.slotNumberText.text = slots.Count.ToString();
     }
 
-    private void deleteLastSlot() {
+    private void deleteLastSlot()
+    {
         Destroy(slots[slots.Count - 1].gameObject);
         slots.RemoveAt(slots.Count - 1);
     }

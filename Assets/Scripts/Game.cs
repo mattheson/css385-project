@@ -1,12 +1,13 @@
 
 using System.Collections.Generic;
 using System.Data;
+using UnityEditor;
 using UnityEngine;
 
 public static class Game
 {
-    public const float walkingSpeed = 5f;
-    public const float runningSpeed = 10f;
+    public static float walkingSpeed = 5f;
+    public static float runningSpeed = 10f;
 
     // seconds after which an agent (guard, prisoner) is allowed to change direction
     public const float agentDirectionChangeLimit = 0.25f;
@@ -44,7 +45,7 @@ public static class Game
     public const float fistsForceDuration = 1;
     public const float pickaxeForce = 5;
     public const float pickaxeForceDuration = 0.5f;
-    public const float pistolForce = 5; 
+    public const float pistolForce = 5;
     public const float pistolForceDuration = 0.25f;
     public const float twoHandStoneForce = 10;
     public const float twoHandStoneForceDuration = 1;

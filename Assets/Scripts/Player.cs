@@ -23,6 +23,8 @@ public class Player : Character
 
     public Bounds cell;
 
+    private GameController gameController;
+
     public override void OnStart()
     {
         // reserve[Game.Items.Pistol] = 0;
@@ -238,6 +240,7 @@ public class Player : Character
 
     public override void OnDeath()
     {
+        gameController.StopTimer();
     }
 
     public override void OnTriggerEnterExtra(Collider2D col)
@@ -246,6 +249,7 @@ public class Player : Character
         {
             hud.winText.enabled = true;
             Time.timeScale = 0f;
+            gameController.StopTimer();
         }
     }
 }

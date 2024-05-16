@@ -108,19 +108,23 @@ public abstract class Character : CharacterBase
             OnUpdate();
         }
 
-        if (isCollidingWithAgent) {
+        if (isCollidingWithAgent)
+        {
             timeCollided += Time.deltaTime;
         }
 
-        if (timeCollided > maxTimeCollided) {
+        if (timeCollided > maxTimeCollided)
+        {
             gameObject.layer = LayerMask.NameToLayer("CharacterIgnoreCollisions");
             isNoClipping = true;
         }
 
-        if (isNoClipping) {
+        if (isNoClipping)
+        {
             noClipTime += Time.deltaTime;
         }
-        if (noClipTime > totalNoclipTime) {
+        if (noClipTime > totalNoclipTime)
+        {
             gameObject.layer = LayerMask.NameToLayer("Default");
             isNoClipping = false;
             noClipTime = 0;
@@ -325,10 +329,17 @@ public abstract class Character : CharacterBase
                     this
                 );
             }
-            
+
             // sleep if we punched bed
-            if (ray.Value.collider.CompareTag("Bed")) {
+            if (ray.Value.collider.CompareTag("Bed"))
+            {
                 controller.sleep();
+            }
+
+            // increase player walking and running speed when punch fitness equipments
+            if (ray.Value.collider.CompareTag("Fitness"))
+            {
+                controller.increaseSpeed();
             }
         }
     }
