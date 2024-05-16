@@ -9,7 +9,7 @@ public static class Game
     public const float runningSpeed = 10f;
 
     // seconds after which an agent (guard, prisoner) is allowed to change direction
-    public const float agentDirectionChangeLimit = 0.25f;
+    public const float agentDirectionChangeLimit = 0.10f;
 
     // max distance you can melee something
     public const float meleeDistance = 0.5f;
@@ -21,7 +21,7 @@ public static class Game
 
     public const int bulletsSpawnedShotgun = 8;
 
-    public const float minuteLengthInSeconds = 0.5f;
+    public const float minuteLengthInSeconds = 0.25f;
 
     // ---------------------------------------------------------
     // weapon damage constants
@@ -62,13 +62,12 @@ public static class Game
 
     public enum Phase
     {
-        Mealtime = 0, Work = 1, FreeTime = 2, ReturnToCell = 3, Nighttime = 4
+        Work = 0, FreeTime = 1, ReturnToCell = 2, Nighttime = 3
     }
 
     // string names for phases
     // order needs to be same
     public static readonly string[] PhaseNames = {
-        "Breakfast",
         "Work",
         "Free Time",
         "Return to Cell",

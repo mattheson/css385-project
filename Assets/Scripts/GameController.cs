@@ -75,16 +75,11 @@ public class GameController : MonoBehaviour
     void addMinute()
     {
         time += TimeSpan.FromMinutes(1);
-        // 8 am -  10:59am: Mealtime (breakfast)
-        // 11 am - 3:59 pm: Work
+        // 8 am - 3:59 pm: Work
         // 4 pm - 6:59 pm: FreeTime
         // 7 pm - 7:59 pm: Return to Cell
         // 8 pm - 8 am: Nighttime
-        if (time.Hours >= 8 && time.Hours < 11)
-        {
-            _phase = Game.Phase.Mealtime;
-        }
-        else if (time.Hours >= 11 && time.Hours < 16)
+        if (time.Hours >= 8 && time.Hours < 16)
         {
             HUD hud = FindFirstObjectByType<HUD>();
             if (hud)
@@ -123,7 +118,8 @@ public class GameController : MonoBehaviour
         else if (time.Hours == 19)
         {
             HUD hud = FindFirstObjectByType<HUD>();
-            if (hud && hud.quotaMetText.enabled) {
+            if (hud && hud.quotaMetText.enabled)
+            {
                 hud.quotaMetText.enabled = false;
             }
             _phase = Game.Phase.ReturnToCell;

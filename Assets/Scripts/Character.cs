@@ -327,7 +327,7 @@ public abstract class Character : CharacterBase
             }
             
             // sleep if we punched bed
-            if (ray.Value.collider.CompareTag("Bed")) {
+            if (CompareTag("Player") && ray.Value.collider.CompareTag("Bed")) {
                 controller.sleep();
             }
         }

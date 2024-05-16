@@ -136,7 +136,7 @@ public class CharacterAnimator : MonoBehaviour
 
     public void stopWalking()
     {
-        animator.Play("Idle", 0);
+        if (animator) animator.Play("Idle", 0);
     }
 
     private void punchRight()
@@ -234,6 +234,7 @@ public class CharacterAnimator : MonoBehaviour
 
     public bool isSwingingTwoHandStone()
     {
+        if (!animator) return false;
         return animator.GetCurrentAnimatorStateInfo(1).IsName("Two Hand Stone Swing");
     }
 
@@ -317,5 +318,15 @@ public class CharacterAnimator : MonoBehaviour
     public void togglePunchHand()
     {
         punchingWithRight = !punchingWithRight;
+    }
+
+    public void leftPunchDone()
+    {
+        punchingWithRight = true;
+    }
+
+    public void rightPunchDone()
+    {
+        punchingWithRight = false;
     }
 }
