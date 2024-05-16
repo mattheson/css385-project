@@ -7,6 +7,10 @@ public static class Game
 {
     public const float walkingSpeed = 5f;
     public const float runningSpeed = 10f;
+    public const float fitnessSpeedIncreaseWalking = 1f;
+    public const float fitnessSpeedIncreaseRunning = 1f;
+    public const float maxWalkingSpeed = 10f;
+    public const float maxRunningSpeed = 15f;
 
     // seconds after which an agent (guard, prisoner) is allowed to change direction
     public const float agentDirectionChangeLimit = 0.10f;
@@ -44,7 +48,7 @@ public static class Game
     public const float fistsForceDuration = 1;
     public const float pickaxeForce = 5;
     public const float pickaxeForceDuration = 0.5f;
-    public const float pistolForce = 5; 
+    public const float pistolForce = 5;
     public const float pistolForceDuration = 0.25f;
     public const float twoHandStoneForce = 10;
     public const float twoHandStoneForceDuration = 1;

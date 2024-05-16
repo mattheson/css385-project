@@ -67,8 +67,13 @@ public abstract class Character : CharacterBase
     private bool isNoClipping = false;
     private float noClipTime = 0f;
 
+    private float walkingSpeed, runningSpeed;
+
     public sealed override void Start()
     {
+        walkingSpeed = Game.walkingSpeed;
+        runningSpeed = Game.runningSpeed;
+
         characterRigidbody = GetComponent<Rigidbody2D>();
         GetComponent<SpriteRenderer>().sprite = bodySprite;
         animator.character = this;
@@ -183,7 +188,7 @@ public abstract class Character : CharacterBase
             curr.x += 1;
             moved = true;
         }
-        float speed = running ? Game.runningSpeed : Game.walkingSpeed;
+        float speed = running ? runningSpeed : walkingSpeed;
         curr = curr.normalized * speed;
         movementVel = curr;
 
@@ -330,6 +335,12 @@ public abstract class Character : CharacterBase
             if (CompareTag("Player") && ray.Value.collider.CompareTag("Bed")) {
                 controller.sleep();
             }
+
+            // increase player walking and running speed when punch fitness equipments
+            if (ray.Value.collider.CompareTag("Fitness"))
+            {
+                increaseSpeed();
+            }
         }
     }
 
@@ -440,6 +451,12 @@ public abstract class Character : CharacterBase
         {
             agent.Warp(transform.position);
         }
+    }
+
+    public void increaseSpeed()
+    {
+        walkingSpeed += Game.fitnessSpeedIncreaseWalking;
+        runningSpeed += Game.fitnessSpeedIncreaseRunning;
     }
 
     void OnCollisionEnter2D(Collision2D col)

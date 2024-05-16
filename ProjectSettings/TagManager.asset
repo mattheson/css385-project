@@ -13,6 +13,7 @@ TagManager:
   - Stone Tile
   - Bed
   - Level Manager
+  - Fitness
   layers:
   - Default
   - TransparentFX

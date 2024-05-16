@@ -22,6 +22,9 @@ public class CharacterAnimator : MonoBehaviour
 
     private bool punchingWithRight = true;
 
+    // if we got call to reset punch during an animation
+    private bool queuedReset = false;
+
     private bool inAnimation
     {
         get
@@ -183,7 +186,12 @@ public class CharacterAnimator : MonoBehaviour
 
     public void resetPunch()
     {
-        punchingWithRight = true;
+        if (inAnimation)
+        {
+            queuedReset = true;
+        } else {
+            punchingWithRight = true;
+        }
     }
 
     public void shootPistol()
@@ -317,7 +325,14 @@ public class CharacterAnimator : MonoBehaviour
 
     public void togglePunchHand()
     {
-        punchingWithRight = !punchingWithRight;
+        if (queuedReset)
+        {
+            queuedReset = false;
+        }
+        else
+        {
+            punchingWithRight = !punchingWithRight;
+        }
     }
 
     public void leftPunchDone()

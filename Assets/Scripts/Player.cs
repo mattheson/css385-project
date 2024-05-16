@@ -39,7 +39,7 @@ public class Player : Character
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadSceneAsync("Game");
         }
         health = 100;
         if (!hud) hud = FindAnyObjectByType<HUD>();
@@ -238,6 +238,7 @@ public class Player : Character
 
     public override void OnDeath()
     {
+        controller.StopTimer();
     }
 
     public override void OnTriggerEnterExtra(Collider2D col)
@@ -246,6 +247,7 @@ public class Player : Character
         {
             hud.winText.enabled = true;
             Time.timeScale = 0f;
+            controller.StopTimer();
         }
     }
 }

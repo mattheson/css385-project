@@ -11,6 +11,7 @@ using Unity.Mathematics;
 using UnityEngine.Events;
 using Unity.VisualScripting;
 using System.Linq;
+using UnityEngine.Animations;
 
 // contains logic for
 // - associating item enum with ItemInfo (see comment below)
@@ -48,6 +49,10 @@ public class GameController : MonoBehaviour
     private TimeSpan time;
     private Game.Phase _phase;
     public Game.Phase phase { get => _phase; }
+
+    private DateTime startTime;
+    public TimeSpan elapsedTime;
+    public bool isTimerRunning = false;
 
     private bool _playerFailedToCollectGold;
 
@@ -199,6 +204,9 @@ public class GameController : MonoBehaviour
 
         time = new TimeSpan(startingHour, 0, 0);
         InvokeRepeating("addMinute", Game.minuteLengthInSeconds, Game.minuteLengthInSeconds);
+
+        //Start the timer when the game starts
+        StartTimer();
     }
 
     void Update()
@@ -218,17 +226,12 @@ public class GameController : MonoBehaviour
             }
         }
 
-        // p for breakfast
         // [ for work
         // ] for free time
         // \ for return to cell (after which comes night time)
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            time = new TimeSpan(8, 0, 0);
-        }
         if (Input.GetKeyDown(KeyCode.LeftBracket))
         {
-            time = new TimeSpan(11, 0, 0);
+            time = new TimeSpan(8, 0, 0);
         }
         if (Input.GetKeyDown(KeyCode.RightBracket))
         {
@@ -239,6 +242,11 @@ public class GameController : MonoBehaviour
             time = new TimeSpan(19, 0, 0);
         }
         worldLight.color = worldLightGradient.Evaluate((float)time.TotalMinutes % minutesInDay / minutesInDay);
+
+        if (isTimerRunning)
+        {
+            UpdateTimer();
+        }
     }
 
     public void spawnItem(Vector2 pos, Game.Items item, int ammo = 0)
@@ -357,5 +365,24 @@ public class GameController : MonoBehaviour
         {
             time = new TimeSpan(8, 0, 0);
         }
+    }
+
+    //Start the timer
+    public void StartTimer()
+    {
+        startTime = DateTime.Now;
+        isTimerRunning = true;
+    }
+
+    // update timer as the game goes
+    public void UpdateTimer()
+    {
+        elapsedTime = DateTime.Now - startTime;
+    }
+
+    //method to stop timer when player die or escaped
+    public void StopTimer()
+    {
+        isTimerRunning = false;
     }
 }
