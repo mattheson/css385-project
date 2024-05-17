@@ -43,9 +43,15 @@ public class Guard : Character
     private const float randomPosGenerationRange = 5f;
     private Chasing chase = new Chasing();
     // -----------------------------
+    // Used to tell if the guard is meant to be a boundedGuard
+    private bool boundedGuard;
+    public TilemapCollider2D office;
 
     public override void OnStart()
     {
+
+        office = GameObject.FindGameObjectWithTag("office").GetComponent<TilemapCollider2D>();
+
         agent = GetComponent<NavMeshAgent>();
         chase.setFirer(gameObject);
         chase.Start();
@@ -62,6 +68,10 @@ public class Guard : Character
 
     public override void OnUpdate()
     {
+        if (boundedGuard)
+        {
+            chase.setOnSight(true);
+        }
         //Debug.Log(gameObject.name);
         chase.onUpdate();
         // the logic right now is just that guards follow paths nonstop
@@ -149,13 +159,37 @@ public class Guard : Character
 
         // if guard is not chasing player just go to next position in path
         if (chase.getLevel() < 0) {
-            Vector3 currentPathPoint = path.points[pathIdx].position;
-            if ((transform.position - currentPathPoint).magnitude <= 2f) {
-                pathIdx = (pathIdx + 1) % path.points.Count;
+            if (!boundedGuard)
+            {
+                Vector3 currentPathPoint = path.points[pathIdx].position;
+                if ((transform.position - currentPathPoint).magnitude <= 2f)
+                {
+                    pathIdx = (pathIdx + 1) % path.points.Count;
+                }
+                dest = currentPathPoint;
+                //agent.SetDestination(dest);
             }
-            dest = currentPathPoint;
+            else
+            {
+                if (randomPos == null)
+                {
+                    float xOffset = UnityEngine.Random.Range(-office.bounds.extents.x, office.bounds.extents.x);
+                    float yOffset = UnityEngine.Random.Range(-office.bounds.extents.y, office.bounds.extents.y);
+                    randomPos = new Vector3(office.bounds.center.x +xOffset, office.bounds.center.y + yOffset, 0);
+                    dest = randomPos.Value;
+                    Debug.Log("Spawned Random dest");
+                    //agent.SetDestination(dest);
+                }
+                if((transform.position - dest).magnitude <= 2f){
+                    Debug.Log("RandomPos reached");
+                    randomPos = null;
+                }
+            }
         }
-
+        if (boundedGuard)
+        {
+            Debug.Log(dest);
+        }
         agent.SetDestination(dest);
         agent.nextPosition = transform.position;
 
@@ -176,4 +210,5 @@ public class Guard : Character
     public override void OnTriggerEnterExtra(Collider2D col)
     {
     }
+    public void setBoundedGuard(bool b) { boundedGuard = b; }
 }

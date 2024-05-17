@@ -127,5 +127,9 @@ public class Chasing : MonoBehaviour
     {
         return level;
     }
+    public void setViewDistance(float d)
+    {
+        viewDistance = d;
+    }
 
 }

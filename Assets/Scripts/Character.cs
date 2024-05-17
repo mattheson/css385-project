@@ -247,7 +247,7 @@ public abstract class Character : CharacterBase
                 agentSecsStuck += Time.deltaTime;
                 if (agentSecsStuck > nudgeAfter)
                 {
-                    Debug.Log("nudging agent");
+                   // Debug.Log("nudging agent");
                     agentNudge = new Vector2((UnityEngine.Random.value * 2) - 1, (UnityEngine.Random.value * 2) - 1).normalized * nudgeAmount;
                 }
             }

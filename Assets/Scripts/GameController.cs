@@ -177,7 +177,12 @@ public class GameController : MonoBehaviour
                 Quaternion.identity).GetComponent<Guard>();
             newGuard.path = availablePaths.Dequeue();
         }
-
+        for(int i = 0; i < 5; i++)
+        {
+            Guard newGuard = Instantiate(guardPrefab, guardSpawnPoint.position,
+                Quaternion.identity).GetComponent<Guard>();
+            newGuard.setBoundedGuard(true);
+        }
         // spawn prisoners, one per cell
         // also spawn player here
 

@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using NUnit.Framework.Internal;
 using System;
 using System.Collections;
@@ -8,7 +9,7 @@ using UnityEngine.AI;
 
 public class Prisoner : Character
 {
-    public float fieldOfView = 170, shootingFieldOfView = 40, viewDistance = 10;
+    public float fieldOfView = 170, shootingFieldOfView = 40, viewDistance = 2;
     public int numberOfRaysToCast = 50;
     private float angryTimer = 5;
     [SerializeField] NavMeshAgent agent;
@@ -30,6 +31,7 @@ public class Prisoner : Character
         agent.updateRotation = false;
         agent.updatePosition = false;
         agent.autoRepath = true;
+        chase.setViewDistance(viewDistance);
     }
 
     public override void OnUpdate()
@@ -50,10 +52,6 @@ public class Prisoner : Character
         Bounds? maybePhaseBounds = controller.getBoundsOfCurrentPhase();
         //Vector3? dest = (maybePhaseBounds != null && randomPos == null) ? maybePhaseBounds.Value.center : randomPos;
 
-        //if (controller.phase == Game.Phase.ReturnToCell ||
-        //    controller.phase == Game.Phase.Nighttime) {
-        //    dest = cell.center;
-        //}
         if (chase.getOnSight())
         {
             angryTimer -= Time.deltaTime;
@@ -61,7 +59,7 @@ public class Prisoner : Character
             if (ray != null)
             {
                 equippedItem = Game.Items.TwoHandStone;
-                if (Mathf.Abs(ray.Item2) <= shootingFieldOfView)
+                if (Mathf.Abs(ray.Item2) <= shootingFieldOfView &&ray.Item1.distance <= 3)
                 {
                     useItem();
                     Debug.Log("shooting");
@@ -70,6 +68,7 @@ public class Prisoner : Character
             else if (chase.getLevel() > -1)
             {
                 dest = chase.getPosition().Value;
+                reachedSpot = false;
             }
             else
             {
@@ -87,23 +86,36 @@ public class Prisoner : Character
             angry = false;
             chase.setOnSight(false);
             randomPos = null;
+            equippedItem = null;
         }
 
         else
         {
             if (randomPos == null)
             {
-                currentPhase = controller.phase; 
-                float xOffset = UnityEngine.Random.Range(-maybePhaseBounds.Value.extents.x, maybePhaseBounds.Value.extents.x);
-                float yOffset = UnityEngine.Random.Range(-maybePhaseBounds.Value.extents.y, maybePhaseBounds.Value.extents.y);
-                randomPos = new Vector3(maybePhaseBounds.Value.center.x + xOffset, maybePhaseBounds.Value.center.y + yOffset, 0);
+                reachedSpot = false;
+                currentPhase = controller.phase;
+                if (controller.phase == Game.Phase.ReturnToCell ||
+                controller.phase == Game.Phase.Nighttime)
+                {
+                    float xOffset = UnityEngine.Random.Range(-cell.extents.x, cell.extents.x);
+                    float yOffset = UnityEngine.Random.Range(-cell.extents.y, cell.extents.y);
+                    randomPos = new Vector3(cell.center.x + xOffset, cell.center.y + yOffset, 0);
+                }
+                else
+                {
+                    float xOffset = UnityEngine.Random.Range(-maybePhaseBounds.Value.extents.x, maybePhaseBounds.Value.extents.x);
+                    float yOffset = UnityEngine.Random.Range(-maybePhaseBounds.Value.extents.y, maybePhaseBounds.Value.extents.y);
+                    randomPos = new Vector3(maybePhaseBounds.Value.center.x + xOffset, maybePhaseBounds.Value.center.y + yOffset, 0);
+                }
                 agent.SetDestination(randomPos.Value);
             }
         }
         Vector3 dir = agent.steeringTarget - transform.position;
         //Debug.Log((transform.position - randomPos.Value).magnitude);
-        if (!reachedSpot)
+        if (!reachedSpot || angry)
         {
+            nudgingOn = true;
             moveInDirection(new Vector2(dir.x, dir.y).normalized, false);
 
         }
