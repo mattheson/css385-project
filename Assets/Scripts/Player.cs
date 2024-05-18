@@ -38,7 +38,6 @@ public class Player : Character
 
     public override void OnUpdate()
     {
-        health = 100;
         if (!hud) hud = FindAnyObjectByType<HUD>();
 
         move(Input.GetKey(KeyCode.W), Input.GetKey(KeyCode.S),
