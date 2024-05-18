@@ -44,13 +44,13 @@ public static class Game
     // ---------------------------------------------------------
     // weapon force constants
     // (force applied when weapon hits character)
-    public const float fistsForce = 5;
-    public const float fistsForceDuration = 1;
-    public const float pickaxeForce = 5;
-    public const float pickaxeForceDuration = 0.5f;
+    public const float fistsForce = 15;
+    public const float fistsForceDuration = 0.5f;
+    public const float pickaxeForce = 10;
+    public const float pickaxeForceDuration = 1.5f;
     public const float pistolForce = 5;
     public const float pistolForceDuration = 0.25f;
-    public const float twoHandStoneForce = 10;
+    public const float twoHandStoneForce = 20;
     public const float twoHandStoneForceDuration = 1;
     // ---------------------------------------------------------
 

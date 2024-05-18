@@ -14,6 +14,8 @@ using UnityEngine.Tilemaps;
 public class Guard : Character
 {
     public GameController.GuardPath path;
+    public bool boundedToOffice;
+    private Vector3? officeRandPos = null;
     private int pathIdx = 0;
 
     // TODO add bounded guards
@@ -27,23 +29,12 @@ public class Guard : Character
 
     private NavMeshAgent agent;
 
-    // -1 if agent is patrolling/idling
-    private int level = -1;
-    private float timeInCurrentLevel = 0;
-    private Vector3? randomPos;
-    private Vector3 lastPlayerPosition;
-    private GameObject player;
-
-    // -----------------------------
-    // constants for alert levels
-    private const int SEARCHING = 0;
-    private const int CHASING = 1;
-    private static readonly float[] maxTimeInLevel = { 10f, 3f };
-    private const float randomPosGenerationRange = 5f;
-    // -----------------------------
+    private ChaseAndAttack chaseAndAttack;
 
     public override void OnStart()
     {
+        controller = FindFirstObjectByType<GameController>();
+
         agent = GetComponent<NavMeshAgent>();
 
         agent.updateUpAxis = false;
@@ -55,117 +46,71 @@ public class Guard : Character
         {
             Debug.LogError("need shooting fov to be less than full fov");
         }
+
+        chaseAndAttack = new ChaseAndAttack
+        {
+            agent = this,
+        };
+
+        if (boundedToOffice) {
+            chaseAndAttack.chaseIfSpottedWithin = controller.getOfficeBounds();
+        }
+
+        float rand = UnityEngine.Random.value;
+
+        if (rand >= 0.25)
+        {
+            chaseAndAttack.setWeaponToAttackWith(Game.Items.Pistol);
+        }
+        else
+        {
+            chaseAndAttack.setWeaponToAttackWith(Game.Items.Shotgun);
+        }
     }
 
     public override void OnUpdate()
     {
-        // the logic right now is just that guards follow paths nonstop
-        // if nighttime and player spotted we chase them
-
-        bool onSight = false; // true if the guard should chase/shoot player when it sees them 
-
-        // make sure we have player
-        if (!player)
+        if (controller.phase == Game.Phase.Nighttime)
         {
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-
-            if (players.Length == 0)
-            {
-                Debug.LogError("no Player found");
-                return;
-            }
-
-            if (players.Length > 1)
-            {
-                Debug.LogError("multiple Players found, targeting first");
-            }
-
-            player = players[0];
+            chaseAndAttack.setChaseOnSight(true);
         }
-
-        if (path == null) return;
-
-        Vector3 dest = transform.position;
-
-        // chase and attack player if they failed to collect required gold
-        // basically we want game over if they fail to get gold
-        // and this is a dramatic way of doing that
-        // might be better to just turn on onSight or something
-        if (controller.playerFailedToCollectGold())
+        else
         {
-            level = CHASING;
-            onSight = true;
+            chaseAndAttack.setChaseOnSight(false);
         }
 
-        else if (controller.phase == Game.Phase.Nighttime)
+        Vector3 dest;
+        Vector3? caDest = chaseAndAttack.getDest();
+
+        if (caDest != null)
         {
-            onSight = true;
+            dest = caDest.Value;
         }
-
-        if (onSight)
+        else
         {
-            Tuple<RaycastHit2D, float> ray = AgentVision.lookForObject(gameObject, player, transform.position, transform.up,
-                viewDistance, numberOfRaysToCast, fieldOfView);
+            if (boundedToOffice && officeRandPos == null)
+            {
+                officeRandPos = controller.findRandomTileInOffice();
+            }
 
-            // we spotted player
-            if (ray != null)
-            {
-                equippedItem = Game.Items.Pistol;
-                if (Mathf.Abs(ray.Item2) <= shootingFieldOfView)
-                {
-                    useItem();
-                    Debug.Log("shooting");
-                }
-                level = CHASING;
-                lastPlayerPosition = ray.Item1.transform.position;
-                timeInCurrentLevel = 0;
-                dest = player.transform.position;
-            }
-            else if (level > -1)
-            {
-                // we didnt spot player
-                if (timeInCurrentLevel > maxTimeInLevel[level])
-                {
-                    level--;
-                    timeInCurrentLevel = 0;
-                }
+            // if guard is not chasing player just go to next position in path
+            // or random pos in bounds
+            dest = boundedToOffice ? officeRandPos.Value : path.points[pathIdx].position;
 
-                if (level == SEARCHING)
-                {
-                    if (randomPos == null || (transform.position - randomPos.Value).magnitude <= 2f)
-                    {
-                        float xOffset = UnityEngine.Random.Range(-randomPosGenerationRange, randomPosGenerationRange);
-                        float yOffset = UnityEngine.Random.Range(-randomPosGenerationRange, randomPosGenerationRange);
-                        randomPos = new Vector3(lastPlayerPosition.x + xOffset, lastPlayerPosition.y + yOffset, 0);
-                    }
-                    agent.SetDestination(randomPos.Value);
-                }
-                else if (level == CHASING)
-                {
-                    agent.SetDestination(player.transform.position);
-                }
-                timeInCurrentLevel += Time.deltaTime;
-            }
-            else
+            if ((transform.position - dest).magnitude <= 2f)
             {
-                // we are idling
-                equippedItem = null;
+                if (!boundedToOffice)
+                {
+                    pathIdx = (pathIdx + 1) % path.points.Count;
+                }
+                else
+                {
+                    officeRandPos = controller.findRandomTileInOffice();
+                }
             }
-        } else {
-            // if not onsight we assume the guard is just patrolling
-            equippedItem = null;
-            level = -1;
-            timeInCurrentLevel = 0;
         }
 
-        // if guard is not chasing player just go to next position in path
-        if (level == -1) {
-            Vector3 currentPathPoint = path.points[pathIdx].position;
-            if ((transform.position - currentPathPoint).magnitude <= 2f) {
-                pathIdx = (pathIdx + 1) % path.points.Count;
-            }
-            dest = currentPathPoint;
-        }
+        chaseAndAttack.Update();
 
         agent.SetDestination(dest);
         agent.nextPosition = transform.position;
@@ -176,15 +121,28 @@ public class Guard : Character
             moveInDirection(new Vector2(dir.x, dir.y).normalized, false);
         }
     }
+
+    public override void OnHit(Character attacker)
+    {
+        chaseAndAttack.setCharacterToChase(attacker);
+        chaseAndAttack.startChasing();
+    }
+
     public override void OnWalkedOverItem(GameObject item)
     {
     }
     public override void OnDeath()
     {
-        // controller.freePatroller(this);
+        controller.guardDied(transform.position);
     }
 
     public override void OnTriggerEnterExtra(Collider2D col)
     {
     }
+
+    public override void OnCollisionEnter2DExtra(Collision2D col)
+    {
+    }
+
+    public override void OnCollisionExit2DExtra(Collision2D col) {}
 }

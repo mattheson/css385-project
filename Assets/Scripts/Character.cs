@@ -60,7 +60,7 @@ public abstract class Character : CharacterBase
     private List<Tuple<float, float, Vector2>> hits = new List<Tuple<float, float, Vector2>>();
 
     // more agent unstuck stuff
-    private const float maxTimeCollided = 3f;
+    private const float maxTimeCollided = 1.5f;
     private const float totalNoclipTime = 1f;
     private bool isCollidingWithAgent = false;
     private float timeCollided = 0f;
@@ -113,19 +113,23 @@ public abstract class Character : CharacterBase
             OnUpdate();
         }
 
-        if (isCollidingWithAgent) {
+        if (isCollidingWithAgent)
+        {
             timeCollided += Time.deltaTime;
         }
 
-        if (timeCollided > maxTimeCollided) {
+        if (timeCollided > maxTimeCollided)
+        {
             gameObject.layer = LayerMask.NameToLayer("CharacterIgnoreCollisions");
             isNoClipping = true;
         }
 
-        if (isNoClipping) {
+        if (isNoClipping)
+        {
             noClipTime += Time.deltaTime;
         }
-        if (noClipTime > totalNoclipTime) {
+        if (noClipTime > totalNoclipTime)
+        {
             gameObject.layer = LayerMask.NameToLayer("Default");
             isNoClipping = false;
             noClipTime = 0;
@@ -207,8 +211,9 @@ public abstract class Character : CharacterBase
     // simulates player keypresses but will nudge if agent gets stuck 
     public void moveInDirection(Vector2 direction, bool running)
     {
-        if (health == 0)
+        if (health == 0 || direction == Vector2.zero)
         {
+            animator.stopWalking();
             movementVel = Vector2.zero;
             return;
         }
@@ -330,9 +335,10 @@ public abstract class Character : CharacterBase
                     this
                 );
             }
-            
+
             // sleep if we punched bed
-            if (CompareTag("Player") && ray.Value.collider.CompareTag("Bed")) {
+            if (CompareTag("Player") && ray.Value.collider.CompareTag("Bed"))
+            {
                 controller.sleep();
             }
 
@@ -411,6 +417,8 @@ public abstract class Character : CharacterBase
     {
         hits.Add(new Tuple<float, float, Vector2>(forceTime, forceTime, incomingDirection * force));
         applyDamage(damage);
+
+        OnHit(firer);
     }
 
     public void applyDamage(int damage)
@@ -447,7 +455,7 @@ public abstract class Character : CharacterBase
 
     public void checkForAgentDesync(NavMeshAgent agent)
     {
-        if ((agent.nextPosition - transform.position).magnitude >= agentDesyncMagnitude)
+        if ((agent.transform.position - transform.position).magnitude >= agentDesyncMagnitude)
         {
             agent.Warp(transform.position);
         }
@@ -457,6 +465,10 @@ public abstract class Character : CharacterBase
     {
         walkingSpeed += Game.fitnessSpeedIncreaseWalking;
         runningSpeed += Game.fitnessSpeedIncreaseRunning;
+    }
+
+    public bool isDead() {
+        return health == 0;
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -469,6 +481,8 @@ public abstract class Character : CharacterBase
                 isCollidingWithAgent = true;
             }
         }
+
+        OnCollisionEnter2DExtra(col);
     }
 
     void OnCollisionExit2D(Collision2D col)
@@ -481,6 +495,7 @@ public abstract class Character : CharacterBase
                 timeCollided = 0;
             }
         }
+        OnCollisionExit2DExtra(col);
     }
 
     // Abstract functions
@@ -491,7 +506,8 @@ public abstract class Character : CharacterBase
     public abstract void OnStart();
     public abstract void OnUpdate();
     public abstract void OnDeath();
-
-    // TODO maybe remove this, added this for demo
+    public abstract void OnHit(Character attacker);
     public abstract void OnTriggerEnterExtra(Collider2D col);
+    public abstract void OnCollisionEnter2DExtra(Collision2D col);
+    public abstract void OnCollisionExit2DExtra(Collision2D col);
 }

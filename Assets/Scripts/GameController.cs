@@ -12,6 +12,9 @@ using UnityEngine.Events;
 using Unity.VisualScripting;
 using System.Linq;
 using UnityEngine.Animations;
+using NUnit.Framework.Constraints;
+using UnityEngine.Assertions;
+using UnityEngine.SceneManagement;
 
 // contains logic for
 // - associating item enum with ItemInfo (see comment below)
@@ -28,7 +31,7 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject itemPrefab;
     [SerializeField]
     GameObject pistolBulletPrefab, shotgunBulletPrefab, goldPrefab, twoHandStonePrefab,
-        guardPrefab, prisonerPrefab, playerPrefab;
+        guardPrefab, prisonerPrefab, playerPrefab, pistolPrefab, shotgunPrefab;
     [SerializeField] Material deadCharacterMaterial;
     [SerializeField] Light2D worldLight;
     [SerializeField] Gradient worldLightGradient;
@@ -56,29 +59,24 @@ public class GameController : MonoBehaviour
 
     private bool _playerFailedToCollectGold;
 
-    // TODO this is the cleanest way of associating ItemInfo with an enum
-    // that I have found so far, maybe there is something i'm missing
-    // i wanted these things:
-    // - an item enum
-    // - a way to associate sprites and other object info with the enum
-    // - have things be relatively easy to extend if we want to add more items
-    // and a serializable dictionary seems like the best way to do this
-    // ItemInfo is just a ScriptableObject stores the sprite/item info
-    //
     // SerializedDictionary was downloaded from the asset store, it has an MIT license: 
     // https://github.com/ayellowpaper/SerializedDictionary
     [SerializeField]
     [SerializedDictionary("Item", "Item Info")]
     SerializedDictionary<Game.Items, ItemInfo> itemInfo;
 
-    [SerializeField]
-    [SerializedDictionary("Phase", "Phase Zone")]
-    SerializedDictionary<Game.Phase, TilemapCollider2D> phaseZones;
+    [SerializeField] Tilemap freeTimeZone, mineZone, officeZone;
+    private List<Vector3> freeTimeTiles, mineTiles, officeTiles;
+    private Bounds officeBounds;
 
     private const float minutesInDay = 24 * 60;
 
+    // called when the phase changes
+    public UnityEvent phaseChanged = new UnityEvent();
+
     void addMinute()
     {
+        Game.Phase phaseBefore = _phase;
         time += TimeSpan.FromMinutes(1);
         // 8 am - 3:59 pm: Work
         // 4 pm - 6:59 pm: FreeTime
@@ -133,6 +131,9 @@ public class GameController : MonoBehaviour
         {
             _phase = Game.Phase.Nighttime;
         }
+        if (_phase != phaseBefore) {
+            phaseChanged.Invoke();
+        }
     }
 
     void Start()
@@ -140,6 +141,21 @@ public class GameController : MonoBehaviour
         _playerFailedToCollectGold = false;
 
         Time.timeScale = 1f;
+        // generate lists of tiles 
+        freeTimeTiles = generateListOfTilePositions(freeTimeZone);
+        mineTiles = generateListOfTilePositions(mineZone);
+        officeTiles = generateListOfTilePositions(officeZone);
+
+        Vector3 offMin = officeZone.transform.TransformPoint(officeZone.localBounds.min);
+        Vector3 offMax = officeZone.transform.TransformPoint(officeZone.localBounds.max);
+
+        // officeBounds = new Bounds(
+        //     new Vector3((offMin.x + offMax.x) / 2, (offMin.y + offMax.y) / 2, 0),
+        //     new Vector3(offMax.x - offMin.x, offMax.y - offMin.y, 0)
+        // );
+
+        officeBounds = officeZone.gameObject.GetComponent<TilemapCollider2D>().bounds;
+        Debug.Log(officeBounds);
 
         // populate available cells
         for (int i = 0; i < cellBounds.pathCount; i++)
@@ -173,10 +189,15 @@ public class GameController : MonoBehaviour
         // spawn guards, allocate one per path
         while (availablePaths.Count > 0)
         {
-            Debug.Log("spawning path");
             Guard newGuard = Instantiate(guardPrefab, guardSpawnPoint.position,
                 Quaternion.identity).GetComponent<Guard>();
             newGuard.path = availablePaths.Dequeue();
+        }
+
+        // spawn 5 bounded guards
+        for (int i = 0; i < 5; i++) {
+            Guard newGuard = Instantiate(guardPrefab, guardSpawnPoint.position, Quaternion.identity).GetComponent<Guard>();
+            newGuard.boundedToOffice = true;
         }
 
         // spawn prisoners, one per cell
@@ -190,13 +211,13 @@ public class GameController : MonoBehaviour
             if (cellIdx == playerCell)
             {
                 Player player = Instantiate(playerPrefab,
-                    cell.center, Quaternion.identity).GetComponent<Player>();
+                    new Vector3(cell.center.x, cell.center.y, 0), Quaternion.identity).GetComponent<Player>();
                 player.cell = cell;
             }
             else
             {
                 Prisoner newPrisoner = Instantiate(prisonerPrefab,
-                    cell.center, Quaternion.identity).GetComponent<Prisoner>();
+                    new Vector3(cell.center.x, cell.center.y, 0), Quaternion.identity).GetComponent<Prisoner>();
                 newPrisoner.cell = cell;
             }
             cellIdx++;
@@ -211,6 +232,11 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadSceneAsync("Game");
+        }
+
         if (phase == Game.Phase.Nighttime)
         {
             foreach (Door d in cellDoors)
@@ -323,7 +349,7 @@ public class GameController : MonoBehaviour
         {
             Instantiate(goldPrefab, pos, Quaternion.identity);
         }
-        else if (random > 0.25 && random <= 0.25)
+        else if (random > 0.25 && random <= 0.5)
         {
             Instantiate(twoHandStonePrefab, pos, Quaternion.identity);
         }
@@ -337,17 +363,17 @@ public class GameController : MonoBehaviour
     }
 
     // returns null if there is no set bounds for a given phase
-    public Bounds? getBoundsOfCurrentPhase()
-    {
-        if (phaseZones.ContainsKey(phase))
-        {
-            return phaseZones[phase].bounds;
-        }
-        else
-        {
-            return null;
-        }
-    }
+    // public Bounds? getBoundsOfCurrentPhase()
+    // {
+    //     if (phaseZones.ContainsKey(phase))
+    //     {
+    //         return phaseZones[phase].cellBounds;
+    //     }
+    //     else
+    //     {
+    //         return null;
+    //     }
+    // }
 
     // whether the player missed collecting gold for one work period
     public bool playerFailedToCollectGold()
@@ -384,5 +410,50 @@ public class GameController : MonoBehaviour
     public void StopTimer()
     {
         isTimerRunning = false;
+    }
+
+    // returns center coordinate of random tile corresponding to phase
+    // only for free time and work
+    public Vector3 findRandomTileInPhase(Game.Phase phase)
+    {
+        Assert.IsTrue(phase == Game.Phase.FreeTime || phase == Game.Phase.Work);
+
+        if (phase == Game.Phase.FreeTime) {
+            return freeTimeTiles[UnityEngine.Random.Range(0, freeTimeTiles.Count)];
+        }
+        
+        return mineTiles[UnityEngine.Random.Range(0, mineTiles.Count)];
+    }
+
+    public Vector3 findRandomTileInOffice() {
+        return officeTiles[UnityEngine.Random.Range(0, officeTiles.Count)];
+    }
+
+    // for spawning pistol or shotgun
+    public void guardDied(Vector3 lastPos) {
+        float rand = UnityEngine.Random.value;
+        if (rand < 0.25) {
+            Instantiate(shotgunPrefab, lastPos, Quaternion.identity);
+        } if (rand >= 0.25 && rand < 0.75) {
+            Instantiate(pistolPrefab, lastPos, Quaternion.identity);
+        }
+    }
+
+    public Bounds getOfficeBounds() {
+
+        return officeBounds;
+    }
+
+    private List<Vector3> generateListOfTilePositions(Tilemap tilemap) {
+        List<Vector3> l = new List<Vector3>();
+        for (int x = tilemap.cellBounds.xMin; x < tilemap.cellBounds.xMax; x++) {
+            for (int y = tilemap.cellBounds.yMin; y < tilemap.cellBounds.yMax; y++) {
+                Vector3Int t = new Vector3Int(x, y, (int) tilemap.transform.position.y);
+                if (tilemap.HasTile(t)) {
+                    l.Add(tilemap.GetCellCenterWorld(t));
+                }
+            }
+        }
+        return l;
     }
 }

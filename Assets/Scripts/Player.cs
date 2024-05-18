@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 using System;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.Universal;
 
 public class Player : Character
 {
@@ -37,10 +38,6 @@ public class Player : Character
 
     public override void OnUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.LoadSceneAsync("Game");
-        }
         health = 100;
         if (!hud) hud = FindAnyObjectByType<HUD>();
 
@@ -250,4 +247,14 @@ public class Player : Character
             controller.StopTimer();
         }
     }
+
+    public override void OnHit(Character attacker)
+    {
+    }
+
+    public override void OnCollisionEnter2DExtra(Collision2D col)
+    {
+    }
+
+    public override void OnCollisionExit2DExtra(Collision2D col) {}
 }
