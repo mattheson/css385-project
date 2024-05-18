@@ -52,7 +52,8 @@ public class Guard : Character
             agent = this,
         };
 
-        if (boundedToOffice) {
+        if (boundedToOffice)
+        {
             chaseAndAttack.chaseIfSpottedWithin = controller.getOfficeBounds();
         }
 
@@ -70,8 +71,14 @@ public class Guard : Character
 
     public override void OnUpdate()
     {
-        if (controller.phase == Game.Phase.Nighttime)
+        if (controller.playerFailedToCollectGold() && controller.phase != Game.Phase.Nighttime)
         {
+            chaseAndAttack.tagsToLookFor = ChaseAndAttack.onlyPlayerTag;
+            chaseAndAttack.setChaseOnSight(true);
+        }
+        else if (controller.phase == Game.Phase.Nighttime)
+        {
+            chaseAndAttack.tagsToLookFor = ChaseAndAttack.playerAndPrisonerTags;
             chaseAndAttack.setChaseOnSight(true);
         }
         else
@@ -144,5 +151,5 @@ public class Guard : Character
     {
     }
 
-    public override void OnCollisionExit2DExtra(Collision2D col) {}
+    public override void OnCollisionExit2DExtra(Collision2D col) { }
 }

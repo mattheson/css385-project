@@ -14,7 +14,9 @@ public class ChaseAndAttack
     private static readonly float[] maxTimeInLevel = { 10f, 3f };
     private const float randomPosGenerationRange = 5f;
     private const float meleeRange = 1.5f;
-    private static readonly string[] tagsToChase = { "Player", "Character" };
+    public static readonly string[] playerAndPrisonerTags = { "Player", "Character" };
+    public static readonly string[] onlyPlayerTag = { "Player" };
+    public string[] tagsToLookFor = playerAndPrisonerTags;
     public Bounds? chaseIfSpottedWithin = null;
 
     // total fov, distance from center after which agent will attack, units agent can see
@@ -43,18 +45,29 @@ public class ChaseAndAttack
             equipWeapon(false);
         }
 
-        if (chasing != null && (chaseOnSight || level != -1) || (chaseIfSpottedWithin != null))
+        if (chaseOnSight || level != -1 || chaseIfSpottedWithin != null)
         {
-            Tuple<RaycastHit2D, float> ray =
-                level != CHASING
-                ?
-                AgentHelpers.lookForObjectWithTags(agent.gameObject, tagsToChase, agent.transform.position, agent.transform.up,
-                    viewDistance, numberOfRaysToCast, fieldOfView)
-                :
-                AgentHelpers.lookForObject(agent.gameObject, chasing.gameObject, agent.transform.position, agent.transform.up,
+            Tuple<RaycastHit2D, float> ray;
+
+            if (level != CHASING)
+            {
+                if (tagsToLookFor != null)
+                {
+                    ray = AgentHelpers.lookForObjectWithTags(agent.gameObject, tagsToLookFor, agent.transform.position, agent.transform.up,
+                        viewDistance, numberOfRaysToCast, fieldOfView);
+                } else {
+                    return;
+                }
+            }
+            else
+            {
+                // look for character that we're chasing already
+                ray = AgentHelpers.lookForObject(agent.gameObject, chasing.gameObject, agent.transform.position, agent.transform.up,
                     viewDistance, numberOfRaysToCast, fieldOfView);
-            
-            if (agent.name.Contains("Guard") && ray != null) {
+            }
+
+            if (agent.name.Contains("Guard") && ray != null)
+            {
                 Debug.Log(ray.Item1.collider.gameObject.name);
             }
 
@@ -79,7 +92,7 @@ public class ChaseAndAttack
                         timeInCurrentLevel = 0;
                         if (Math.Abs(ray.Item2) < attackingFieldOfView)
                         {
-                        Debug.Log(ray.Item2);
+                            Debug.Log(ray.Item2);
                             equipWeapon(true);
                             attack();
                             if (chasing.isDead())
