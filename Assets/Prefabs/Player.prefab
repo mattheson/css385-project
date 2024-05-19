@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3892440801387214136}
   - component: {fileID: 1606630562381805878}
   - component: {fileID: -7856545156425728965}
+  - component: {fileID: 230867708635264583}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -94,8 +95,57 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 17ada7245d4e57348833b84c2ead70ee, type: 3}
   - {fileID: 8300000, guid: 6ed5b90b582230b45b8c4d121870fba9, type: 3}
   - {fileID: 8300000, guid: f878503cb0d23f24e914622d995edf48, type: 3}
-  Sounds: []
+  punchSounds:
+  - {fileID: 8300000, guid: 4b71457ad6404974597fa3da9c692bcb, type: 3}
+  - {fileID: 8300000, guid: 9585da1492cc6d94d959631537e222b2, type: 3}
+  - {fileID: 8300000, guid: ecd5b0a56d9464440b3d73cbe35a682e, type: 3}
+  - {fileID: 8300000, guid: 06c677aa690cccf4bb937d99f27afd78, type: 3}
+  - {fileID: 8300000, guid: 92b0e53fc3f7b3241b6358a15fe04d54, type: 3}
+  - {fileID: 8300000, guid: 584f1df9ece5bc74a8e29b8df7221807, type: 3}
+  - {fileID: 8300000, guid: 094734b879071a042b5741969eab3522, type: 3}
+  - {fileID: 8300000, guid: 4a88d5986b800994080387b0f2fe7793, type: 3}
+  - {fileID: 8300000, guid: f8c9cde90573be849a9e4e2f244e1554, type: 3}
+  - {fileID: 8300000, guid: 231a27107ed12174caddf60ced7c9ce3, type: 3}
+  - {fileID: 8300000, guid: 3ce4ed1d9c15b054baa5292b2cb7ec4d, type: 3}
+  - {fileID: 8300000, guid: 0c05457d822bfce49bef4b4e87920367, type: 3}
+  - {fileID: 8300000, guid: be631d9b81b0cb5478b710ef73378bef, type: 3}
+  - {fileID: 8300000, guid: c30f5373261dd2b45b86b3ca34f93037, type: 3}
+  - {fileID: 8300000, guid: b11ef4bbb6e1bb04ba9610581978a406, type: 3}
+  - {fileID: 8300000, guid: 093e5c2b8aad7b64da96b189dedb353b, type: 3}
+  - {fileID: 8300000, guid: 87676470171aca241b4288881c6620bc, type: 3}
+  - {fileID: 8300000, guid: 92f226edaf8fa6046a9c9e73c60a9857, type: 3}
+  - {fileID: 8300000, guid: ef3756236f6374e4db6e3a2d06465603, type: 3}
+  - {fileID: 8300000, guid: e2fddd6922608fd46bd2ed4dc41e02d9, type: 3}
+  - {fileID: 8300000, guid: ea3c0e80539c1184ab2102abe8a71f2c, type: 3}
+  - {fileID: 8300000, guid: 183088a3b8199934bb3f499550b443b6, type: 3}
+  - {fileID: 8300000, guid: 737455731e7349d4391f795e43f4fc64, type: 3}
+  - {fileID: 8300000, guid: 10e4ca586a9b0e242b0ec806763d4362, type: 3}
+  - {fileID: 8300000, guid: 771b16df04ab7f1428c618e1e2bd1d6f, type: 3}
+  - {fileID: 8300000, guid: bceae5f5cac090945938eb1986c14169, type: 3}
+  - {fileID: 8300000, guid: 6faa45ca19153e340a88064d9690270a, type: 3}
+  - {fileID: 8300000, guid: 2a4673e80ceee814d8511acf6695863c, type: 3}
+  - {fileID: 8300000, guid: da6bdcb15514577449bcd8215f3c72a2, type: 3}
+  - {fileID: 8300000, guid: a356b56f8f10aca48af080b2a88f4766, type: 3}
+  - {fileID: 8300000, guid: 9f88d103efb6cbb4eb1a951913803078, type: 3}
+  - {fileID: 8300000, guid: 0d696fff32414994bb82a5a19e17d1e9, type: 3}
+  - {fileID: 8300000, guid: bb551e56f5435ec4bab2aef408019880, type: 3}
+  - {fileID: 8300000, guid: 6efed77db6d78744bb9d9365e6980b78, type: 3}
+  - {fileID: 8300000, guid: ca09dccbd9d46e748b5c6ab754820306, type: 3}
+  - {fileID: 8300000, guid: 3789e76acc3cd8f4b94f04b42bc44cec, type: 3}
+  - {fileID: 8300000, guid: 6145e9255d16939448d59feb5abbe8ca, type: 3}
+  miningSounds:
+  - {fileID: 8300000, guid: 15eda3433301ba5458a549bede384d8c, type: 3}
+  - {fileID: 8300000, guid: d9f7a9a8e4b57174e8d15fcffc9b500e, type: 3}
+  - {fileID: 8300000, guid: 3a0c14cb35569224b8634a6dbf5d3544, type: 3}
+  - {fileID: 8300000, guid: ea5d7f7e976b31748aa231a2c6d306d0, type: 3}
+  - {fileID: 8300000, guid: 18779a1a8241fef41a7bd97346b76fdf, type: 3}
+  - {fileID: 8300000, guid: 1bfa1e147397a794e9ac107079416dc7, type: 3}
+  - {fileID: 8300000, guid: 6e08b74d10624ed40b0cb47b1fca43cc, type: 3}
+  - {fileID: 8300000, guid: f7db24c982955bb42a93a2555adc9d03, type: 3}
+  pistolSound: {fileID: 8300000, guid: 5f9a69f32c43f3e45a559788217ab663, type: 3}
+  shotgunSound: {fileID: 8300000, guid: 08c6089277e5ea34b91980217d8aa51e, type: 3}
   audioListener: {fileID: 1606630562381805878}
+  audioSWeapons: {fileID: 230867708635264583}
   gold: 0
   inventory: 
   cell:
@@ -233,7 +283,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 30
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -263,6 +313,130 @@ AudioSource:
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &230867708635264583
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189924507746631098}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.1
+      value: 1
+      inSlope: -10.0039835
+      outSlope: -10.0039835
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.2
+      value: 0.5
+      inSlope: -2.5009959
+      outSlope: -2.5009959
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.4
+      value: 0.25
+      inSlope: -0.62524897
+      outSlope: -0.62524897
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.8
+      value: 0.125
+      inSlope: -0.15631224
+      outSlope: -0.15631224
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.10003988
+      outSlope: -0.10003988
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4

@@ -70,12 +70,17 @@ public abstract class Character : CharacterBase
 
     private float walkingSpeed, runningSpeed;
     //Audio Sources and sounds
+    private const float hearingDistance = 30;
     public AudioSource audioS;
     public AudioClip[] deathSounds = new AudioClip[3];
     public AudioClip[] painSounds = new AudioClip[8];
-    public AudioClip[] Sounds;
+    public AudioClip[] punchSounds = new AudioClip[37];
+    public AudioClip[] miningSounds = new AudioClip[8];
+    public AudioClip pistolSound;
+    public AudioClip shotgunSound;
     public AudioListener audioListener;
     private bool goingToDie = false;
+    public AudioSource audioSWeapons;
 
 
     public sealed override void Start()
@@ -366,6 +371,8 @@ public abstract class Character : CharacterBase
         {
             if (ray.Value.collider.CompareTag("Breakable Walls"))
             {
+                setMiningSound();
+                audioSWeapons.Play();
                 ray.Value.collider.GetComponent<BreakableWallTilemap>().pickaxeHit(
                     controller.worldToCell(ray.Value.point)
                 );
@@ -512,6 +519,7 @@ public abstract class Character : CharacterBase
     {
         if (!goingToDie)
         {
+            // https://opengameart.org/content/11-male-human-paindeath-sounds
             volumeCheck(transform.position, audioListener.GetComponentInParent<Transform>().position);
             audioS.clip = painSounds[UnityEngine.Random.Range(0, painSounds.Length)];
         }
@@ -522,22 +530,56 @@ public abstract class Character : CharacterBase
     }
     public void setRandomDeath()
     {
+        // https://opengameart.org/content/11-male-human-paindeath-sounds
         volumeCheck(transform.position, audioListener.GetComponentInParent<Transform>().position);
         audioS.clip = deathSounds[UnityEngine.Random.Range(0, deathSounds.Length)];
+    }
+    public void setRandomPunch()
+    {
+        //https://opengameart.org/content/37-hitspunches
+        volumeCheck(transform.position, audioListener.GetComponentInParent<Transform>().position);
+        audioSWeapons.clip = punchSounds[UnityEngine.Random.Range(0, punchSounds.Length/2)];
+    }
+    public void setRandomTwoHandStone()
+    {
+        //https://opengameart.org/content/37-hitspunches
+        volumeCheck(transform.position, audioListener.GetComponentInParent<Transform>().position);
+        audioSWeapons.clip = punchSounds[UnityEngine.Random.Range(punchSounds.Length / 2, punchSounds.Length)];
+    }
+    public void setPistolSound()
+    {
+        //https://opengameart.org/content/chaingun-pistol-rifle-shotgun-shots
+        volumeCheck(transform.position, audioListener.GetComponentInParent<Transform>().position);
+        audioSWeapons.clip = pistolSound;
+    }
+    public void setShotgunSound()
+    {
+        //https://opengameart.org/content/chaingun-pistol-rifle-shotgun-shots
+        volumeCheck(transform.position, audioListener.GetComponentInParent<Transform>().position);
+        audioSWeapons.clip = shotgunSound;
+    }
+    public void setMiningSound()
+    {
+        //https://opengameart.org/content/wood-and-metal-sound-effects-volume-2
+        volumeCheck(transform.position, audioListener.GetComponentInParent<Transform>().position);
+        audioSWeapons.clip = miningSounds[UnityEngine.Random.Range(0, miningSounds.Length)];
     }
     public void volumeCheck(Vector3 soundOutput, Vector3 listenerPosition)
     {
         if(Vector3.Distance(listenerPosition, soundOutput) < 1)
         {
             audioS.volume = 1;
+            audioSWeapons.volume = 1;
         }
-        else if (Vector3.Distance(listenerPosition, soundOutput) < 15)
+        else if (Vector3.Distance(listenerPosition, soundOutput) < hearingDistance)
         {
             audioS.volume = 2 / Vector3.Distance(listenerPosition, soundOutput);
+            audioSWeapons.volume = 1 / Vector3.Distance(listenerPosition, soundOutput);
             Debug.Log(audioS.volume);
         }
         else
         {
+            audioSWeapons.volume = 0;
             audioS.volume = 0;
         }
     }
