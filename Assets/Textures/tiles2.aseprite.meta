@@ -23,7 +23,7 @@ ScriptedImporter:
     normalMapFilter: 0
     flipGreenChannel: 0
     swizzle: 50462976
-    isReadable: 0
+    isReadable: 1
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638512703969348150
+  platformSettingsDirtyTick: 638516572675096730
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -377,7 +377,13 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 8, y: 5}
+      - {x: -2, y: 5}
+      - {x: -5, y: 2}
+      - {x: -5, y: -8}
+      - {x: 8, y: -8}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -397,7 +403,13 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 5, y: 2}
+      - {x: 2, y: 5}
+      - {x: -8, y: 5}
+      - {x: -8, y: -8}
+      - {x: 5, y: -8}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -597,7 +609,12 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 8, y: 8}
+      - {x: -5, y: 8}
+      - {x: -5, y: -8}
+      - {x: 8, y: -8}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -617,7 +634,12 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 5, y: 8}
+      - {x: -8, y: 8}
+      - {x: -8, y: -8}
+      - {x: 5, y: -8}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -817,7 +839,13 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 8, y: 8}
+      - {x: -5, y: 8}
+      - {x: -5, y: 0}
+      - {x: 0, y: -5}
+      - {x: 8, y: -5}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -837,7 +865,13 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 5, y: 0}
+      - {x: 5, y: 8}
+      - {x: -8, y: 8}
+      - {x: -8, y: -5}
+      - {x: 0, y: -5}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -1257,7 +1291,15 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 5, y: -6}
+      - {x: 2, y: -3}
+      - {x: -1, y: -2}
+      - {x: -5, y: -2}
+      - {x: -8, y: -4}
+      - {x: -8, y: -8}
+      - {x: 5, y: -8}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -1277,7 +1319,13 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 8, y: 8}
+      - {x: -5, y: 8}
+      - {x: -8, y: 3}
+      - {x: -8, y: -8}
+      - {x: 8, y: -8}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -1297,7 +1345,13 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 8, y: 8}
+      - {x: -8, y: 8}
+      - {x: -8, y: -3}
+      - {x: -5, y: -8}
+      - {x: 8, y: -8}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -1317,7 +1371,15 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 2, y: 3}
+      - {x: 5, y: 6}
+      - {x: 5, y: 8}
+      - {x: -8, y: 8}
+      - {x: -8, y: 4}
+      - {x: -5, y: 2}
+      - {x: 0, y: 2}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -1337,7 +1399,12 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 8, y: 2}
+      - {x: -8, y: 2}
+      - {x: -8, y: -8}
+      - {x: 8, y: -8}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -1357,7 +1424,12 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 8, y: 8}
+      - {x: -8, y: 8}
+      - {x: -8, y: -2}
+      - {x: 8, y: -2}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -1377,7 +1449,13 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 8, y: 2}
+      - {x: 1, y: 2}
+      - {x: -2, y: -1}
+      - {x: -2, y: -8}
+      - {x: 8, y: -8}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -1397,7 +1475,13 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 8, y: 8}
+      - {x: -2, y: 8}
+      - {x: -2, y: 1}
+      - {x: 1, y: -2}
+      - {x: 8, y: -2}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -1417,7 +1501,17 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 2, y: -5}
+      - {x: 8, y: -3}
+      - {x: 8, y: 5}
+      - {x: 0, y: 7}
+      - {x: -6, y: 7}
+      - {x: -7, y: 3}
+      - {x: -7, y: -2}
+      - {x: -4, y: -6}
+      - {x: 0, y: -6}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -1437,7 +1531,15 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 8, y: 6}
+      - {x: 7, y: 7}
+      - {x: -3, y: 7}
+      - {x: -8, y: 6}
+      - {x: -8, y: -3}
+      - {x: -1, y: -6}
+      - {x: 8, y: -6}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -1457,7 +1559,16 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 8, y: -5}
+      - {x: 8, y: 3}
+      - {x: 4, y: 6}
+      - {x: -3, y: 6}
+      - {x: -7, y: 5}
+      - {x: -7, y: -4}
+      - {x: -6, y: -6}
+      - {x: 4, y: -6}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -1477,7 +1588,16 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 7, y: -5}
+      - {x: 7, y: 4}
+      - {x: 6, y: 6}
+      - {x: -4, y: 6}
+      - {x: -8, y: 5}
+      - {x: -8, y: -3}
+      - {x: -4, y: -6}
+      - {x: 3, y: -6}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -1497,7 +1617,15 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 5, y: -6}
+      - {x: 2, y: -3}
+      - {x: -1, y: -2}
+      - {x: -5, y: -2}
+      - {x: -8, y: -4}
+      - {x: -8, y: -8}
+      - {x: 5, y: -8}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -1517,7 +1645,14 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 8, y: 8}
+      - {x: -6, y: 8}
+      - {x: -8, y: 6}
+      - {x: -8, y: -4}
+      - {x: -5, y: -8}
+      - {x: 8, y: -8}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -1537,7 +1672,14 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 8, y: 8}
+      - {x: -5, y: 8}
+      - {x: -8, y: 4}
+      - {x: -8, y: -6}
+      - {x: -6, y: -8}
+      - {x: 8, y: -8}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -1577,7 +1719,14 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 8, y: 3}
+      - {x: 6, y: 3}
+      - {x: 3, y: 0}
+      - {x: 3, y: -3}
+      - {x: 6, y: -6}
+      - {x: 8, y: -6}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -1597,7 +1746,14 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 8, y: 6}
+      - {x: 6, y: 6}
+      - {x: 3, y: 3}
+      - {x: 3, y: 0}
+      - {x: 6, y: -3}
+      - {x: 8, y: -3}
     indices: 
     edges: []
     tessellationDetail: 0
