@@ -1158,9 +1158,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Beta Demo
-
-    Press ''esc'' to restart'
+  m_text: Press 'esc' to restart
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 25955d966e8834ef5a18975439539d3a, type: 2}
   m_sharedMaterial: {fileID: 2902359012453345777, guid: 25955d966e8834ef5a18975439539d3a, type: 2}
