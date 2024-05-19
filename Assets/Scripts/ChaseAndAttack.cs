@@ -68,7 +68,7 @@ public class ChaseAndAttack
 
             if (agent.name.Contains("Guard") && ray != null)
             {
-                Debug.Log(ray.Item1.collider.gameObject.name);
+                //Debug.Log(ray.Item1.collider.gameObject.name);
             }
 
             // we found object to chase (player or prisoner)

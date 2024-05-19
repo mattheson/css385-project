@@ -133,6 +133,8 @@ public class Guard : Character
     {
         chaseAndAttack.setCharacterToChase(attacker);
         chaseAndAttack.startChasing();
+        setRandomPain();
+        audioS.Play();
     }
 
     public override void OnWalkedOverItem(GameObject item)

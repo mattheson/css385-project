@@ -67,13 +67,22 @@ public abstract class Character : CharacterBase
     private bool isNoClipping = false;
     private float noClipTime = 0f;
 
+
     private float walkingSpeed, runningSpeed;
+    //Audio Sources and sounds
+    public AudioSource audioS;
+    public AudioClip[] deathSounds = new AudioClip[3];
+    public AudioClip[] painSounds = new AudioClip[8];
+    public AudioClip[] Sounds;
+    public AudioListener audioListener;
+    private bool goingToDie = false;
+
 
     public sealed override void Start()
     {
+        audioListener = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioListener>();
         walkingSpeed = Game.walkingSpeed;
         runningSpeed = Game.runningSpeed;
-
         characterRigidbody = GetComponent<Rigidbody2D>();
         GetComponent<SpriteRenderer>().sprite = bodySprite;
         animator.character = this;
@@ -429,6 +438,7 @@ public abstract class Character : CharacterBase
             if (health < 0) health = 0;
             if (health == 0)
             {
+                goingToDie = true;
                 OnDeath();
             }
         }
@@ -496,6 +506,40 @@ public abstract class Character : CharacterBase
             }
         }
         OnCollisionExit2DExtra(col);
+    }
+
+    public void setRandomPain()
+    {
+        if (!goingToDie)
+        {
+            volumeCheck(transform.position, audioListener.GetComponentInParent<Transform>().position);
+            audioS.clip = painSounds[UnityEngine.Random.Range(0, painSounds.Length)];
+        }
+        else
+        {
+            setRandomDeath();
+        }
+    }
+    public void setRandomDeath()
+    {
+        volumeCheck(transform.position, audioListener.GetComponentInParent<Transform>().position);
+        audioS.clip = deathSounds[UnityEngine.Random.Range(0, deathSounds.Length)];
+    }
+    public void volumeCheck(Vector3 soundOutput, Vector3 listenerPosition)
+    {
+        if(Vector3.Distance(listenerPosition, soundOutput) < 1)
+        {
+            audioS.volume = 1;
+        }
+        else if (Vector3.Distance(listenerPosition, soundOutput) < 15)
+        {
+            audioS.volume = 2 / Vector3.Distance(listenerPosition, soundOutput);
+            Debug.Log(audioS.volume);
+        }
+        else
+        {
+            audioS.volume = 0;
+        }
     }
 
     // Abstract functions

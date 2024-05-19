@@ -126,6 +126,8 @@ public class Prisoner : Character
     {
         chaseAndAttack.setCharacterToChase(attacker);
         chaseAndAttack.startChasing();
+        setRandomPain();
+        audioS.Play();
     }
 
     public override void OnCollisionEnter2DExtra(Collision2D col)

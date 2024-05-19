@@ -26,6 +26,7 @@ public class Player : Character
 
     public override void OnStart()
     {
+
         // reserve[Game.Items.Pistol] = 0;
         // clip[Game.Items.Pistol] = 0;
 
@@ -38,6 +39,11 @@ public class Player : Character
 
     public override void OnUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            setRandomDeath();
+            audioS.Play();
+        }
         if (!hud) hud = FindAnyObjectByType<HUD>();
 
         move(Input.GetKey(KeyCode.W), Input.GetKey(KeyCode.S),
@@ -249,6 +255,8 @@ public class Player : Character
 
     public override void OnHit(Character attacker)
     {
+        setRandomPain();
+        audioS.Play();
     }
 
     public override void OnCollisionEnter2DExtra(Collision2D col)
