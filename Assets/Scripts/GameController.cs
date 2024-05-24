@@ -15,6 +15,7 @@ using UnityEngine.Animations;
 using NUnit.Framework.Constraints;
 using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 // contains logic for
 // - associating item enum with ItemInfo (see comment below)
@@ -44,6 +45,9 @@ public class GameController : MonoBehaviour
     [SerializeField] CompositeCollider2D cellBounds;
     [SerializeField] Transform guardSpawnPoint;
     [SerializeField] Player player;
+    [SerializeField] AudioClip soundtrack;
+    [SerializeField] AudioMixerGroup soundtrackAudioGroup, soundEffectAudioGroup;
+    AudioSource sound;
 
     // queue of available cells we can assign to prisoners
     Queue<Bounds> availableCells = new Queue<Bounds>();
@@ -228,6 +232,13 @@ public class GameController : MonoBehaviour
 
         //Start the timer when the game starts
         StartTimer();
+
+        sound = gameObject.AddComponent<AudioSource>();
+        sound.outputAudioMixerGroup = soundtrackAudioGroup;
+        sound.clip = soundtrack;
+        sound.loop = true;
+        sound.volume = 1f;
+        sound.Play();
     }
 
     void Update()
@@ -455,5 +466,9 @@ public class GameController : MonoBehaviour
             }
         }
         return l;
+    }
+
+    public AudioMixerGroup getSoundEffectAudioGroup() {
+        return soundEffectAudioGroup;
     }
 }

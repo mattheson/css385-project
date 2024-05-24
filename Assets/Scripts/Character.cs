@@ -108,6 +108,9 @@ public abstract class Character : CharacterBase
         if (!controller)
         {
             controller = FindFirstObjectByType<GameController>();
+        } else {
+            audioS.outputAudioMixerGroup = controller.getSoundEffectAudioGroup();
+            audioSWeapons.outputAudioMixerGroup = controller.getSoundEffectAudioGroup();
         }
 
         if (animator.character != this)

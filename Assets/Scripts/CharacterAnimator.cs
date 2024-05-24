@@ -175,14 +175,10 @@ public class CharacterAnimator : MonoBehaviour
         {
             if (punchingWithRight)
             {
-                character.setRandomPunch();
-                character.audioSWeapons.Play();
                 punchRight();
             }
             else
             {
-                character.setRandomPunch();
-                character.audioSWeapons.Play();
                 punchLeft();
             }
         }
@@ -193,7 +189,9 @@ public class CharacterAnimator : MonoBehaviour
         if (inAnimation)
         {
             queuedReset = true;
-        } else {
+        }
+        else
+        {
             punchingWithRight = true;
         }
     }
@@ -202,8 +200,6 @@ public class CharacterAnimator : MonoBehaviour
     {
         if (!inAnimation)
         {
-            character.setPistolSound();
-            character.audioSWeapons.Play();
             animator.Play("Pistol Shoot Right", 1);
         }
     }
@@ -217,8 +213,6 @@ public class CharacterAnimator : MonoBehaviour
     {
         if (!inAnimation)
         {
-            character.setShotgunSound();
-            character.audioSWeapons.Play();
             animator.Play("Shotgun Shoot", 1);
         }
     }
@@ -244,8 +238,6 @@ public class CharacterAnimator : MonoBehaviour
     {
         if (!inAnimation)
         {
-            character.setRandomTwoHandStone();
-            character.audioSWeapons.Play();
             animator.Play("Two Hand Stone Swing", 1);
         }
     }
@@ -295,16 +287,22 @@ public class CharacterAnimator : MonoBehaviour
 
     public void animationRightPunchImpact()
     {
+        character.setRandomPunch();
+        character.audioSWeapons.Play();
         character.rightPunchImpact();
     }
 
     public void animationLeftPunchImpact()
     {
+        character.setRandomPunch();
+        character.audioSWeapons.Play();
         character.leftPunchImpact();
     }
 
     public void animationPistolShot()
     {
+        character.setPistolSound();
+        character.audioSWeapons.Play();
         character.spawnPistolBullet();
     }
 
@@ -320,6 +318,8 @@ public class CharacterAnimator : MonoBehaviour
 
     public void animationShotgunShot()
     {
+        character.setShotgunSound();
+        character.audioSWeapons.Play();
         character.spawnShotgunShot();
     }
 
@@ -330,6 +330,8 @@ public class CharacterAnimator : MonoBehaviour
 
     public void animationTwoHandStoneImpact()
     {
+        character.setRandomTwoHandStone();
+        character.audioSWeapons.Play();
         character.twoHandStoneImpact();
     }
 
